@@ -1,0 +1,46 @@
+html {
+    background-image: url("../img/bg/Pemkot_Batu_Edit.jpg");
+    background-size: cover;
+    backdrop-filter: blur(10px);
+    position: relative;
+    background-position: center;
+}
+
+body {
+    background: transparent;
+    font-size: 16px;
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+}
+
+.rounded {
+    border-radius: 15px !important;
+}
+
+.rounded input select {
+    border-radius: 10px !important;
+}
+
+.form-input {
+    display: flex;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    padding: 10px;
+    color: #757b85;
+}
+
+.input {
+    padding-left: 35px;
+}
+
+.form-control:focus {
+    border-color: #000000;
+    box-shadow: none;
+}
+
+.form-select:focus {
+    border-color: #000000;
+    box-shadow: none;
+}
