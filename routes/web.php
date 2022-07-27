@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SuperAdminController;
 
 
 /*
@@ -28,4 +29,13 @@ Route::get('/login',[LoginController::class,'index'])->name('login')->middleware
 Route::post('/login',[LoginController::class,'authenticate']);
 Route::post('/logout',[LoginController::class,'logout']);
 
-Route::resource('/dashboard', UserController::class)->middleware('auth');
+Route::get('/dashboard',[DashboardController::class,'index'])->middleware('auth');
+
+// Superadmin
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard/role',[SuperAdminController::class,'role']);
+    Route::get('/dashboard/dinas',[SuperAdminController::class,'dinas']);
+    Route::get('/dashboard/profile',[SuperAdminController::class,'profile']);
+    Route::post('/dashboard/addUser',[SuperAdminController::class,'addUser']);
+    Route::post('/dashboard/editUser',[SuperAdminController::class,'editUser']);
+});

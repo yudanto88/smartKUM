@@ -2,25 +2,25 @@
     <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/{{$user->role->role}}/user">
+                <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
                     <span class="align-text-bottom"><i class="fa-solid fa-user-group"></i></span>
                     User
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/{{$user->role->role}}/role">
+                <a class="nav-link {{ Request::is('dashboard/role') ? 'active' : '' }}" href="/dashboard/role">
                     <span class="align-text-bottom"><i class="fa-solid fa-circle-check pe-1"></i></span>
                     Role
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="/{{$user->role->role}}/dinas">
+                <a class="nav-link {{ Request::is('dashboard/dinas') ? 'active' : '' }}" aria-current="page" href="/dashboard/dinas">
                     <span class="align-text-bottom"><i class="fa-solid fa-building-user"></i></span>
                     Dinas
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="/{{$user->role->role}}/profile">
+            <li class="nav-item ">
+                <a class="nav-link {{ Request::is('dashboard/profile') ? 'active' : '' }}" aria-current="page" href="/dashboard/profile">
                     <span class="align-text-bottom"><i class="fa-solid fa-user pe-1"></i></span>
                     Profile
                 </a>
@@ -38,13 +38,13 @@
                 <li class="nav-item">
                     <div class="nav-link">
                         username:
-                        <p>{{$user->name}}</p>
+                        <p>{{Auth::user()->name}}</p>
                         
                         role:
-                        <p>{{$user->role->role}}</p>
+                        <p>{{Auth::user()->role->role}}</p>
                         
                         dinas:
-                        <p>{{$user->dinas->dinas}}</p>
+                        <p>{{Auth::user()->dinas->dinas}}</p>
                     </div>
                 </li>
             </ul>
