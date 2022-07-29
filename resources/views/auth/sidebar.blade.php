@@ -1,6 +1,36 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
+            @canany(['newuser','skpd','admin_fo','staff_perundang_undangan',
+            'kasubag_perundang_undangan','kabag','kepala_dinas','sekda','walikota',
+            'staff_dokumentasi','kasubag_dokumentasi'])
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
+                    <span class="align-text-bottom"><i class="fa-solid fa-table-columns"></i></span>
+                    Dashboard
+                </a>
+            </li>
+            @endcanany
+
+            @can('skpd')
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/skpd/addprodukhukum') ? 'active' : '' }}" aria-current="page" href="/dashboard/skpd/addprodukhukum">
+                    <span class="align-text-bottom"><i class="fa-solid fa-plus"></i></span>
+                    Pengajuan Produk Hukum
+                </a>
+            </li>
+            @endcan
+
+            @can('staff_dokumentasi')
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/dokumentasi/addprodukhukum') ? 'active' : '' }}" aria-current="page" href="/dashboard/skpd/addprodukhukum">
+                    <span class="align-text-bottom"><i class="fa-solid fa-plus"></i></span>
+                    Tambah Produk Hukum
+                </a>
+            </li>
+            @endcan
+
+            @can('superadmin')
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
                     <span class="align-text-bottom"><i class="fa-solid fa-user-group"></i></span>
@@ -19,6 +49,7 @@
                     Dinas
                 </a>
             </li>
+            @endcan
             <li class="nav-item ">
                 <a class="nav-link {{ Request::is('dashboard/profile') ? 'active' : '' }}" aria-current="page" href="/dashboard/profile">
                     <span class="align-text-bottom"><i class="fa-solid fa-user pe-1"></i></span>
