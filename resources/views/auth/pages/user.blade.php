@@ -42,7 +42,7 @@
                         <td>{{$user->role->role}}</td>
                         <td>{{$user->dinas->dinas}}</td>
                         <td>
-                            <button type="button" class="badge bg-info border-0 mx-auto" data-bs-toggle="modal" data-bs-target="#editUser" 
+                            <button type="button" class="badge bg-info border-0 mx-auto" data-bs-toggle="modal" data-bs-target="#editUser{{$user->id}}" 
                             data-editemail="{{ $user->email }}" data-name="{{ $user->name }}" data-email="{{ $user->nip }}" 
                             data-roleid="{{ $user->role_id }}" data-dinasid="{{ $user->dinas_id }}" id="edit" onclick="getUser({{$user}})">
                                 edit
@@ -178,7 +178,7 @@
 </div>
 
 <!-- Modal Edit User -->
-<div class="modal fade " id="editUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade " id="editUser{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
