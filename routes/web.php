@@ -32,18 +32,22 @@ Route::post('/logout',[LoginController::class,'logout']);
 
 Route::get('/dashboard',[DashboardController::class,'index'])->middleware('auth');
 
-Route::get('/dashboard/profile',[SuperAdminController::class,'profile']);
+Route::get('/dashboard/profile',[DashboardController::class,'profile']);
+Route::put('/dashboard/editProfile/{id}',[DashboardController::class,'editProfile']);
 
 // Superadmin
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/dashboard/role',[SuperAdminController::class,'role']);
     Route::get('/dashboard/dinas',[SuperAdminController::class,'dinas']);
     Route::post('/dashboard/addUser',[SuperAdminController::class,'addUser']);
-    Route::get('/dashboard/findUser',[SuperAdminController::class,'findUser']);
     Route::put('/dashboard/editUser/{id}',[SuperAdminController::class,'editUser']);
-    Route::delete('/dashboard/deleteUser',[SuperAdminController::class,'deleteUser']);
+    Route::delete('/dashboard/deleteUser/{id}',[SuperAdminController::class,'deleteUser']);
     Route::post('/dashboard/addRole',[SuperAdminController::class,'addRole']);
     Route::post('/dashboard/addDinas',[SuperAdminController::class,'addDinas']);
+    Route::put('/dashboard/editDinas/{id}',[SuperAdminController::class,'editDinas']);
+    Route::delete('/dashboard/deleteDinas/{id}',[SuperAdminController::class,'deleteDinas']);
+    Route::put('/dashboard/editRole/{id}',[SuperAdminController::class,'editRole']);
+    Route::delete('/dashboard/deleteRole/{id}',[SuperAdminController::class,'deleteRole']);
 });
 
 // SKPD

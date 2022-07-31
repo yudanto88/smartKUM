@@ -15,8 +15,7 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         if (Auth::user()->role->role == '-'){
             return view('auth.newuser.dashboard');
         } else if(Auth::user()->role->role == 'superadmin') {
@@ -54,6 +53,58 @@ class DashboardController extends Controller
         }
     }
 
-    
+    public function profile() {
+        return view('auth.pages.profile', [
+            'user' => Auth::user(),
+            'dinas' => Dinas::all()
+        ]);
+    }
 
+    public function editProfile(Request $request, User $user){
+        $validate = [[
+            'name' => 'required',
+            'password' => 'required|min:6',
+            'confirmPassword' => 'required|same:password',
+        ], [
+            'name.required' => 'Username tidak boleh kosong',
+            'password.required' => 'Password tidak boleh kosong',
+            'password.min' => 'Password minimal 6 karakter',
+            'confirmPassword.required' => 'Konfirmasi password tidak boleh kosong',
+            'confirmPassword.same' => 'Konfirmasi password tidak sama',
+        ]];
+
+        if($request->email == $user->email){
+            $validate = [[
+                'email' => 'required|email:dns|unique:users,email'
+            ], [
+                'email.required' => 'Email tidak boleh kosong',
+                'email.email' => 'Email tidak valid',
+                'email.unique' => 'Email sudah terdaftar'
+            ]];
+        }
+        
+        if($request->nip == $user->nip){
+            $validate = [[
+                'nip' => 'required|unique:users,nip'
+            ], [
+                'nip.required' => 'NIP tidak boleh kosong',
+                'nip.unique' => 'NIP sudah terdaftar'
+            ]];
+        }
+
+        $validateData = $request->validate($validate[0], $validate[1]);
+
+        User::where('id', $request->id)
+            -> update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'nip' => $request->nip,
+                'password' => bcrypt($request->password),
+                'dinas_id' => $request->dinas_id
+            ]);
+
+        $request->session()->flash('success', 'Data user berhasil diubah');
+    
+        return redirect('/dashboard/profile');
+    }
 }

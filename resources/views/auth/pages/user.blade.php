@@ -9,6 +9,12 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+    @if(session()->has('error'))  
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+      {{ session()->get('error') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -42,14 +48,94 @@
                         <td>{{$user->role->role}}</td>
                         <td>{{$user->dinas->dinas}}</td>
                         <td>
-                            <button type="button" class="badge bg-info border-0 mx-auto" data-bs-toggle="modal" data-bs-target="#editUser{{$user->id}}" 
-                            data-editemail="{{ $user->email }}" data-name="{{ $user->name }}" data-email="{{ $user->nip }}" 
-                            data-roleid="{{ $user->role_id }}" data-dinasid="{{ $user->dinas_id }}" id="edit" onclick="getUser({{$user}})">
+                            <button type="button" class="badge bg-info border-0 mx-auto" data-bs-toggle="modal" data-bs-target="#editUser{{$user->id}}" >
                                 edit
                             </button>
-                            <button type="button" class="badge bg-danger border-0" data-bs-toggle="modal" data-bs-target="#deleteUser" id="delete" onclick="test()">
+                            <button type="button" class="badge bg-danger border-0" data-bs-toggle="modal" data-bs-target="#deleteUser{{$user->id}}">
                                 delete
                             </button>
+
+                            <!-- Modal Edit User -->
+                            <div class="modal fade " id="editUser{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="/dashboard/editUser/{{$user->id}}" method="post">
+                                        @method('put')
+                                    <div class="modal-body">
+                                        @csrf
+                                        <div class="fs-6 text-start">
+                                            Email :
+                                        </div>
+                                        <input type="email" class="form-control input mt-2" 
+                                        name="edit_email" id="edit_email" value="{{$user->email}}">
+
+                                        <div class="fs-6 mt-3 text-start">
+                                            Username :
+                                        </div>
+                                        <input type="text" class="form-control input mt-2" 
+                                        name="edit_name" id="edit_name" value="{{$user->name}}">
+
+                                        <div class="fs-6 mt-3 text-start">
+                                            NIP :
+                                        </div>
+                                        <input type="number" class="form-control input mt-2" 
+                                        name="edit_nip" id="edit_nip" value="{{$user->nip}}">
+
+                                        <div class="fs-6 mt-3 text-start">
+                                            Role :
+                                        </div>
+                                        <select class="form-select mt-2" aria-label="Default select example" 
+                                        name="edit_role_id" id="edit_role_id">
+                                        @foreach($role->skip(1) as $x)
+                                        <option value="{{$x->id}}" {{ $user->role_id == $x->id ? 'selected' : null }} >{{$x->role}}</option>
+                                        @endforeach
+                                        </select>
+                                        
+                                        <div class="fs-6 mt-3 text-start">
+                                            Dinas :
+                                        </div>
+                                        <select class="form-select mt-2" aria-label="Default select example" 
+                                        name="edit_dinas_id" id="edit_dinas_id">
+                                        @foreach($dinas as $x)
+                                        <option value="{{$x->id}}" {{ $user->dinas_id == $x->id ? 'selected' : null }} >{{$x->dinas}}</option>
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal Delete User -->
+                            <div class="modal fade " id="deleteUser{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="/dashboard/deleteUser/{{$user->id}}" method="post">
+                                        @method('delete')
+                                    <div class="modal-body">
+                                        @csrf
+                                        Apakah yakin untuk menghapus user?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Delete</button>
+                                    </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                         </tr>
                         @endforeach
@@ -101,7 +187,7 @@
             Confirm Password :
         </div>
         <input type="password" class="form-control input @error('confirmPassword') is-invalid @enderror mt-2" 
-        name="confirmPassword" id="ConfirmPassword" placeholder="******">
+        name="confirmPassword" id="confirmPassword" placeholder="******">
 
         @error('confirmPassword')
         <div class="text-danger">
@@ -136,97 +222,23 @@
         <div class="fs-6 mt-3">
             Pilih Role :
         </div>
-        <select class="form-select mt-2 @error('role_id') is-invalid @enderror" aria-label="Default select example" 
+        <select class="form-select mt-2" aria-label="Default select example" 
         name="role_id" id="role_id">
         @foreach($role->skip(1) as $x)
         <option value="{{$x->id}}" {{ old('role_id') == $x->id ? 'selected' : null }} >{{$x->role}}</option>
         @endforeach
         </select>
-        <div>
-        @error('role_id')
-        <div class="text-danger">
-            <small>{{ $message }}</small> 
-        </div>
-        @enderror
-        </div>
 
         <div class="fs-6 mt-3">
             Pilih Dinas :
         </div>
-        <select class="form-select mt-2 @error('dinas_id') is-invalid @enderror" aria-label="Default select example" 
+        <select class="form-select mt-2" aria-label="Default select example" 
         name="dinas_id" id="dinas_id">
         @foreach($dinas as $x)
         <option value="{{$x->id}}" {{ old('dinas_id') == $x->id ? 'selected' : null }} >{{$x->dinas}}</option>
         @endforeach
         </select>
-        <div>
-        @error('dinas_id')
-        <div class="text-danger">
-            <small>{{ $message }}</small> 
-        </div>
-        @enderror
-        </div>
       
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Simpan</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Edit User -->
-<div class="modal fade " id="editUser{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="/dashboard/editUser/{{$user->id}}" method="post">
-        @method('PUT')
-        
-      <div class="modal-body">
-      
-        @csrf
-        <div class="fs-6">
-            Email :
-        </div>
-        <input type="email" class="form-control input @error('edit_email') is-invalid @enderror mt-2" 
-        name="edit_email" id="edit_email" >
-                    
-        @error('edit_email')
-        <div class="text-danger">
-            <small>{{ $message }}</small> 
-        </div>
-        @enderror
-
-        <div class="fs-6 mt-3">
-            Confirm Username :
-        </div>
-        <input type="text" class="form-control input @error('edit_name') is-invalid @enderror mt-2" 
-        name="edit_name" id="edit_name"  placeholder="Naufal Rizqullah">
-
-        @error('edit_name')
-        <div class="text-danger">
-            <small>{{ $message }}</small> 
-        </div>
-        @enderror
-
-        <div class="fs-6 mt-3">
-            NIP :
-        </div>
-        <input type="number" class="form-control input @error('edit_nip') is-invalid @enderror mt-2" 
-        name="edit_nip" id="edit_nip"  placeholder="195150707111007">
-
-        @error('edit_nip')
-        <div class="text-danger">
-            <small>{{ $message }}</small> 
-        </div>
-        @enderror
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -239,34 +251,13 @@
 
 @endsection
 
-@section('js')
-    @if($errors->any())
+@if($errors -> has('email') || $errors -> has('password') || 
+    $errors -> has('confirmPassword') || $errors -> has('name') || 
+    $errors -> has('nip') || $errors -> has('role_id') || $errors -> has('dinas_id'))
+        @section('js')
         <script>
 			const modal = new bootstrap.Modal('#tambahUser', {keyboard:false});
 			modal.show();
 		</script>
-    @endif
-		
-        <script>
-            function getUser($userid){
-                var inputan = document.getElementById('edit_email');
-                inputan.value = $userid;
-                alert($userid->email);
-                // $('#edit_email').val($userid);
-            }
-            // $(document).ready(function(){
-            //     $(document).on('click', '#delete', function(){
-            //         var editemail = $(this).data('editemail');
-            //         alert('email');
-            //         $('#edit_email').value(editemail);
-
-                    
-            //     })
-            // });
-        </script>
-        <script>
-            function test(){
-                alert('test');
-            }
-        </script>
-@endsection
+        @endsection
+@endif

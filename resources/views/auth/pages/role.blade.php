@@ -9,6 +9,12 @@
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   @endif
+  @if(session()->has('error'))  
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+      {{ session()->get('error') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     <div class="row">
       <div class="col">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -34,12 +40,62 @@
             <td>{{$loop->iteration}}</td>
             <td>{{$roles->role}}</td>
             <td>
-              <button type="button" class="badge bg-info border-0 mx-auto">
+              <button type="button" class="badge bg-info border-0 mx-auto" data-bs-toggle="modal" data-bs-target="#editRole{{$roles->id}}">
                 edit
               </button>
-              <button type="button" class="badge bg-danger border-0">
+              <button type="button" class="badge bg-danger border-0" data-bs-toggle="modal" data-bs-target="#deleteRole{{$roles->id}}">
                 delete
               </button>
+
+              <!-- Modal Edit Role -->
+              <div class="modal fade " id="editRole{{$roles->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Edit Role</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/dashboard/editRole/{{$roles->id}}" method="post">
+                      @method('put')
+                      <div class="modal-body">
+                        @csrf
+                        <div class="fs-6">
+                          Role :
+                        </div>
+                        <input type="text" class="form-control input mt-2" 
+                        name="edit_role" id="edit_role" value="{{ $roles->role }}">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal Delete Role -->
+              <div class="modal fade " id="deleteRole{{$roles->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Delete Role</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/dashboard/deleteRole/{{$roles->id}}" method="post">
+                      @method('delete')
+                      <div class="modal-body">
+                        @csrf
+                        Apakah yakin untuk menghapus role?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </td>
             </tr>
                 @endforeach
@@ -85,7 +141,7 @@
   </div>
 </div>
 
-@if($errors->any())
+@if($errors->has('role'))
 	@section('js')
 		<script>
 			const modal = new bootstrap.Modal('#tambahRole', {keyboard:false});

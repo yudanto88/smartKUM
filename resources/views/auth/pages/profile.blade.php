@@ -1,18 +1,25 @@
 @extends('auth.main')
 
 @section('content')
+@if(session()->has('success'))  
+  <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+  {{ session()->get('success') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@endif
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Profile</h1>
 </div>
 <div class="row">
     <div class="col">
-        <form action="/dashboard/profile/editProfile" method="post">
-        @csrf
+        <form action="/dashboard/editProfile/{{$user->id}}" method="post">
+            @method('put')
+            @csrf
             <div class="fs-6">
                 Email :
             </div>
             <input type="email" class="form-control input @error('email') is-invalid @enderror mt-2" 
-            name="email" id="email" placeholder="naufalrm@gmail.com" value="{{ $user->email }}">
+            name="email" id="email" placeholder="naufalrm@gmail.com" value="{{ old('email', $user->email) }}">
                     
             @error('email')
             <div class="text-danger">
@@ -45,10 +52,10 @@
             @enderror
 
             <div class="fs-6 mt-3">
-                Confirm Username :
+                Username :
             </div>
             <input type="text" class="form-control input @error('name') is-invalid @enderror mt-2" 
-            name="name" id="name"  placeholder="Username" value="{{ $user->name }}">
+            name="name" id="name"  placeholder="Username" value="{{ old('name', $user->name) }}">
 
             @error('name')
             <div class="text-danger">
@@ -60,7 +67,7 @@
                 NIP :
             </div>
             <input type="number" class="form-control input @error('nip') is-invalid @enderror mt-2" 
-            name="nip" id="nip"  placeholder="NIP" value="{{ $user->nip }}">
+            name="nip" id="nip"  placeholder="NIP" value="{{ old('nip', $user->nip) }}">
 
             @error('nip')
             <div class="text-danger">
