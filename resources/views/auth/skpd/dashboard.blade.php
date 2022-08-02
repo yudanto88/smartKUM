@@ -27,23 +27,44 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-
+                        @foreach($drafts as $draft)
                         <tr>
-                        <td>1</td>
-                        <td>Perdes</td>
-                        <td>Perdes A</td>
-                        <td>06 / 05 / 2001</td>
-                        <td>Sedang diajukan</td>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$draft->jenis}}</td>
+                        <td>{{$draft->judul}}</td>
+                        <td>{{$draft->tanggal_pengajuan}}</td>
+                        <td>{{$draft->status}}</td>
                         <td>
-                            <button type="button" class="badge bg-info border-0 mx-auto">
-                                edit
-                            </button>
-                            <button type="button" class="badge bg-danger border-0">
+                            <a href="/dashboard/skpd/editprodukhukum/{{$draft->id}}" class="badge bg-info border-0 mx-auto text-decoration-none">edit</a>
+                            <button type="button" class="badge bg-danger border-0" data-bs-toggle="modal" data-bs-target="#deleteDraft{{$draft->id}}">
                                 delete
                             </button>
+
+                            <!-- Modal Delete Draft -->
+                            <div class="modal fade " id="deleteDraft{{$draft->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete Draft Produk Hukum</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="/dashboard/skpd/deleteprodukhukum/{{$draft->id}}" method="post">
+                                        @method('delete')
+                                    <div class="modal-body">
+                                        @csrf
+                                        Apakah yakin untuk menghapus draft?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Delete</button>
+                                    </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                         </tr>
-
+                        @endforeach
                     </tbody>
                     </table>
                 </div>

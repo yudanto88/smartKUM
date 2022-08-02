@@ -8,17 +8,18 @@
   </div>
 @endif
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Pengajuan Produk Hukum</h1>
+    <h1 class="h2">Edit Produk Hukum</h1>
 </div>
 <div class="row">
     <div class="col">
-        <form action="/dashboard/skpd/addprodukhukum" method="post" enctype="multipart/form-data">
-        @csrf
+        <form action="/dashboard/skpd/editprodukhukum/{{$draft->id}}" method="post" enctype="multipart/form-data">
+            @method('put')
+            @csrf
             <div class="fs-6">
                 Jenis / Bentuk Peraturan 
             </div>
             <input type="text" class="form-control input @error('jenis') is-invalid @enderror mt-2" 
-            name="jenis" id="jenis" value="{{ old('jenis') }}">
+            name="jenis" id="jenis" value="{{ old('jenis', $draft->jenis)}}">
 
             @error('jenis')
             <div class="text-danger">
@@ -30,7 +31,7 @@
                 Judul Produk Hukum 
             </div>
             <input type="text" class="form-control input @error('judul') is-invalid @enderror mt-2" 
-            name="judul" id="judul" value="{{ old('judul') }}">
+            name="judul" id="judul" value="{{ old('judul', $draft->judul)}}">
 
             @error('judul')
             <div class="text-danger">
@@ -44,7 +45,7 @@
                         Tanggal Pengajuan
                     </div>
                     <input type="date" class="form-control input @error('tanggal') is-invalid @enderror mt-2" 
-                    name="tanggal" id="tanggal" value="{{ old('tanggal') }}">
+                    name="tanggal" id="tanggal" value="{{ old('tanggal', $draft->tanggal_pengajuan)}}">
                 </div>
 
                 @error('tanggal')
@@ -58,13 +59,14 @@
                 Keterangan
             </div>
             <textarea type="text" class="form-control input mt-2" 
-            name="keterangan" id="keterangan" style="height:100px">{{ old('keterangan') }}</Textarea>
+            name="keterangan" id="keterangan" style="height:100px">{{ old('keterangan', $draft->keterangan)}}</Textarea>
 
             <div class="row">
                 <div class="col-4">
                     <div class="fs-6 mt-3">
-                        Upload Surat Pengajuan
+                        Revisi Surat Pengajuan
                     </div>
+                    <input type="hidden" name="oldSuratPengajuan" value="{{ $draft->surat_pengajuan }}">
                     <input type="file" class="form-control input @error('file_pengajuan') is-invalid @enderror mt-2" 
                     name="file_pengajuan" id="file_pengajuan">
 
@@ -74,13 +76,20 @@
                     </div>
                     @enderror
                 </div>
+                <div class="col-3">
+                    <div class="fs-6 mt-3">
+                        File Lama
+                    </div>
+                    <a href="{{ asset('storage/' . $draft->surat_pengajuan)}}" class="btn btn-primary mt-2">Download</a>
+                </div>
             </div>
 
             <div class="row">
                 <div class="col-4">
                     <div class="fs-6 mt-3">
-                        Upload Draft Produk Hukum
+                        Revisi Draft Produk Hukum
                     </div>
+                    <input type="hidden" name="oldDraftProdukHukum" value="{{ $draft->draft_produk_hukum }}">
                     <input type="file" class="form-control input @error('draft_produk_hukum') is-invalid @enderror mt-2" 
                     name="draft_produk_hukum" id="draft_produk_hukum">
 
@@ -89,6 +98,12 @@
                         <small>{{ $message }}</small> 
                     </div>
                     @enderror
+                </div>
+                <div class="col-3">
+                    <div class="fs-6 mt-3">
+                        File Lama
+                    </div>
+                    <a href="{{ asset('storage/' . $draft->draft_produk_hukum)}}" class="btn btn-primary mt-2">Download</a>
                 </div>
             </div>
             

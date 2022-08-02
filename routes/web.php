@@ -32,8 +32,10 @@ Route::post('/logout',[LoginController::class,'logout']);
 
 Route::get('/dashboard',[DashboardController::class,'index'])->middleware('auth');
 
-Route::get('/dashboard/profile',[DashboardController::class,'profile']);
-Route::put('/dashboard/editProfile/{id}',[DashboardController::class,'editProfile']);
+Route::middleware('auth')->group(function() {
+    Route::get('/dashboard/profile',[DashboardController::class,'profile']);
+    Route::put('/dashboard/editProfile/{id}',[DashboardController::class,'editProfile']);
+});
 
 // Superadmin
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
@@ -53,4 +55,8 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 // SKPD
 Route::middleware(['auth', 'role:skpd'])->group(function (){
     Route::get('/dashboard/skpd/addprodukhukum',[SKPDController::class,'addprodukhukum']);
+    Route::post('/dashboard/skpd/addprodukhukum',[SKPDController::class,'storeprodukhukum']);
+    Route::get('/dashboard/skpd/editprodukhukum/{id}',[SKPDController::class,'editprodukhukum']);
+    Route::put('/dashboard/skpd/editprodukhukum/{id}',[SKPDController::class,'updateprodukhukum']);
+    Route::delete('/dashboard/skpd/deleteprodukhukum/{id}',[SKPDController::class,'deleteprodukhukum']);
 });

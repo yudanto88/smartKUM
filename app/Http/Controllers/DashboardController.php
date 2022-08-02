@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Dinas;
+use App\Models\Draft;
 
 class DashboardController extends Controller
 {
@@ -25,7 +26,9 @@ class DashboardController extends Controller
                 'dinas' => Dinas::all()
             ]);
         } else if(Auth::user()->role->role == 'skpd'){
-            return view('auth.skpd.dashboard');
+            return view('auth.skpd.dashboard', [
+                'drafts' => Draft::all(),
+            ]);
         } else if(Auth::user()->role->role == 'admin_fo'){
             return view('auth.admin_fo.dashboard');
         } else if(Auth::user()->role->role == 'staff_perundang_undangan'){
