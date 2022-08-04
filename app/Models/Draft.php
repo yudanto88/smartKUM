@@ -24,4 +24,9 @@ class Draft extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function draft_admins()
+    {
+        return $this->hasMany(Admin::class);
+    }
 }

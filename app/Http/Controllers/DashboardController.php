@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Dinas;
 use App\Models\Draft;
+use App\Models\Admin;
 
 class DashboardController extends Controller
 {
@@ -30,7 +31,9 @@ class DashboardController extends Controller
                 'drafts' => Draft::all(),
             ]);
         } else if(Auth::user()->role->role == 'admin_fo'){
-            return view('auth.admin_fo.dashboard');
+            return view('auth.admin_fo.dashboard', [
+                'admins' => Admin::all(),
+            ]);
         } else if(Auth::user()->role->role == 'staff_perundang_undangan'){
             return view('auth.staff_perundang_undangan.dashboard');
         } else if(Auth::user()->role->role == 'kasubag_perundang_undangan'){

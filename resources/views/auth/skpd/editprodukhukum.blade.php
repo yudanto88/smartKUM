@@ -106,6 +106,11 @@
                     <a href="{{ asset('storage/' . $draft->draft_produk_hukum)}}" class="btn btn-primary mt-2">Download</a>
                 </div>
             </div>
+
+            <div class="fs-6 mt-3">
+                Keterangan Penolakan
+            </div>
+            <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->keterangan_penolakan}}</Textarea>
             
             <div class="d-grid gap-2 mt-4 mb-4">
                 <button class="btn btn-primary" type="submit">Kirim</button>

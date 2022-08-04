@@ -35,11 +35,23 @@
                         <td>{{$draft->tanggal_pengajuan}}</td>
                         <td>{{$draft->status}}</td>
                         <td>
-                            <a href="/dashboard/skpd/editprodukhukum/{{$draft->id}}" class="badge bg-info border-0 mx-auto text-decoration-none">edit</a>
-                            <button type="button" class="badge bg-danger border-0" data-bs-toggle="modal" data-bs-target="#deleteDraft{{$draft->id}}">
-                                delete
-                            </button>
+                            <div class="mx-auto">
+                                <button type="button" class="badge bg-warning border-0">
+                                    trayek
+                                </button>
 
+                                @if($draft->status == 'menunggu' || $draft->status == 'diterima')
+                                <a href="/dashboard/skpd/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>
+                                @endif
+
+                                @if($draft->status == 'ditolak')
+                                <a href="/dashboard/skpd/editprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
+                                <button type="button" class="badge bg-danger border-0" data-bs-toggle="modal" data-bs-target="#deleteDraft{{$draft->id}}">
+                                    delete
+                                </button>
+                                @endif
+                            </div>
+                            
                             <!-- Modal Delete Draft -->
                             <div class="modal fade " id="deleteDraft{{$draft->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">

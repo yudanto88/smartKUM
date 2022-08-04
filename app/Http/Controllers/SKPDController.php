@@ -7,9 +7,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Draft;
+use App\Models\Admin;
 
 class SKPDController extends Controller
 {
+
+    public function readprodukhukum(Request $request, Draft $draft){
+        return view('auth.skpd.readprodukhukum',[
+            'draft' => $draft::find($request->id),
+        ]);
+    }
+
     public function addprodukhukum(){
         return view('auth.skpd.addprodukhukum');
     }
@@ -38,11 +46,18 @@ class SKPDController extends Controller
             'jenis' => $request->jenis,
             'judul' => $request->judul,
             'tanggal_pengajuan' => $request->tanggal,
+            'keterangan' => $request->keterangan,
             'surat_pengajuan' => $filePengajuan,
             'draft_produk_hukum' => $draftProdukHukum,
-            'keterangan_penolakan' => 'test',
             'status' => 'menunggu',
             'user_id' => Auth::user()->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('admins')->insert([
+            'status' => 'menunggu',
+            'draft_id' => DB::getPdo()->lastInsertId(),
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -58,7 +73,7 @@ class SKPDController extends Controller
         ]);
     }
 
-    public function updateprodukhukum(Request $request){
+    public function updateprodukhukum(Request $request, Draft $draft){
         $request-> validate([
             'jenis' => 'required',
             'judul' => 'required',
@@ -76,21 +91,32 @@ class SKPDController extends Controller
         ]);
 
         if($request->file('file_pengajuan') && $request->file('draft_produk_hukum')){
+            if(isset($draft->draft->draft_produk_hukum_lama)){
+                Storage::delete($request->oldDraftProdukHukum);
+                // Storage::delete($request->draft_produk_hukum_lama);
+            }
             $filePengajuan = $request->file('file_pengajuan')->store('file-pengajuan');
             $draftProdukHukum = $request->file('draft_produk_hukum')->store('file-draftProdukHukum');
             Storage::delete($request->oldSuratPengajuan );
-            Storage::delete($request->oldDraftProdukHukum);
         }
 
         DB::table('drafts')->where('id', $request->id)->update([
             'jenis' => $request->jenis,
             'judul' => $request->judul,
             'tanggal_pengajuan' => $request->tanggal,
+            'keterangan' => $request->keterangan,
             'surat_pengajuan' => $filePengajuan,
             'draft_produk_hukum' => $draftProdukHukum,
-            'keterangan_penolakan' => 'test',
+            'draft_produk_hukum_lama' => $request->oldDraftProdukHukum,
             'status' => 'menunggu',
             'user_id' => Auth::user()->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('admins')->where('draft_id', $request->id)->update([
+            'status' => 'menunggu',
+            'draft_id' => $request->id,
             'created_at' => now(),
             'updated_at' => now()
         ]);

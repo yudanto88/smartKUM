@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\SKPDController;
+use App\Http\Controllers\AdminController;
 
 
 /*
@@ -56,7 +57,15 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 Route::middleware(['auth', 'role:skpd'])->group(function (){
     Route::get('/dashboard/skpd/addprodukhukum',[SKPDController::class,'addprodukhukum']);
     Route::post('/dashboard/skpd/addprodukhukum',[SKPDController::class,'storeprodukhukum']);
+    Route::get('/dashboard/skpd/readprodukhukum/{id}',[SKPDController::class,'readprodukhukum']);
     Route::get('/dashboard/skpd/editprodukhukum/{id}',[SKPDController::class,'editprodukhukum']);
     Route::put('/dashboard/skpd/editprodukhukum/{id}',[SKPDController::class,'updateprodukhukum']);
     Route::delete('/dashboard/skpd/deleteprodukhukum/{id}',[SKPDController::class,'deleteprodukhukum']);
+});
+
+// Admin FO
+Route::middleware(['auth', 'role:admin_fo'])->group(function (){
+    Route::get('/dashboard/admin/readprodukhukum/{id}',[AdminController::class,'readprodukhukum']);
+    Route::get('/dashboard/admin/editprodukhukum/{id}',[AdminController::class,'editprodukhukum']);
+    Route::get('/dashboard/admin/tolak/{id}',[AdminController::class,'tolak']);
 });
