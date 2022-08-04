@@ -60,7 +60,7 @@
 
         <div class="user-data">
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-5 mb-1 text-muted text-uppercase">
-                <span>User Information</span>
+                <span class="fw-bold font-black">User Information</span>
                 <a class="link-secondary" href="#" aria-label="Add a new report">
                     <span data-feather="plus-circle" class="align-text-bottom"></span>
                 </a>
@@ -68,13 +68,13 @@
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <div class="nav-link">
-                        username:
+                        <strong>Username:</strong>
                         <p>{{Auth::user()->name}}</p>
                         
-                        role:
+                        <strong>Role:</strong>
                         <p>{{Auth::user()->role->role}}</p>
                         
-                        dinas:
+                        <strong>Dinas:</strong>
                         <p>{{Auth::user()->dinas->dinas}}</p>
                     </div>
                 </li>

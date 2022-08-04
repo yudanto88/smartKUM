@@ -60,6 +60,11 @@ body {
   font-size: .75rem;
 }
 
+.user-data{
+  position: absolute;
+  bottom: 0;
+}
+
 /*
  * Navbar
  */
@@ -91,7 +96,26 @@ body {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
-.user-data{
-  position: absolute;
-  bottom: 0;
+.font-black {
+  color: #000;
+  font-size: 16px;
+}
+
+.search-bar {
+  width: 75%;
+  margin: 10px 0px 10px 0px;
+  padding: 5px 5px 5px 5px !important;
+}
+
+.search-bar:hover {
+  border-color: #727272;
+}
+
+.btn-logout {
+  background-color: #212529;
+  margin: 0px 5px 0px 0px;
+}
+
+.btn-logout:hover {
+  background-color: #727272;
 }
