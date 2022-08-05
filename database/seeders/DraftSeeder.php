@@ -20,10 +20,10 @@ class DraftSeeder extends Seeder
             'judul' => 'test2',
             'tanggal_pengajuan' => now(),
             'keterangan' => 'test3',
-            'surat_pengajuan' => 'file-pengajuan\ymiOjIDqfMRJyHKf8KblzFrCz0dXXt2iQWyCNMGn.pdf',
-            'draft_produk_hukum' => 'file-draftProdukHukum\mXo9mqf0m0MPKamVWtmbYgCkDAw8obtcG3MlTSov.pdf',
-            'draft_produk_hukum_lama' => 'file-draftProdukHukum\mXo9mqf0m0MPKamVWtmbYgCkDAw8obtcG3MlTSov.pdf',
-            'keterangan_penolakan' => 'test6',
+            // 'surat_pengajuan' => 'file-pengajuan\ymiOjIDqfMRJyHKf8KblzFrCz0dXXt2iQWyCNMGn.pdf',
+            // 'draft_produk_hukum' => 'file-draftProdukHukum\mXo9mqf0m0MPKamVWtmbYgCkDAw8obtcG3MlTSov.pdf',
+            // 'draft_produk_hukum_lama' => 'file-draftProdukHukum\mXo9mqf0m0MPKamVWtmbYgCkDAw8obtcG3MlTSov.pdf',
+            // 'keterangan_penolakan' => 'test6',
             'status' => 'diterima',
             'user_id' => 2,
             'created_at' => now(),
@@ -35,9 +35,9 @@ class DraftSeeder extends Seeder
             'judul' => '2test2',
             'tanggal_pengajuan' => now(),
             'keterangan' => '2test3',
-            'surat_pengajuan' => 'file-pengajuan\ymiOjIDqfMRJyHKf8KblzFrCz0dXXt2iQWyCNMGn.pdf',
-            'draft_produk_hukum' => 'file-draftProdukHukum\mXo9mqf0m0MPKamVWtmbYgCkDAw8obtcG3MlTSov.pdf',
-            'keterangan_penolakan' => '2test6',
+            // 'surat_pengajuan' => 'file-pengajuan\ymiOjIDqfMRJyHKf8KblzFrCz0dXXt2iQWyCNMGn.pdf',
+            // 'draft_produk_hukum' => 'file-draftProdukHukum\mXo9mqf0m0MPKamVWtmbYgCkDAw8obtcG3MlTSov.pdf',
+            // 'keterangan_penolakan' => '2test6',
             'status' => 'menunggu',
             'user_id' => 2,
             'created_at' => now(),
@@ -49,27 +49,14 @@ class DraftSeeder extends Seeder
             'judul' => '3test2',
             'tanggal_pengajuan' => now(),
             'keterangan' => '3test3',
-            'surat_pengajuan' => 'file-pengajuan\ymiOjIDqfMRJyHKf8KblzFrCz0dXXt2iQWyCNMGn.pdf',
-            'draft_produk_hukum' => 'file-draftProdukHukum\mXo9mqf0m0MPKamVWtmbYgCkDAw8obtcG3MlTSov.pdf',
-            'keterangan_penolakan' => '3test6',
+            // 'surat_pengajuan' => 'file-pengajuan\ymiOjIDqfMRJyHKf8KblzFrCz0dXXt2iQWyCNMGn.pdf',
+            // 'draft_produk_hukum' => 'file-draftProdukHukum\mXo9mqf0m0MPKamVWtmbYgCkDAw8obtcG3MlTSov.pdf',
+            // 'keterangan_penolakan' => '3test6',
             'status' => 'ditolak',
             'user_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
-        DB::table('drafts')->insert([
-            'jenis' => '4test',
-            'judul' => '4test2',
-            'tanggal_pengajuan' => now(),
-            'keterangan' => '4test3',
-            'surat_pengajuan' => 'file-pengajuan\ymiOjIDqfMRJyHKf8KblzFrCz0dXXt2iQWyCNMGn.pdf',
-            'draft_produk_hukum' => 'file-draftProdukHukum\mXo9mqf0m0MPKamVWtmbYgCkDAw8obtcG3MlTSov.pdf',
-            'keterangan_penolakan' => '3test6',
-            'status' => 'ditolak',
-            'user_id' => 2,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
     }
 }

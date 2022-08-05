@@ -27,16 +27,16 @@ class SKPDController extends Controller
             'jenis' => 'required',
             'judul' => 'required',
             'tanggal' => 'required',
-            'file_pengajuan' => 'required|mimes:pdf',
-            'draft_produk_hukum' => 'required|mimes:pdf',
+            // 'file_pengajuan' => 'required|mimes:pdf',
+            // 'draft_produk_hukum' => 'required|mimes:pdf',
         ], [
             'jenis.required' => 'Jenis / Bentuk Peraturan tidak boleh kosong',
             'judul.required' => 'Judul Produk Hukum tidak boleh kosong',
             'tanggal.required' => 'Tanggal Pengajuan tidak boleh kosong',
-            'file_pengajuan.required' => 'Surat Pengajuan tidak boleh kosong',
-            'file_pengajuan.mimes' => 'Surat Pengajuan harus berformat PDF',
-            'draft_produk_hukum.required' => 'Draft Produk Hukum tidak boleh kosong',
-            'draft_produk_hukum.mimes' => 'Draft Produk Hukum harus berformat PDF',
+            // 'file_pengajuan.required' => 'Surat Pengajuan tidak boleh kosong',
+            // 'file_pengajuan.mimes' => 'Surat Pengajuan harus berformat PDF',
+            // 'draft_produk_hukum.required' => 'Draft Produk Hukum tidak boleh kosong',
+            // 'draft_produk_hukum.mimes' => 'Draft Produk Hukum harus berformat PDF',
         ]);
 
         $filePengajuan = $request->file('file_pengajuan')->store('file-pengajuan');
@@ -78,16 +78,16 @@ class SKPDController extends Controller
             'jenis' => 'required',
             'judul' => 'required',
             'tanggal' => 'required',
-            'file_pengajuan' => 'required|mimes:pdf',
-            'draft_produk_hukum' => 'required|mimes:pdf',
+            // 'file_pengajuan' => 'required|mimes:pdf',
+            // 'draft_produk_hukum' => 'required|mimes:pdf',
         ], [
             'jenis.required' => 'Jenis / Bentuk Peraturan tidak boleh kosong',
             'judul.required' => 'Judul Produk Hukum tidak boleh kosong',
             'tanggal.required' => 'Tanggal Pengajuan tidak boleh kosong',
-            'file_pengajuan.required' => 'Surat Pengajuan tidak boleh kosong',
-            'file_pengajuan.mimes' => 'Surat Pengajuan harus berformat PDF',
-            'draft_produk_hukum.required' => 'Draft Produk Hukum tidak boleh kosong',
-            'draft_produk_hukum.mimes' => 'Draft Produk Hukum harus berformat PDF',
+            // 'file_pengajuan.required' => 'Surat Pengajuan tidak boleh kosong',
+            // 'file_pengajuan.mimes' => 'Surat Pengajuan harus berformat PDF',
+            // 'draft_produk_hukum.required' => 'Draft Produk Hukum tidak boleh kosong',
+            // 'draft_produk_hukum.mimes' => 'Draft Produk Hukum harus berformat PDF',
         ]);
 
         if($request->file('file_pengajuan') && $request->file('draft_produk_hukum')){

@@ -67,5 +67,5 @@ Route::middleware(['auth', 'role:skpd'])->group(function (){
 Route::middleware(['auth', 'role:admin_fo'])->group(function (){
     Route::get('/dashboard/admin/readprodukhukum/{id}',[AdminController::class,'readprodukhukum']);
     Route::get('/dashboard/admin/editprodukhukum/{id}',[AdminController::class,'editprodukhukum']);
-    Route::get('/dashboard/admin/tolak/{id}',[AdminController::class,'tolak']);
+    Route::post('/dashboard/admin/process/{id}',[AdminController::class,'process']);
 });

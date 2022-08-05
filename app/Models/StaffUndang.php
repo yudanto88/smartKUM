@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Admin extends Model
+class StaffUndang extends Model
 {
     use HasFactory;
 
@@ -15,13 +15,8 @@ class Admin extends Model
         'keterangan_penolakan',
     ];
 
-    public function draft()
+    public function admin()
     {
-        return $this->belongsTo(Draft::class);
-    }
-
-    public function staffUndang()
-    {
-        return $this->hasMany(StaffUndang::class);
+        return $this->belongsTo(Admin::class);
     }
 }

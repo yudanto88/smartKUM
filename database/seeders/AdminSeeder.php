@@ -16,19 +16,19 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('admins')->insert([
-            'status' => 'menunggu',
+            'status' => 'diterima',
             'keterangan' => 'test6',
             'keterangan_penolakan' => 'test6',
-            'draft_id' => 2,
+            'draft_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('admins')->insert([
-            'status' => 'ditolak',
+            'status' => 'menunggu',
             'keterangan' => 'test7',
             'keterangan_penolakan' => 'test7',
-            'draft_id' => 3,
+            'draft_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -37,7 +37,7 @@ class AdminSeeder extends Seeder
             'status' => 'ditolak',
             'keterangan' => 'test7',
             'keterangan_penolakan' => 'test7',
-            'draft_id' => 4,
+            'draft_id' => 3,
             'created_at' => now(),
             'updated_at' => now()
         ]);

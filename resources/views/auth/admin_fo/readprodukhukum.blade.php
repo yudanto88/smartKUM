@@ -62,8 +62,7 @@
         </div>
 
         @if($draft->status == 'menunggu')
-
-        <form action="/dashboard/admin/tolak/{{$draft->id}}" method="get">
+        <form action="/dashboard/admin/process/{{$draft->id}}" method="post">
             @csrf
             <div class="fs-6 mt-3">
                 Keterangan
@@ -72,28 +71,24 @@
             name="keterangan" id="keterangan" style="height:100px">{{ old('keterangan') }}</Textarea>
 
             <div class="row justify-content-between mt-4 mb-4">
-            <div class="col-3 ">
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-danger mt-2">Tolak</button>
+                <div class="col-3 ">
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-danger mt-2" name="action" value="tolak">Tolak</button>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary mt-2" name="action" value="proses">Proses</button>
+                    </div>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="d-grid gap-2">
-                    <button class="btn btn-primary" type="button">Proses</button>
-                </div>
-            </div>
-        </div>
-            
         </form>
-
-       
-        
         @endif
         
         @if($draft->status == 'ditolak' || $draft->status == 'diterima')
-            <div class="d-grid gap-2 mt-4 mb-4">
-                <a href="/dashboard" class="btn btn-secondary">Kembali</a>
-            </div>
+        <div class="d-grid gap-2 mt-4 mb-4">
+            <a href="/dashboard" class="btn btn-secondary">Kembali</a>
+        </div>
         @endif
     </div>
 </div>

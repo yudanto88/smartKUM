@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\Dinas;
 use App\Models\Draft;
 use App\Models\Admin;
+use App\Models\StaffUndang;
 
 class DashboardController extends Controller
 {
@@ -35,7 +36,9 @@ class DashboardController extends Controller
                 'admins' => Admin::all(),
             ]);
         } else if(Auth::user()->role->role == 'staff_perundang_undangan'){
-            return view('auth.staff_perundang_undangan.dashboard');
+            return view('auth.staff_perundang_undangan.dashboard', [
+                'staff_undangs' => StaffUndang::all(),
+            ]);
         } else if(Auth::user()->role->role == 'kasubag_perundang_undangan'){
             return view('auth.kasubag_perundang_undangan.dashboard');
         } else if(Auth::user()->role->role == 'kabag'){
