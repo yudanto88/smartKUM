@@ -40,13 +40,13 @@
                                     trayek
                                 </button>
 
-                                @if($draft->status == 'menunggu')
-                                <a href="/dashboard/admin/readprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
+                                @if($draft->status == 'menunggu' || $draft->status == 'ditolak')
+                                <a href="/dashboard/staffu/editprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
                                 @endif
 
-                                <!-- @if($draft->status == 'ditolak' || $draft->status == 'diterima')
-                                    <a href="/dashboard/admin/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>
-                                @endif -->
+                                @if($draft->status == 'diterima')
+                                    <a href="/dashboard/staffu/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>
+                                @endif
                             </div>
                         </td>
                         </tr>

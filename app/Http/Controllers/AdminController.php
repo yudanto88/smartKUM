@@ -37,6 +37,8 @@ class AdminController extends Controller
                 return redirect('/dashboard');
                 break;
             case 'proses':
+                $searchDraft = Admin::find($request->id);
+
                 DB::table('admins')->where('id', $request->id)->update([
                     'status' => 'diterima',
                     'updated_at' => now()
@@ -45,6 +47,7 @@ class AdminController extends Controller
                 DB::table('staff_undangs')-> insert([
                     'status' => 'menunggu',
                     'keterangan' => $request->keterangan,
+                    // 'draft_id' => $searchDraft->draft->draft_id,
                     'admin_id' => $request->id,
                     'created_at' => now(),
                     'updated_at' => now()

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Draft;
 use App\Models\Admin;
+use App\Models\StaffUndang;
 
 class SKPDController extends Controller
 {
@@ -27,16 +28,16 @@ class SKPDController extends Controller
             'jenis' => 'required',
             'judul' => 'required',
             'tanggal' => 'required',
-            // 'file_pengajuan' => 'required|mimes:pdf',
-            // 'draft_produk_hukum' => 'required|mimes:pdf',
+            'file_pengajuan' => 'required|mimes:pdf',
+            'draft_produk_hukum' => 'required|mimes:pdf',
         ], [
             'jenis.required' => 'Jenis / Bentuk Peraturan tidak boleh kosong',
             'judul.required' => 'Judul Produk Hukum tidak boleh kosong',
             'tanggal.required' => 'Tanggal Pengajuan tidak boleh kosong',
-            // 'file_pengajuan.required' => 'Surat Pengajuan tidak boleh kosong',
-            // 'file_pengajuan.mimes' => 'Surat Pengajuan harus berformat PDF',
-            // 'draft_produk_hukum.required' => 'Draft Produk Hukum tidak boleh kosong',
-            // 'draft_produk_hukum.mimes' => 'Draft Produk Hukum harus berformat PDF',
+            'file_pengajuan.required' => 'Surat Pengajuan tidak boleh kosong',
+            'file_pengajuan.mimes' => 'Surat Pengajuan harus berformat PDF',
+            'draft_produk_hukum.required' => 'Draft Produk Hukum tidak boleh kosong',
+            'draft_produk_hukum.mimes' => 'Draft Produk Hukum harus berformat PDF',
         ]);
 
         $filePengajuan = $request->file('file_pengajuan')->store('file-pengajuan');
@@ -73,32 +74,39 @@ class SKPDController extends Controller
         ]);
     }
 
-    public function updateprodukhukum(Request $request, Draft $draft){
+    public function updateprodukhukum(Request $request){
         $request-> validate([
             'jenis' => 'required',
             'judul' => 'required',
             'tanggal' => 'required',
-            // 'file_pengajuan' => 'required|mimes:pdf',
-            // 'draft_produk_hukum' => 'required|mimes:pdf',
+            'file_pengajuan' => 'required|mimes:pdf',
+            'draft_produk_hukum' => 'required|mimes:pdf',
         ], [
             'jenis.required' => 'Jenis / Bentuk Peraturan tidak boleh kosong',
             'judul.required' => 'Judul Produk Hukum tidak boleh kosong',
             'tanggal.required' => 'Tanggal Pengajuan tidak boleh kosong',
-            // 'file_pengajuan.required' => 'Surat Pengajuan tidak boleh kosong',
-            // 'file_pengajuan.mimes' => 'Surat Pengajuan harus berformat PDF',
-            // 'draft_produk_hukum.required' => 'Draft Produk Hukum tidak boleh kosong',
-            // 'draft_produk_hukum.mimes' => 'Draft Produk Hukum harus berformat PDF',
+            'file_pengajuan.required' => 'Surat Pengajuan tidak boleh kosong',
+            'file_pengajuan.mimes' => 'Surat Pengajuan harus berformat PDF',
+            'draft_produk_hukum.required' => 'Draft Produk Hukum tidak boleh kosong',
+            'draft_produk_hukum.mimes' => 'Draft Produk Hukum harus berformat PDF',
         ]);
 
-        if($request->file('file_pengajuan') && $request->file('draft_produk_hukum')){
-            if(isset($draft->draft->draft_produk_hukum_lama)){
-                Storage::delete($request->oldDraftProdukHukum);
-                // Storage::delete($request->draft_produk_hukum_lama);
-            }
-            $filePengajuan = $request->file('file_pengajuan')->store('file-pengajuan');
-            $draftProdukHukum = $request->file('draft_produk_hukum')->store('file-draftProdukHukum');
-            Storage::delete($request->oldSuratPengajuan );
+        $searchDraft = Draft::find($request->id);
+
+        if(!isset($searchDraft->draft_produk_hukum_lama)){
+            DB::table('drafts')->where('id', $request->id)->update([
+                'draft_produk_hukum_lama' => $searchDraft->draft_produk_hukum,
+            ]);
+        } 
+
+        if(isset($searchDraft->surat_pengajuan) && isset($searchDraft->draft_produk_hukum)
+            && isset($searchDraft->draft_produk_hukum_lama)){
+            Storage::delete($searchDraft->draft_produk_hukum);
         }
+
+        $filePengajuan = $request->file('file_pengajuan')->store('file-pengajuan');
+        $draftProdukHukum = $request->file('draft_produk_hukum')->store('file-draftProdukHukum');
+        Storage::delete($searchDraft->surat_pengajuan);
 
         DB::table('drafts')->where('id', $request->id)->update([
             'jenis' => $request->jenis,
@@ -107,7 +115,6 @@ class SKPDController extends Controller
             'keterangan' => $request->keterangan,
             'surat_pengajuan' => $filePengajuan,
             'draft_produk_hukum' => $draftProdukHukum,
-            'draft_produk_hukum_lama' => $request->oldDraftProdukHukum,
             'status' => 'menunggu',
             'user_id' => Auth::user()->id,
             'created_at' => now(),
@@ -127,19 +134,21 @@ class SKPDController extends Controller
     }
 
     public function deleteprodukhukum(Request $request, Draft $draft){
-        if($draft->surat_pengajuan){
-            Storage::delete($draft->surat_pengajuan);
-        }        
-        // if($request->surat_pengajuan){
-        //     Storage::delete($request->file_pengajuan);
-        // }
-        // if ($request->surat_pengajuan) {
-            // Storage::delete("{{ asset('storage/' . $draft->surat_pengajuan) }}");
-        // }
-        // !is_null($request->surat_pengajuan) && Storage::delete($request->surat_pengajuan);
+        $searchDraft = Draft::find($request->id);
 
-        // $draft::find($request->id)->delete();
-        // Draft::destroy($request->id);
+        if(isset($searchDraft->draft_produk_hukum_lama)){
+            Storage::delete($searchDraft->draft_produk_hukum_lama);
+        }
+        Storage::delete($searchDraft->surat_pengajuan);
+        Storage::delete($searchDraft->draft_produk_hukum);
+
+        DB::table('drafts')->where('id', $request->id)->delete();
+        DB::table('admins')->where('draft_id', $request->id)->delete();
+
+        // if(isset(StaffUndang::find($request->id)->draft_id)){
+        //     DB::table('staff_undangs')->where('draft_id', $request->id)->delete();
+        // }
+
         $request->session()->flash('success', 'Data draft berhasil dihapus');
         return redirect('/dashboard');
     }

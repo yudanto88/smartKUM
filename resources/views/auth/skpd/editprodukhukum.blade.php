@@ -66,7 +66,6 @@
                     <div class="fs-6 mt-3">
                         Revisi Surat Pengajuan
                     </div>
-                    <input type="hidden" name="oldSuratPengajuan" value="{{ $draft->surat_pengajuan }}">
                     <input type="file" class="form-control input @error('file_pengajuan') is-invalid @enderror mt-2" 
                     name="file_pengajuan" id="file_pengajuan">
 
@@ -89,7 +88,7 @@
                     <div class="fs-6 mt-3">
                         Revisi Draft Produk Hukum
                     </div>
-                    <input type="hidden" name="oldDraftProdukHukum" value="{{ $draft->draft_produk_hukum }}">
+                    <!-- <input type="hidden" name="oldDraftProdukHukum" value="{{ $draft->draft_produk_hukum }}"> -->
                     <input type="file" class="form-control input @error('draft_produk_hukum') is-invalid @enderror mt-2" 
                     name="draft_produk_hukum" id="draft_produk_hukum">
 
