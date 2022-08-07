@@ -41,7 +41,7 @@
                                 </button>
 
                                 @if($draft->status == 'menunggu')
-                                <a href="/dashboard/kasubagu/editprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
+                                <a href="/dashboard/kasubagu/readprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
                                 @endif
 
                                 @if($draft->status == 'diterima' || $draft->status == 'ditolak')

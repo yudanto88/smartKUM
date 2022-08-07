@@ -41,12 +41,12 @@ class AdminController extends Controller
 
                 DB::table('admins')->where('id', $request->id)->update([
                     'status' => 'diterima',
+                    'keterangan' => $request->keterangan,
                     'updated_at' => now()
                 ]);
 
                 DB::table('staff_undangs')-> insert([
                     'status' => 'menunggu',
-                    'keterangan' => $request->keterangan,
                     // 'draft_id' => $searchDraft->draft->draft_id,
                     'admin_id' => $request->id,
                     'created_at' => now(),

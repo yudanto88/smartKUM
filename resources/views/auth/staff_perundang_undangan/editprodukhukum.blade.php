@@ -42,7 +42,7 @@
             <div class="fs-6 mt-3">
                 Keterangan Admin FO
             </div>
-            <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->admin->draft->keterangan }}</Textarea>
+            <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->admin->keterangan }}</Textarea>
 
             <div class="row">
                 <div class="col-2">

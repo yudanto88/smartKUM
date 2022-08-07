@@ -9,6 +9,7 @@ use App\Http\Controllers\SKPDController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\KasubagController;
+use App\Http\Controllers\KabagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,7 +80,12 @@ Route::middleware(['auth', 'role:staff_perundang_undangan'])->group(function (){
 
 // Kasubag Perundang Undangan
 Route::middleware(['auth', 'role:kasubag_perundang_undangan'])->group(function (){
-    Route::get('/dashboard/kasubagu/editprodukhukum/{id}',[KasubagController::class,'editprodukhukum']);
-    // Route::put('/dashboard/staffu/editprodukhukum/{id}',[StaffController::class,'updateprodukhukum']);
+    Route::get('/dashboard/kasubagu/readprodukhukum/{id}',[KasubagController::class,'editprodukhukum']);
     Route::post('/dashboard/kasubagu/process/{id}',[KasubagController::class,'process']);
+});
+
+// Kabag
+Route::middleware(['auth', 'role:kabag'])->group(function (){
+    Route::get('/dashboard/kabag/readprodukhukum/{id}',[KabagController::class,'editprodukhukum']);
+    Route::post('/dashboard/kabag/process/{id}',[KabagController::class,'process']);
 });

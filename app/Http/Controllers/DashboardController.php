@@ -11,6 +11,7 @@ use App\Models\Draft;
 use App\Models\Admin;
 use App\Models\StaffUndang;
 use App\Models\KasubagUndang;
+use App\Models\Kabag;
 
 class DashboardController extends Controller
 {
@@ -45,7 +46,9 @@ class DashboardController extends Controller
                 'kasubag_undangs' => KasubagUndang::all(),
             ]);
         } else if(Auth::user()->role->role == 'kabag'){
-            return view('auth.kabag.dashboard');
+            return view('auth.kabag.dashboard', [
+                'kabag' => Kabag::all(),
+            ]);
         } else if(Auth::user()->role->role == 'kepala_dinas'){
             return view('auth.kepala_dinas.dashboard');
         } else if(Auth::user()->role->role == 'sekda'){

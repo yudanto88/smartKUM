@@ -36,25 +36,25 @@ class KasubagController extends Controller
                 return redirect('/dashboard');
                 break;
             case 'proses':
-                // $searchDraft = Admin::find($request->id);
+                $searchDraft = KasubagUndang::find($request->id);
 
-                // DB::table('admins')->where('id', $request->id)->update([
-                //     'status' => 'diterima',
-                //     'updated_at' => now()
-                // ]);
+                DB::table('kasubag_undangs')->where('id', $request->id)->update([
+                    'status' => 'diterima',
+                    'keterangan' => $request->keterangan,
+                    'updated_at' => now()
+                ]);
 
-                // DB::table('staff_undangs')-> insert([
-                //     'status' => 'menunggu',
-                //     'keterangan' => $request->keterangan,
-                //     // 'draft_id' => $searchDraft->draft->draft_id,
-                //     'admin_id' => $request->id,
-                //     'created_at' => now(),
-                //     'updated_at' => now()
-                // ]);
+                DB::table('kabags')->insert([
+                    'status' => 'menunggu',
+                    // 'draft_id' => $searchDraft->draft->draft_id,
+                    'kasubag_undang_id' => $request->id,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
                 
-                // $request->session()->flash('success', 'Data berhasil diproses');
+                $request->session()->flash('success', 'Data berhasil diproses');
         
-                // return redirect('/dashboard');
+                return redirect('/dashboard');
                 break;
         }
     }

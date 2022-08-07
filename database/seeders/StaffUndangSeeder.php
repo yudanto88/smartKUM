@@ -16,7 +16,7 @@ class StaffUndangSeeder extends Seeder
     public function run()
     {
         DB::table('staff_undangs')->insert([
-            'status' => 'menunggu',
+            'status' => 'diterima',
             'keterangan' => 'test6',
             'admin_id' => 1,
             'created_at' => now(),

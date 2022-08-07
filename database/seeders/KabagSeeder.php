@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class KasubagUndangSeeder extends Seeder
+class KabagSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,12 +15,6 @@ class KasubagUndangSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('kasubag_undangs')->insert([
-            'status' => 'menunggu',
-            'keterangan' => 'test6',
-            'staff_undang_id' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        //
     }
 }

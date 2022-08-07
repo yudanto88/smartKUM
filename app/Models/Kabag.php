@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KasubagUndang extends Model
+class Kabag extends Model
 {
     use HasFactory;
 
@@ -15,11 +15,7 @@ class KasubagUndang extends Model
         'keterangan_penolakan',
     ];
 
-    public function staffUndang(){
-        return $this->belongsTo(StaffUndang::class);
-    }
-
-    public function kabag(){
-        return $this->hasMany(KabagUndang::class);
+    public function kasubagUndang(){
+        return $this->belongsTo(KasubagUndang::class);
     }
 }

@@ -15,38 +15,38 @@
         <div class="fs-6">
             Operator SKPD
         </div>
-        <input type="text" class="form-control input mt-2" value="{{ $draft->staffUndang->admin->draft->user->name }}" readonly>
+        <input type="text" class="form-control input mt-2" value="{{ $draft->kasubagUndang->staffUndang->admin->draft->user->name }}" readonly>
 
         <div class="fs-6 mt-3">
             Jenis / Bentuk Peraturan 
         </div>
-        <input type="text" class="form-control input mt-2" value="{{ $draft->staffUndang->admin->draft->jenis }}" readonly>
+        <input type="text" class="form-control input mt-2" value="{{ $draft->kasubagUndang->staffUndang->admin->draft->jenis }}" readonly>
 
         <div class="fs-6 mt-3">
             Judul Produk Hukum 
         </div>
-        <input type="text" class="form-control input mt-2" value="{{ $draft->staffUndang->admin->draft->judul }}" readonly>
+        <input type="text" class="form-control input mt-2" value="{{ $draft->kasubagUndang->staffUndang->admin->draft->judul }}" readonly>
 
         <div class="row">
             <div class="col-2">
                 <div class="fs-6 mt-3">
                     Tanggal Pengajuan
                 </div>
-                <input type="date" class="form-control input mt-2" value="{{ $draft->staffUndang->admin->draft->tanggal_pengajuan }}" readonly>
+                <input type="date" class="form-control input mt-2" value="{{ $draft->kasubagUndang->staffUndang->admin->draft->tanggal_pengajuan }}" readonly>
             </div>
         </div>
 
         <div class="fs-6 mt-3">
-            Keterangan Staff Perundang Undangan
+            Keterangan Kasubag Perundang Undangan
         </div>
-        <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->staffUndang->keterangan }}</Textarea>
+        <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->kasubagUndang->keterangan }}</Textarea>
 
         <div class="row">
             <div class="col-2">
                 <div class="fs-6 mt-3">
                     Surat Pengajuan
                 </div>
-                <a href="{{ asset('storage/' . $draft->staffUndang->admin->draft->surat_pengajuan)}}" class="btn btn-primary mt-2">Download</a>
+                <a href="{{ asset('storage/' . $draft->kasubagUndang->staffUndang->admin->draft->surat_pengajuan)}}" class="btn btn-primary mt-2">Download</a>
             </div>
         </div>
 
@@ -55,14 +55,14 @@
                 <div class="fs-6 mt-3">
                     Draft Produk Hukum
                 </div>
-                <a href="{{ asset('storage/' . $draft->staffUndang->admin->draft->draft_produk_hukum)}}" class="btn btn-primary mt-2">Download</a>
+                <a href="{{ asset('storage/' . $draft->kasubagUndang->staffUndang->admin->draft->draft_produk_hukum)}}" class="btn btn-primary mt-2">Download</a>
             </div>
-            @if($draft->staffUndang->admin->draft->draft_produk_hukum_lama)
+            @if($draft->kasubagUndang->staffUndang->admin->draft->draft_produk_hukum_lama)
             <div class="col-4">
                 <div class="fs-6 mt-3">
                     Draft Produk Hukum Lama
                 </div>
-                <a href="{{ asset('storage/' . $draft->staffUndang->admin->draft->draft_produk_hukum_lama)}}" class="btn btn-primary mt-2">Download</a>
+                <a href="{{ asset('storage/' . $draft->kasubagUndang->staffUndang->admin->draft->draft_produk_hukum_lama)}}" class="btn btn-primary mt-2">Download</a>
             </div>
             @endif
         </div>
@@ -72,7 +72,7 @@
                 <div class="fs-6 mt-3">
                     Revisi Produk Hukum
                 </div>
-                <a href="{{ asset('storage/' . $draft->staffUndang->revisi_produk_hukum)}}" class="btn btn-primary mt-2">Download</a>
+                <a href="{{ asset('storage/' . $draft->kasubagUndang->staffUndang->revisi_produk_hukum)}}" class="btn btn-primary mt-2">Download</a>
             </div>
         </div>
 
@@ -81,12 +81,12 @@
                 <div class="fs-6 mt-3">
                     NPKND
                 </div>
-                <a href="{{ asset('storage/' . $draft->staffUndang->npknd)}}" class="btn btn-primary mt-2">Download</a>
+                <a href="{{ asset('storage/' . $draft->kasubagUndang->staffUndang->npknd)}}" class="btn btn-primary mt-2">Download</a>
             </div>
         </div>
             
         @if($draft->status == 'menunggu')
-        <form action="/dashboard/kasubagu/process/{{$draft->id}}" method="post">
+        <form action="/dashboard/kabag/process/{{$draft->id}}" method="post">
             @csrf
             <div class="fs-6 mt-3">
                 Keterangan
