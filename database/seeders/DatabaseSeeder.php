@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             DraftSeeder::class,
             AdminSeeder::class,
             StaffUndangSeeder::class,
+            KasubagUndangSeeder::class,
         ]);
     }
 }

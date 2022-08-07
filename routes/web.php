@@ -8,7 +8,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\SKPDController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
-
+use App\Http\Controllers\KasubagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,7 +67,6 @@ Route::middleware(['auth', 'role:skpd'])->group(function (){
 // Admin FO
 Route::middleware(['auth', 'role:admin_fo'])->group(function (){
     Route::get('/dashboard/admin/readprodukhukum/{id}',[AdminController::class,'readprodukhukum']);
-    Route::get('/dashboard/admin/editprodukhukum/{id}',[AdminController::class,'editprodukhukum']);
     Route::post('/dashboard/admin/process/{id}',[AdminController::class,'process']);
 });
 
@@ -76,4 +75,11 @@ Route::middleware(['auth', 'role:staff_perundang_undangan'])->group(function (){
     Route::get('/dashboard/staffu/editprodukhukum/{id}',[StaffController::class,'editprodukhukum']);
     Route::put('/dashboard/staffu/editprodukhukum/{id}',[StaffController::class,'updateprodukhukum']);
     Route::get('/dashboard/staffu/readprodukhukum/{id}',[StaffController::class,'readprodukhukum']);
+});
+
+// Kasubag Perundang Undangan
+Route::middleware(['auth', 'role:kasubag_perundang_undangan'])->group(function (){
+    Route::get('/dashboard/kasubagu/editprodukhukum/{id}',[KasubagController::class,'editprodukhukum']);
+    // Route::put('/dashboard/staffu/editprodukhukum/{id}',[StaffController::class,'updateprodukhukum']);
+    Route::post('/dashboard/kasubagu/process/{id}',[KasubagController::class,'process']);
 });

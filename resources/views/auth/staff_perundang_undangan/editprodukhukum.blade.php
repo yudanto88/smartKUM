@@ -125,6 +125,13 @@
             </div>
             <textarea type="text" class="form-control input mt-2" 
             name="keterangan" id="keterangan" style="height:100px">{{ old('keterangan') }}</Textarea>
+
+            @if($draft->keterangan_penolakan)
+            <div class="fs-6 mt-3">
+                Keterangan Penolakan
+            </div>
+            <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->keterangan_penolakan}}</Textarea>
+            @endif
             
             <div class="row justify-content-end mt-4 mb-4">
                 <div class="col-3">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\StaffUndang;
+use App\Models\KasubagUndang;
 
 class StaffController extends Controller
 {
@@ -28,7 +29,7 @@ class StaffController extends Controller
 
         $searchDraft = StaffUndang::find($request->id);
 
-        if(isset($request->revisi_produk_hukum) && isset($request->npknd)){
+        if(isset($searchDraft->revisi_produk_hukum) && isset($searchDraft->npknd)){
             Storage::delete($searchDraft->revisi_produk_hukum);
             Storage::delete($searchDraft->npknd);
         }
@@ -43,6 +44,13 @@ class StaffController extends Controller
             'keterangan' => $request->keterangan,
             'updated_at' => now()
         ]);
+
+        DB::table('kasubag_undangs')->insert([
+            'status' => 'menunggu',
+            'staff_undang_id' => $request->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]); 
 
         $request->session()->flash('success', 'Berhasil melanjutkan produk hukum');
 

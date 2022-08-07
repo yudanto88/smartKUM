@@ -18,7 +18,6 @@ class StaffUndangSeeder extends Seeder
         DB::table('staff_undangs')->insert([
             'status' => 'menunggu',
             'keterangan' => 'test6',
-            // 'keterangan_penolakan' => 'test6',
             'admin_id' => 1,
             'created_at' => now(),
             'updated_at' => now()

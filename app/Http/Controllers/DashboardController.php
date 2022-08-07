@@ -10,6 +10,7 @@ use App\Models\Dinas;
 use App\Models\Draft;
 use App\Models\Admin;
 use App\Models\StaffUndang;
+use App\Models\KasubagUndang;
 
 class DashboardController extends Controller
 {
@@ -40,7 +41,9 @@ class DashboardController extends Controller
                 'staff_undangs' => StaffUndang::all(),
             ]);
         } else if(Auth::user()->role->role == 'kasubag_perundang_undangan'){
-            return view('auth.kasubag_perundang_undangan.dashboard');
+            return view('auth.kasubag_perundang_undangan.dashboard', [
+                'kasubag_undangs' => KasubagUndang::all(),
+            ]);
         } else if(Auth::user()->role->role == 'kabag'){
             return view('auth.kabag.dashboard');
         } else if(Auth::user()->role->role == 'kepala_dinas'){
