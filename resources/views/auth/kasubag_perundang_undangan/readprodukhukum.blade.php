@@ -28,7 +28,7 @@
         <input type="text" class="form-control input mt-2" value="{{ $draft->staffUndang->admin->draft->judul }}" readonly>
 
         <div class="row">
-            <div class="col-2">
+            <div class="col-3">
                 <div class="fs-6 mt-3">
                     Tanggal Pengajuan
                 </div>
@@ -42,7 +42,7 @@
         <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->staffUndang->keterangan }}</Textarea>
 
         <div class="row">
-            <div class="col-2">
+            <div class="col-3">
                 <div class="fs-6 mt-3">
                     Surat Pengajuan
                 </div>
@@ -51,7 +51,7 @@
         </div>
 
         <div class="row">
-            <div class="col-2">
+            <div class="col-3">
                 <div class="fs-6 mt-3">
                     Draft Produk Hukum
                 </div>
@@ -68,7 +68,7 @@
         </div>
 
         <div class="row">
-            <div class="col-2">
+            <div class="col-3">
                 <div class="fs-6 mt-3">
                     Revisi Produk Hukum
                 </div>
@@ -77,7 +77,7 @@
         </div>
 
         <div class="row">
-            <div class="col-2">
+            <div class="col-3">
                 <div class="fs-6 mt-3">
                     NPKND
                 </div>

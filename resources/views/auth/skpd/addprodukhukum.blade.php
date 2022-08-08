@@ -39,7 +39,7 @@
             @enderror
 
             <div class="row">
-                <div class="col-2">
+                <div class="col">
                     <div class="fs-6 mt-3">
                         Tanggal Pengajuan
                     </div>
@@ -61,7 +61,7 @@
             name="keterangan" id="keterangan" style="height:100px">{{ old('keterangan') }}</Textarea>
 
             <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                     <div class="fs-6 mt-3">
                         Upload Surat Pengajuan
                     </div>
@@ -77,7 +77,7 @@
             </div>
 
             <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                     <div class="fs-6 mt-3">
                         Upload Draft Produk Hukum
                     </div>

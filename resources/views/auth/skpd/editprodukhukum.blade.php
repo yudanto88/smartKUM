@@ -40,7 +40,7 @@
             @enderror
 
             <div class="row">
-                <div class="col-2">
+                <div class="col">
                     <div class="fs-6 mt-3">
                         Tanggal Pengajuan
                     </div>
@@ -62,7 +62,7 @@
             name="keterangan" id="keterangan" style="height:100px">{{ old('keterangan', $draft->keterangan)}}</Textarea>
 
             <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                     <div class="fs-6 mt-3">
                         Revisi Surat Pengajuan
                     </div>
@@ -75,7 +75,7 @@
                     </div>
                     @enderror
                 </div>
-                <div class="col-3">
+                <div class="col-6">
                     <div class="fs-6 mt-3">
                         File Lama
                     </div>
@@ -84,7 +84,7 @@
             </div>
 
             <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                     <div class="fs-6 mt-3">
                         Revisi Draft Produk Hukum
                     </div>
@@ -97,7 +97,7 @@
                     </div>
                     @enderror
                 </div>
-                <div class="col-3">
+                <div class="col-6">
                     <div class="fs-6 mt-3">
                         File Lama
                     </div>

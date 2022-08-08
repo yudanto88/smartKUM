@@ -17,7 +17,7 @@
         <input type="text" class="form-control input mt-2" value="{{ $draft->judul}}" readonly>
 
         <div class="row">
-            <div class="col-2">
+            <div class="col">
                 <div class="fs-6 mt-3">
                     Tanggal Pengajuan
                 </div>
@@ -31,7 +31,7 @@
         <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->keterangan}}</Textarea>
 
         <div class="row">
-            <div class="col-2">
+            <div class="col-6">
                 <div class="fs-6 mt-3">
                     Surat Pengajuan
                 </div>
@@ -40,14 +40,14 @@
         </div>
 
         <div class="row">
-            <div class="col-2">
+            <div class="col-6">
                 <div class="fs-6 mt-3">
                     Draft Produk Hukum
                 </div>
                 <a href="{{ asset('storage/' . $draft->draft_produk_hukum)}}" class="btn btn-primary mt-2">Download</a>
             </div>
             @if($draft->draft_produk_hukum_lama)
-            <div class="col-4">
+            <div class="col-6">
                 <div class="fs-6 mt-3">
                     Draft Produk Hukum Lama
                 </div>
