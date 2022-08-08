@@ -10,6 +10,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\KasubagController;
 use App\Http\Controllers\KabagController;
+use App\Http\Controllers\KepalaDinasController;
+use App\Http\Controllers\SekdaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,4 +90,16 @@ Route::middleware(['auth', 'role:kasubag_perundang_undangan'])->group(function (
 Route::middleware(['auth', 'role:kabag'])->group(function (){
     Route::get('/dashboard/kabag/readprodukhukum/{id}',[KabagController::class,'editprodukhukum']);
     Route::post('/dashboard/kabag/process/{id}',[KabagController::class,'process']);
+});
+
+// Kepala Dinas
+Route::middleware(['auth', 'role:kepala_dinas'])->group(function (){
+    Route::get('/dashboard/kepaladinas/readprodukhukum/{id}',[KepalaDinasController::class,'editprodukhukum']);
+    Route::post('/dashboard/kepaladinas/process/{id}',[KepalaDinasController::class,'process']);
+});
+
+// Sekda
+Route::middleware(['auth', 'role:sekda'])->group(function (){
+    Route::get('/dashboard/sekda/readprodukhukum/{id}',[SekdaController::class,'editprodukhukum']);
+    Route::post('/dashboard/sekda/process/{id}',[SekdaController::class,'process']);
 });

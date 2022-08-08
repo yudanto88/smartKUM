@@ -12,6 +12,8 @@ use App\Models\Admin;
 use App\Models\StaffUndang;
 use App\Models\KasubagUndang;
 use App\Models\Kabag;
+use App\Models\KepalaDinas;
+use App\Models\Sekda;
 
 class DashboardController extends Controller
 {
@@ -50,9 +52,13 @@ class DashboardController extends Controller
                 'kabag' => Kabag::all(),
             ]);
         } else if(Auth::user()->role->role == 'kepala_dinas'){
-            return view('auth.kepala_dinas.dashboard');
+            return view('auth.kepala_dinas.dashboard', [
+                'kepala_dinas' => KepalaDinas::all(),
+            ]);
         } else if(Auth::user()->role->role == 'sekda'){
-            return view('auth.sekda.dashboard');
+            return view('auth.sekda.dashboard', [
+                'sekda' => Sekda::all(),
+            ]);
         } else if(Auth::user()->role->role == 'walikota'){
             return view('auth.walikota.dashboard');
         } else if(Auth::user()->role->role == 'staff_dokumentasi'){

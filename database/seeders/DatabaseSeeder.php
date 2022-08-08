@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             StaffUndangSeeder::class,
             KasubagUndangSeeder::class,
             KabagSeeder::class,
+            KepalaDinasSeeder::class,
+            SekdaSeeder::class,
         ]);
     }
 }

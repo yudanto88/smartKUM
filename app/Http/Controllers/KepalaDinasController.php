@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Kabag;
+use App\Models\KepalaDinas;
 
-class KabagController extends Controller
+class KepalaDinasController extends Controller
 {
-    public function editprodukhukum(Request $request, Kabag $draft){
-        return view('auth.kabag.readprodukhukum',[
+    public function editprodukhukum(Request $request, KepalaDinas $draft){
+        return view('auth.kepala_dinas.readprodukhukum',[
             'draft' => $draft::find($request->id),
         ]);
     }
@@ -35,18 +35,18 @@ class KabagController extends Controller
                 return redirect('/dashboard');
                 break;
             case 'proses':
-                $searchDraft = Kabag::find($request->id);
+                $searchDraft = KepalaDinas::find($request->id);
 
-                DB::table('kabags')->where('id', $request->id)->update([
+                DB::table('kepala_dinas')->where('id', $request->id)->update([
                     'status' => 'diterima',
                     'keterangan' => $request->keterangan,
                     'updated_at' => now()
                 ]);
 
-                DB::table('kepala_dinas')->insert([
+                DB::table('sekdas')->insert([
                     'status' => 'menunggu',
                     // 'draft_id' => $searchDraft->draft->draft_id,
-                    'kabag_id' => $request->id,
+                    'kepala_dinas_id' => $request->id,
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);
