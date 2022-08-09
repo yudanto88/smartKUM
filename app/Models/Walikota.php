@@ -5,22 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sekda extends Model
+class Walikota extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'status',
-        'persetujuan',
         'keterangan',
         'keterangan_penolakan',
     ];
 
-    public function kepalaDinas(){
-        return $this->belongsTo(KepalaDinas::class);
+    public function sekda(){
+        return $this->belongsTo(Sekda::class);
     }
 
-    public function walikota(){
-        return $this->hasMany(Walikota::class);
+    public function staffDokumentasi(){
+        return $this->hasMany(StaffDokumentasi::class);
     }
 }

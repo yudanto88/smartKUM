@@ -27,23 +27,30 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-
+                        @foreach($walikota as $draft)
                         <tr>
-                        <td>1</td>
-                        <td>Perdes</td>
-                        <td>Perdes A</td>
-                        <td>06 / 05 / 2001</td>
-                        <td>Sedang diajukan</td>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$draft->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->jenis}}</td>
+                        <td>{{$draft->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->judul}}</td>
+                        <td>{{$draft->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->tanggal_pengajuan}}</td>
+                        <td>{{$draft->status}}</td>
                         <td>
-                            <button type="button" class="badge bg-info border-0 mx-auto">
-                                edit
-                            </button>
-                            <button type="button" class="badge bg-danger border-0">
-                                delete
-                            </button>
+                            <div class="mx-auto">
+                                <button type="button" class="badge bg-warning border-0">
+                                    trayek
+                                </button>
+
+                                @if($draft->status == 'menunggu')
+                                <a href="/dashboard/walikota/readprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
+                                @endif
+
+                                @if($draft->status == 'diterima' || $draft->status == 'ditolak')
+                                    <a href="/dashboard/walikota/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>
+                                @endif
+                            </div>
                         </td>
                         </tr>
-
+                        @endforeach
                     </tbody>
                     </table>
                 </div>

@@ -58,13 +58,13 @@ class SekdaController extends Controller
                     'updated_at' => now()
                 ]);
 
-                // DB::table('sekdas')->insert([
-                //     'status' => 'menunggu',
-                //     // 'draft_id' => $searchDraft->draft->draft_id,
-                //     'kepala_dinas_id' => $request->id,
-                //     'created_at' => now(),
-                //     'updated_at' => now()
-                // ]);
+                DB::table('walikotas')->insert([
+                    'status' => 'menunggu',
+                    // 'draft_id' => $searchDraft->draft->draft_id,
+                    'sekda_id' => $request->id,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
                 
                 $request->session()->flash('success', 'Data berhasil diproses');
         

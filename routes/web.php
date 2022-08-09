@@ -12,6 +12,7 @@ use App\Http\Controllers\KasubagController;
 use App\Http\Controllers\KabagController;
 use App\Http\Controllers\KepalaDinasController;
 use App\Http\Controllers\SekdaController;
+use App\Http\Controllers\WalikotaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,4 +103,10 @@ Route::middleware(['auth', 'role:kepala_dinas'])->group(function (){
 Route::middleware(['auth', 'role:sekda'])->group(function (){
     Route::get('/dashboard/sekda/readprodukhukum/{id}',[SekdaController::class,'editprodukhukum']);
     Route::post('/dashboard/sekda/process/{id}',[SekdaController::class,'process']);
+});
+
+// Walikota
+Route::middleware(['auth', 'role:walikota'])->group(function (){
+    Route::get('/dashboard/walikota/readprodukhukum/{id}',[WalikotaController::class,'editprodukhukum']);
+    Route::post('/dashboard/walikota/process/{id}',[WalikotaController::class,'process']);
 });
