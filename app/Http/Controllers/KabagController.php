@@ -17,18 +17,18 @@ class KabagController extends Controller
     public function process(Request $request){
         switch($request->input('action')){
             case 'tolak':
-                // $searchDraft = KasubagUndang::find($request->id);
+                $searchDraft = Kabag::find($request->id);
 
-                // DB::table('kasubag_undangs')->where('id', $request->id)->update([
-                //     'status' => 'ditolak',
-                //     'updated_at' => now()
-                // ]);
+                DB::table('kabags')->where('id', $request->id)->update([
+                    'status' => 'ditolak',
+                    'updated_at' => now()
+                ]);
         
-                // DB::table('staff_undangs')->where('id', $searchDraft->staff_undang_id)->update([
-                //     'status' => 'ditolak',
-                //     'keterangan_penolakan' => $request->keterangan,
-                //     'updated_at' => now()
-                // ]);
+                DB::table('kasubag_undangs')->where('id', $searchDraft->kasubag_undang_id)->update([
+                    'status' => 'ditolak',
+                    'keterangan_penolakan' => $request->keterangan,
+                    'updated_at' => now()
+                ]);
         
                 $request->session()->flash('success', 'Data berhasil ditolak');
         

@@ -85,7 +85,7 @@
             </div>
         </div>
             
-        @if($draft->status == 'menunggu')
+        @if($draft->status == 'menunggu' || $draft->status == 'ditolak')
         <form action="/dashboard/kasubagu/process/{{$draft->id}}" method="post">
             @csrf
             <div class="fs-6 mt-3">
@@ -109,7 +109,7 @@
         </form>
         @endif
         
-        @if($draft->status == 'ditolak' || $draft->status == 'diterima')
+        @if($draft->status == 'diterima')
         <div class="d-grid gap-2 mt-4 mb-4">
             <a href="/dashboard" class="btn btn-secondary">Kembali</a>
         </div>

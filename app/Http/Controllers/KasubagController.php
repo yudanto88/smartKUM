@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\KasubagUndang;
 use App\Models\StaffUndang;
+use App\Models\Kabag;
 
 class KasubagController extends Controller
 {
@@ -38,19 +39,28 @@ class KasubagController extends Controller
             case 'proses':
                 $searchDraft = KasubagUndang::find($request->id);
 
+                $searchDraftKabag = Kabag::where('id', $searchDraft->id)->first();
+
                 DB::table('kasubag_undangs')->where('id', $request->id)->update([
                     'status' => 'diterima',
                     'keterangan' => $request->keterangan,
                     'updated_at' => now()
                 ]);
 
-                DB::table('kabags')->insert([
-                    'status' => 'menunggu',
-                    // 'draft_id' => $searchDraft->draft->draft_id,
-                    'kasubag_undang_id' => $request->id,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]);
+                if(isset($searchDraftKabag)){
+                    DB::table('kabags')->where('id', $searchDraftKabag->id)->update([
+                        'status' => 'menunggu',
+                        'updated_at' => now()
+                    ]);
+                }else {
+                    DB::table('kabags')->insert([
+                        'status' => 'menunggu',
+                        // 'draft_id' => $searchDraft->draft->draft_id,
+                        'kasubag_undang_id' => $request->id,
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ]);
+                }   
                 
                 $request->session()->flash('success', 'Data berhasil diproses');
         
