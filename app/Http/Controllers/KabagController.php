@@ -25,7 +25,7 @@ class KabagController extends Controller
                 ]);
         
                 DB::table('kasubag_undangs')->where('id', $searchDraft->kasubag_undang_id)->update([
-                    'status' => 'ditolak',
+                    'status' => 'ditolak oleh kabag',
                     'keterangan_penolakan' => $request->keterangan,
                     'updated_at' => now()
                 ]);
