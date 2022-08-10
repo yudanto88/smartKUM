@@ -37,20 +37,19 @@ class WalikotaController extends Controller
             case 'proses':
                 // $searchDraft = Sekda::find($request->id);
 
-                // DB::table('walikotas')->where('id', $request->id)->update([
-                //     'status' => 'diterima',
-                //     'persetujuan' => $persetujuan,
-                //     'keterangan' => $request->keterangan,
-                //     'updated_at' => now()
-                // ]);
+                DB::table('walikotas')->where('id', $request->id)->update([
+                    'status' => 'diterima',
+                    'keterangan' => $request->keterangan,
+                    'updated_at' => now()
+                ]);
 
-                // DB::table('walikotas')->insert([
-                //     'status' => 'menunggu',
-                //     // 'draft_id' => $searchDraft->draft->draft_id,
-                //     'sekda_id' => $request->id,
-                //     'created_at' => now(),
-                //     'updated_at' => now()
-                // ]);
+                DB::table('staff_dokumentasis')->insert([
+                    'status' => 'menunggu',
+                    // 'draft_id' => $searchDraft->draft->draft_id,
+                    'walikota_id' => $request->id,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
                 
                 $request->session()->flash('success', 'Data berhasil diproses');
         

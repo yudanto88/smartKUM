@@ -23,7 +23,7 @@ class DraftSeeder extends Seeder
             // 'surat_pengajuan' => 'file-pengajuan\ymiOjIDqfMRJyHKf8KblzFrCz0dXXt2iQWyCNMGn.pdf',
             // 'draft_produk_hukum' => 'file-draftProdukHukum\mXo9mqf0m0MPKamVWtmbYgCkDAw8obtcG3MlTSov.pdf',
             // 'draft_produk_hukum_lama' => 'file-draftProdukHukum\mXo9mqf0m0MPKamVWtmbYgCkDAw8obtcG3MlTSov.pdf',
-            'status' => 'diterima',
+            'status' => 'menunggu',
             'user_id' => 2,
             'created_at' => now(),
             'updated_at' => now()

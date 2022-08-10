@@ -33,7 +33,6 @@ class DatabaseSeeder extends Seeder
             SekdaSeeder::class,
             WalikotaSeeder::class,
             StaffDokumentasiSeeder::class,
-            KasubagDokumentasiSeeder::class,
         ]);
     }
 }

@@ -14,6 +14,5 @@ class StaffDokumentasiSeeder extends Seeder
      */
     public function run()
     {
-        //
     }
 }

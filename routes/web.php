@@ -110,3 +110,11 @@ Route::middleware(['auth', 'role:walikota'])->group(function (){
     Route::get('/dashboard/walikota/readprodukhukum/{id}',[WalikotaController::class,'editprodukhukum']);
     Route::post('/dashboard/walikota/process/{id}',[WalikotaController::class,'process']);
 });
+
+// Staff Dokumentasi
+Route::middleware(['auth', 'role:staff_dokumentasi'])->group(function (){
+    Route::get('/dashboard/staffd/readprodukhukum/{id}',[StaffController::class,'editprodukhukum2']);
+    Route::post('/dashboard/staffd/next/{id}',[StaffController::class,'next']);
+    Route::get('/dashboard/staffd/metadata/{id}',[StaffController::class,'metadata']);
+    Route::post('/dashboard/staffd/process/{id}',[StaffController::class,'process']);
+});

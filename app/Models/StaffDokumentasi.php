@@ -19,4 +19,8 @@ class StaffDokumentasi extends Model
     public function walikota(){
         return $this->belongsTo(Walikota::class);
     }
+
+    public function produkHukum(){
+        return $this->hasMany(ProdukHukum::class);
+    }
 }

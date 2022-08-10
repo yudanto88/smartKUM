@@ -16,7 +16,7 @@ class KepalaDinasSeeder extends Seeder
     public function run()
     {
         DB::table('kepala_dinas')->insert([
-            'status' => 'menunggu',
+            'status' => 'diterima',
             'keterangan' => 'test6',
             'kabag_id' => 1,
             'created_at' => now(),

@@ -37,9 +37,9 @@
         </div>
 
         <div class="fs-6 mt-3">
-            Keterangan Kepala Dinas
+            Keterangan Sekda
         </div>
-        <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->sekda->kepalaDinas->keterangan }}</Textarea>
+        <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->sekda->keterangan }}</Textarea>
 
         <div class="row">
             <div class="col-2">
