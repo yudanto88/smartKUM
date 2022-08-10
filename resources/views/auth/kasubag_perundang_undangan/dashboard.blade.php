@@ -40,7 +40,7 @@
                                     trayek
                                 </button>
 
-                                @if($draft->status == 'menunggu')
+                                @if($draft->status == 'menunggu' || $draft->status == 'ditolak oleh kabag')
                                 <a href="/dashboard/kasubagu/readprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
                                 @endif
 

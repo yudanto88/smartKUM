@@ -125,27 +125,33 @@ body {
   background-color: #727272;
 }
 
+/* responsive desing */
+
 @media (min-width: 300px) {
-  .search-bar {
-    /* position: absolute;
-    width: 10%;
-    margin: 10px 0px 10px 0px;
-    left: 8rem; */
+  .logo {
     display: none;
   }
+  
+  /* .search-bar {
+    position: absolute;
+    width: 10%;
+    margin: 10px 0px 10px 0px;
+    left: 8rem;
+    display: none;
+  } */
 
   .navbar .navbar-toggler {
     top: .25rem;
     right: 5rem;
   }
 
-  .sidebar {
+  /* .sidebar {
     top: 0;
-  }
+  } */
 }
 
 @media (min-width: 576px) {
-  .search-bar {
+  /* .search-bar {
     position: absolute;
     width: 55%;
     margin: 10px 0px 10px 0px;
@@ -156,49 +162,49 @@ body {
   .navbar .navbar-toggler {
     top: .25rem;
     right: 6rem;
-  }
+  } */
 
-  .sidebar {
+  /* .sidebar {
     top: 0;
-  }
+  } */
 }
 
 @media (min-width: 768px) {
-  .search-bar {
+  /* .search-bar {
     position: absolute;
     width: 50%;
     margin: 10px 0px 10px 0px;
     left: 30%;
     display: block;
-  }
+  } */
 }
 
 @media (min-width: 992px) {
-  .search-bar {
+  /* .search-bar {
     position: absolute;
     width: 60%;
     margin: 10px 0px 10px 0px;
     left: 20%;
     display: block;
-  }
+  } */
 }
 
 @media (min-width: 1200px) {
-  .search-bar {
+  /* .search-bar {
     position: absolute;
     width: 70%;
     margin: 10px 0px 10px 0px;
     left: 20%;
     display: block;
-  }
+  } */
 }
 
 @media (min-width: 1400px) {
-  .search-bar {
+  /* .search-bar {
     position: absolute;
     width: 70%;
     margin: 10px 0px 10px 0px;
     left: 20%;
     display: block;
-  }
+  } */
 }

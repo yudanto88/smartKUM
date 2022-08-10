@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
   <div class="row mt-5">
-    <div class="col-4 mx-auto position-relative">
+    <div class="col-10 col-sm-8 col-md-8 col-lg-4 mx-auto position-relative">
 
       @if(session()->has('success'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
