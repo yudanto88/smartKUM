@@ -64,123 +64,52 @@ body {
 
 /* Mobile */
 
-@media (min-width: 300px) {
-    .navbar-expand-lg .navbar-toggler {
-        display: block;
-    }
+/* @media (min-width: 300px) {
     .login-page {
         position: absolute;
         width: 200%;
         right: 50%;
         left: -50%;
-    }
-    
-    .offcanvas {
-        width: 60%;
-    }
-
-    .register-page {
-        width: 80%;
     }
 }
 
 @media (min-width: 576px) {
-    .navbar-expand-lg .navbar-toggler {
-        display: block;
-    }
     .login-page {
         position: absolute;
         width: 200%;
         right: 50%;
         left: -50%;
-    }
-
-    .offcanvas {
-        width: 40%;
-    }
-
-    .register-page {
-        width: 80%;
     }
 }
 
 @media (min-width: 768px) {
-    .navbar-expand-lg .navbar-toggler {
-        display: block;
-    }
-    
     .login-page {
         position: absolute;
-        width: 200%;
-        right: 50%;
-        left: -50%;
-    }
-
-    .offcanvas {
-        width: 40%;
-    }
-
-    .register-page {
-        width: 80%;
+        width: 150%;
+        left: -15%;
     }
 }
 
 @media (min-width: 992px) {
-    .navbar-expand-lg .navbar-toggler {
-        display: block;
-    }
-
     .login-page {
         position: absolute;
         width: 100%;
-        left: 0;
-    }
-
-    .offcanvas {
-        width: 40%;
-    }
-
-    .register-page {
-        width: 80%;
+        left: 5%;
     }
 }
 
 @media (min-width: 1200px) {
-    .navbar-expand-lg .navbar-toggler {
-        display: block;
-    }
-
     .login-page {
         position: absolute;
-        width: 100%;
-        left: 0;
-    }
-
-    .offcanvas {
-        width: 30%;
-    }
-
-    .register-page {
-        width: 50%;
+        width: 80%;
+        left: 15%;
     }
 }
 
 @media (min-width: 1400px) {
-    .navbar-expand-lg .navbar-toggler {
-        display: block;
-    }
-
     .login-page {
         position: absolute;
-        width: 100%;
-        left: 0;
+        width: 80%;
+        left: 20%;
     }
-
-    .offcanvas {
-        width: 30%;
-    }
-
-    .register-page {
-        width: 50%;
-    }
-}
+} */
