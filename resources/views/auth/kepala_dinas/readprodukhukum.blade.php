@@ -94,22 +94,17 @@
             <textarea type="text" class="form-control input mt-2" 
             name="keterangan" id="keterangan" style="height:100px">{{ old('keterangan') }}</Textarea>
 
-            <div class="row justify-content-between mt-4 mb-4">
-                <div class="col-3 ">
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-danger mt-2" name="action" value="tolak">Tolak</button>
-                    </div>
-                </div>
+            <div class="row justify-content-end mt-4 mb-4">
                 <div class="col-3">
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary mt-2" name="action" value="proses">Proses</button>
+                        <button type="submit" class="btn btn-primary mt-2">Proses</button>
                     </div>
                 </div>
             </div>
         </form>
         @endif
         
-        @if($draft->status == 'ditolak' || $draft->status == 'diterima')
+        @if($draft->status == 'ditolak oleh sekda' || $draft->status == 'diterima')
         <div class="d-grid gap-2 mt-4 mb-4">
             <a href="/dashboard" class="btn btn-secondary">Kembali</a>
         </div>

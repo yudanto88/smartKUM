@@ -39,7 +39,7 @@ class KasubagController extends Controller
             case 'proses':
                 $searchDraft = KasubagUndang::find($request->id);
 
-                $searchDraftKabag = Kabag::where('id', $searchDraft->id)->first();
+                $searchDraftKabag = Kabag::where('kasubag_undang_id', $searchDraft->id)->first();
 
                 DB::table('kasubag_undangs')->where('id', $request->id)->update([
                     'status' => 'diterima',

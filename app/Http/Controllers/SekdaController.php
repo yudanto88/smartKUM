@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Sekda;
+use App\Models\KepalaDinas;
 
 class SekdaController extends Controller
 {
@@ -18,18 +19,24 @@ class SekdaController extends Controller
     public function process(Request $request){
         switch($request->input('action')){
             case 'tolak':
-                // $searchDraft = KasubagUndang::find($request->id);
+                $searchDraft = Sekda::find($request->id);
 
-                // DB::table('kasubag_undangs')->where('id', $request->id)->update([
-                //     'status' => 'ditolak',
-                //     'updated_at' => now()
-                // ]);
-        
-                // DB::table('staff_undangs')->where('id', $searchDraft->staff_undang_id)->update([
-                //     'status' => 'ditolak',
-                //     'keterangan_penolakan' => $request->keterangan,
-                //     'updated_at' => now()
-                // ]);
+                $searchDraftKepalaDinas = KepalaDinas::where('id', $searchDraft->kepala_dinas_id)->first();
+
+                DB::table('sekdas')->where('id', $request->id)->update([
+                    'status' => 'ditolak',
+                    'updated_at' => now()
+                ]);
+
+                DB::table('kepala_dinas')->where('id', $searchDraft->kepala_dinas_id)->update([
+                    'status' => 'ditolak oleh sekda',
+                    'updated_at' => now()
+                ]);
+
+                DB::table('kabags')->where('id', $searchDraftKepalaDinas->kabag_id)->update([
+                    'status' => 'ditolak oleh sekda',
+                    'updated_at' => now()
+                ]);
         
                 $request->session()->flash('success', 'Data berhasil ditolak');
         

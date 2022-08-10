@@ -30,7 +30,7 @@ class StaffController extends Controller
 
         $searchDraft = StaffUndang::find($request->id);
 
-        $searchDraftKasubag = KasubagUndang::where('id', $searchDraft->id)->first();
+        $searchDraftKasubag = KasubagUndang::where('staff_undang_id', $searchDraft->id)->first();
 
         if(isset($searchDraft->revisi_produk_hukum) && isset($searchDraft->npknd)){
             Storage::delete($searchDraft->revisi_produk_hukum);
