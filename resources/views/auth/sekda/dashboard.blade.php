@@ -44,7 +44,7 @@
                                 <a href="/dashboard/sekda/readprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
                                 @endif
 
-                                @if($draft->status == 'diterima' || $draft->status == 'ditolak')
+                                @if($draft->status == 'diterima' || $draft->status == 'ditolak oleh walikota')
                                     <a href="/dashboard/sekda/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>
                                 @endif
                             </div>

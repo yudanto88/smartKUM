@@ -18,7 +18,7 @@ class KepalaDinasController extends Controller
     public function process(Request $request){
         $searchDraft = KepalaDinas::find($request->id);
 
-        $searchDraftSekda = Sekda::where('id', $searchDraft->id)->first();
+        $searchDraftSekda = Sekda::where('kepala_dinas_id', $searchDraft->id)->first();
 
         DB::table('kepala_dinas')->where('id', $request->id)->update([
             'status' => 'diterima',

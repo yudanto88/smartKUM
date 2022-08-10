@@ -85,7 +85,7 @@
             </div>
         </div>
             
-        @if($draft->status == 'menunggu' || $draft->status == 'ditolak oleh sekda' )
+        @if($draft->status == 'menunggu' || $draft->status == 'ditolak oleh sekda' || $draft->status == 'ditolak oleh walikota')
         <form action="/dashboard/kabag/process/{{$draft->id}}" method="post">
             @csrf
             <div class="fs-6 mt-3">
@@ -93,6 +93,13 @@
              </div>
             <textarea type="text" class="form-control input mt-2" 
             name="keterangan" id="keterangan" style="height:100px">{{ old('keterangan') }}</Textarea>
+
+            @if($draft->keterangan_penolakan)
+            <div class="fs-6 mt-3">
+                Keterangan Penolakan
+            </div>
+            <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->keterangan_penolakan}}</Textarea>
+            @endif
 
             <div class="row justify-content-between mt-4 mb-4">
                 <div class="col-3 ">

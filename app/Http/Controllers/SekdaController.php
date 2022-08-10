@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Sekda;
 use App\Models\KepalaDinas;
+use App\Models\Walikota;
 
 class SekdaController extends Controller
 {
@@ -35,6 +36,7 @@ class SekdaController extends Controller
 
                 DB::table('kabags')->where('id', $searchDraftKepalaDinas->kabag_id)->update([
                     'status' => 'ditolak oleh sekda',
+                    'keterangan_penolakan' => $request->keterangan,
                     'updated_at' => now()
                 ]);
         
@@ -52,10 +54,12 @@ class SekdaController extends Controller
 
                 $searchDraft = Sekda::find($request->id);
 
+                $searchDraftWalikota = Walikota::where('sekda_id', $searchDraft->id)->first();
+
                 if(isset($searchDraft->persetujuan)){
                     Storage::delete($searchDraft->persetujuan);
                 }
-
+                
                 $persetujuan = $request->file('persetujuan')->store('file-persetujuan');
 
                 DB::table('sekdas')->where('id', $request->id)->update([
@@ -65,13 +69,20 @@ class SekdaController extends Controller
                     'updated_at' => now()
                 ]);
 
-                DB::table('walikotas')->insert([
-                    'status' => 'menunggu',
-                    // 'draft_id' => $searchDraft->draft->draft_id,
-                    'sekda_id' => $request->id,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]);
+                if(isset($searchDraftWalikota)){
+                    DB::table('walikotas')->where('id', $searchDraftWalikota->id)->update([
+                        'status' => 'menunggu',
+                        'updated_at' => now()
+                    ]);
+                }else {
+                    DB::table('walikotas')->insert([
+                        'status' => 'menunggu',
+                        // 'draft_id' => $searchDraft->draft->draft_id,
+                        'sekda_id' => $request->id,
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ]);
+                }
                 
                 $request->session()->flash('success', 'Data berhasil diproses');
         

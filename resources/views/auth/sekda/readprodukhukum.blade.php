@@ -134,7 +134,7 @@
         </form>
         @endif
         
-        @if($draft->status == 'ditolak' || $draft->status == 'diterima')
+        @if($draft->status == 'ditolak oleh walikota' || $draft->status == 'diterima')
         <div class="d-grid gap-2 mt-4 mb-4">
             <a href="/dashboard" class="btn btn-secondary">Kembali</a>
         </div>
