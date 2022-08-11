@@ -24,6 +24,6 @@ class StaffUndang extends Model
 
     public function kasubagUndang()
     {
-        return $this->hasMany(KasubagUndang::class);
+        return $this->hasOne(KasubagUndang::class);
     }
 }

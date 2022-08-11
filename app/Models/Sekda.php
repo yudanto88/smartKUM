@@ -21,6 +21,6 @@ class Sekda extends Model
     }
 
     public function walikota(){
-        return $this->hasMany(Walikota::class);
+        return $this->hasOne(Walikota::class);
     }
 }

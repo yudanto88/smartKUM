@@ -21,6 +21,6 @@ class StaffDokumentasi extends Model
     }
 
     public function produkHukum(){
-        return $this->hasMany(ProdukHukum::class);
+        return $this->hasOne(ProdukHukum::class);
     }
 }

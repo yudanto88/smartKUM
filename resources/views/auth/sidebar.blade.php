@@ -23,7 +23,7 @@
 
             @can('staff_dokumentasi')
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/dokumentasi/addprodukhukum') ? 'active' : '' }}" aria-current="page" href="/dashboard/skpd/addprodukhukum">
+                <a class="nav-link {{ Request::is('dashboard/staffd/addprodukhukum') ? 'active' : '' }}" aria-current="page" href="/dashboard/staffd/addprodukhukum">
                     <span class="align-text-bottom"><i class="fa-solid fa-plus"></i></span>
                     Tambah Produk Hukum
                 </a>

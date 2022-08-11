@@ -12,7 +12,7 @@
 </div>
 <div class="row">
     <div class="col">
-        <form action="/dashboard/staffd/process/{{$draft->id}}" method="post" enctype="multipart/form-data">
+        <form action="/dashboard/staffd/addprodukhukum" method="post" enctype="multipart/form-data">
             @csrf
             <div class="fs-6">
                 No & Tahun
@@ -30,7 +30,7 @@
                 Tentang
             </div>
             <input type="text" class="form-control input mt-2" name="tentang" id="tentang" 
-            value="{{  old('tentang', $draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->judul) }}">
+            value="{{  old('tentang') }}">
 
             @error('tentang')
                 <div class="text-danger">
@@ -42,7 +42,7 @@
                 Subjek
             </div>
             <input type="text" class="form-control input mt-2" name="subjek" id ="subjek" 
-            value="{{ old('subjek', $draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->jenis) }}">
+            value="{{ old('subjek') }}">
 
             @error('subjek')
                 <div class="text-danger">
@@ -50,11 +50,6 @@
                 </div>
             @enderror
             
-            <div class="fs-6 mt-3">
-                Status
-            </div>
-            <input type="text" class="form-control input mt-2" value="{{ $draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->status }}" readonly>
-
             <div class="row">
                 <div class="col-6">
                     <div class="fs-6 mt-3">

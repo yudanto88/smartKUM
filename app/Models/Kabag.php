@@ -20,6 +20,6 @@ class Kabag extends Model
     }
 
     public function kepalaDinas(){
-        return $this->hasMany(KepalaDinas::class);
+        return $this->hasOne(KepalaDinas::class);
     }
 }

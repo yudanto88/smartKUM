@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\StaffUndang;
 use App\Models\KasubagUndang;
 use App\Models\StaffDokumentasi;
+use App\Models\ProdukHukum;
 
 class StaffController extends Controller
 {
@@ -74,36 +75,26 @@ class StaffController extends Controller
     }
 
     public function editprodukhukum2(Request $request, StaffDokumentasi $draft){
+        $searchDraft = StaffDokumentasi::find($request->id);
+
+        if(isset($searchDraft->walikota_id)){
+            return view('auth.staff_dokumentasi.editprodukhukum',[
+                'draft' => $draft::find($request->id),
+            ]);
+        }else {
+            return view('auth.staff_dokumentasi.metadata',[
+                'draft' => $draft::find($request->id),
+            ]);
+        }
+    }
+
+    public function readprodukhukum2(Request $request, StaffDokumentasi $draft){
         return view('auth.staff_dokumentasi.readprodukhukum',[
             'draft' => $draft::find($request->id),
         ]);
     }
 
-    public function next(Request $request){
-        $request->validate([
-            'ttd_walikota' => 'required|mimes:pdf',
-        ], [
-            'ttd_walikota.required' => 'Tanda Tangan Walikota tidak boleh kosong',
-            'ttd_walikota.mimes' => 'Tanda Tangan Walikota harus berformat PDF',
-        ]);
-
-        $searchDraft = StaffDokumentasi::find($request->id);
-
-        if(isset($searchDraft->ttd_walikota)){
-            Storage::delete($searchDraft->ttd_walikota);
-        }
-
-        $ttdWalikota = $request->file('ttd_walikota')->store('file-ttdWalikota');
-
-        DB::table('staff_dokumentasis')->where('id', $request->id)->update([
-            'ttd_walikota' => $ttdWalikota,
-            'updated_at' => now()
-        ]);
-
-        return redirect('/dashboard/staffd/metadata/'.$request->id);
-    }
-
-    public function metadata(Request $request, StaffDokumentasi $draft){
+    public function next(Request $request, StaffDokumentasi $draft){
         return view('auth.staff_dokumentasi.metadata',[
             'draft' => $draft::find($request->id),
         ]);
@@ -115,18 +106,95 @@ class StaffController extends Controller
             'tentang' => 'required',
             'subjek' => 'required',
             'tanggal_pengundangan' => 'required',
+            'ttd_walikota' => 'required|mimes:pdf',
+        ], [
+            'no_tahun.required' => 'No Tahun tidak boleh kosong',
+            'tentang.required' => 'Tentang tidak boleh kosong',
+            'subjek.required' => 'Subjek tidak boleh kosong',
+            'tanggal_pengundangan.required' => 'Tanggal Pengundangan tidak boleh kosong',
+            'ttd_walikota.required' => 'Tanda Tangan Walikota tidak boleh kosong',
+            'ttd_walikota.mimes' => 'Tanda Tangan Walikota harus berformat PDF',
         ]);
+
+        $searchDraft = StaffDokumentasi::find($request->id);
+
+        $searchprodukhukum = ProdukHukum::where('staff_dokumentasi_id', $searchDraft->id)->first();
+
+        if(isset($searchDraft->ttd_walikota)){
+            Storage::delete($searchDraft->ttd_walikota);
+        }
+
+        $ttdWalikota = $request->file('ttd_walikota')->store('file-ttdWalikota');
+
         DB::table('staff_dokumentasis')->where('id', $request->id)->update([
             'status' => 'diterima',
+            'ttd_walikota' => $ttdWalikota,
             'keterangan' => $request->keterangan,
             'updated_at' => now()
         ]);
 
-        DB::table('produk_hukums')->insert([
+        if(isset($searchprodukhukum)){
+            DB::table('produk_hukums')->where('id', $searchprodukhukum->id)->update([
+                'no_tahun' => $request->no_tahun,
+                'tentang' => $request->tentang,
+                'subjek' => $request->subjek,
+                'status' => 'menunggu',
+                'tanggal_pengundangan' => $request->tanggal_pengundangan,
+                'updated_at' => now()
+            ]);
+        }else {
+            DB::table('produk_hukums')->insert([
+                'no_tahun' => $request->no_tahun,
+                'tentang' => $request->tentang,
+                'subjek' => $request->subjek,
+                'status' => 'menunggu',
+                'tanggal_pengundangan' => $request->tanggal_pengundangan,
+                'staff_dokumentasi_id' => $request->id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
+
+        $request->session()->flash('success', 'Data berhasil diproses');
+        
+        return redirect('/dashboard');
+    }
+
+    public function addprodukhukum(){
+        return view('auth.staff_dokumentasi.addprodukhukum');
+    }
+
+    public function storeprodukhukum(Request $request){
+        $request->validate([
+            'no_tahun' => 'required',
+            'tentang' => 'required',
+            'subjek' => 'required',
+            'tanggal_pengundangan' => 'required',
+            'ttd_walikota' => 'required|mimes:pdf',
+        ], [
+            'no_tahun.required' => 'No Tahun tidak boleh kosong',
+            'tentang.required' => 'Tentang tidak boleh kosong',
+            'subjek.required' => 'Subjek tidak boleh kosong',
+            'tanggal_pengundangan.required' => 'Tanggal Pengundangan tidak boleh kosong',
+            'ttd_walikota.required' => 'Tanda Tangan Walikota tidak boleh kosong',
+            'ttd_walikota.mimes' => 'Tanda Tangan Walikota harus berformat PDF',
+        ]);
+        
+        $ttdWalikota = $request->file('ttd_walikota')->store('file-ttdWalikota');
+        
+        DB::table('staff_dokumentasis')->insert([
+            'no_tahun' => $request->no_tahun,
+            'tentang' => $request->tentang,
+            'subjek' => $request->subjek,
             'status' => 'menunggu',
-            'staff_dokumentasi_id' => $request->id,
+            'tanggal_pengundangan' => $request->tanggal_pengundangan,
+            'ttd_walikota' => $ttdWalikota,
             'created_at' => now(),
             'updated_at' => now()
         ]);
+        
+        $request->session()->flash('success', 'Data berhasil ditambahkan');
+        
+        return redirect('/dashboard/staffd/addprodukhukum');
     }
 }

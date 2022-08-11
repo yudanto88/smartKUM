@@ -20,6 +20,6 @@ class KepalaDinas extends Model
     }
 
     public function sekda(){
-        return $this->hasMany(Sekda::class);
+        return $this->hasOne(Sekda::class);
     }
 }

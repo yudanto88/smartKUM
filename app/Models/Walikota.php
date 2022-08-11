@@ -20,6 +20,6 @@ class Walikota extends Model
     }
 
     public function staffDokumentasi(){
-        return $this->hasMany(StaffDokumentasi::class);
+        return $this->hasOne(StaffDokumentasi::class);
     }
 }

@@ -22,6 +22,6 @@ class Admin extends Model
 
     public function staffUndang()
     {
-        return $this->hasMany(StaffUndang::class);
+        return $this->hasOne(StaffUndang::class);
     }
 }

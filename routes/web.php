@@ -113,8 +113,10 @@ Route::middleware(['auth', 'role:walikota'])->group(function (){
 
 // Staff Dokumentasi
 Route::middleware(['auth', 'role:staff_dokumentasi'])->group(function (){
-    Route::get('/dashboard/staffd/readprodukhukum/{id}',[StaffController::class,'editprodukhukum2']);
-    Route::post('/dashboard/staffd/next/{id}',[StaffController::class,'next']);
-    Route::get('/dashboard/staffd/metadata/{id}',[StaffController::class,'metadata']);
+    Route::get('/dashboard/staffd/editprodukhukum/{id}',[StaffController::class,'editprodukhukum2']);
+    Route::get('/dashboard/staffd/readprodukhukum/{id}',[StaffController::class,'readprodukhukum2']);
+    Route::get('/dashboard/staffd/metadata/{id}',[StaffController::class,'next']);
     Route::post('/dashboard/staffd/process/{id}',[StaffController::class,'process']);
+    Route::get('/dashboard/staffd/addprodukhukum',[StaffController::class,'addprodukhukum']);
+    Route::post('/dashboard/staffd/addprodukhukum',[StaffController::class,'storeprodukhukum']);
 });
