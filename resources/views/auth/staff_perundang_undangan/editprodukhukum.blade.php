@@ -31,7 +31,7 @@
             <input type="text" class="form-control input mt-2" value="{{ $draft->admin->draft->judul }}" readonly>
 
             <div class="row">
-                <div class="col">
+                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
                     <div class="fs-6 mt-3">
                         Tanggal Pengajuan
                     </div>
@@ -49,7 +49,22 @@
                     <div class="fs-6 mt-3">
                         Surat Pengajuan
                     </div>
-                    <a href="{{ asset('storage/' . $draft->admin->draft->surat_pengajuan)}}" class="btn btn-primary mt-2">Download</a>
+                    <div class="row mt-2">
+                        <div class="col-11 col-sm-8 col-md-7 col-lg-8 col-xl-8 rounded-3 border-1 border border-dark px-2 py-2 ms-3" style="background-color: #e9ecef">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-file"></i>
+                                </div>
+                                <div class="col-10">
+                                    <input type="text" value="{{ $draft->admin->draft->surat_pengajuan }}" style="border: none; background-color: #e9ecef; width: 105%;" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <a href="{{ asset('storage/' . $draft->admin->draft->surat_pengajuan )}}" class="ms-2" style="vertical-align: -webkit-baseline-middle">Download</a>
+                        </div>
+                    </div>
+                    <!-- <a href="{{ asset('storage/' . $draft->admin->draft->surat_pengajuan)}}" class="btn btn-primary mt-2">Download</a> -->
                 </div>
             </div>
 
@@ -58,14 +73,44 @@
                     <div class="fs-6 mt-3">
                         Draft Produk Hukum
                     </div>
-                    <a href="{{ asset('storage/' . $draft->admin->draft->draft_produk_hukum)}}" class="btn btn-primary mt-2">Download</a>
+                    <div class="row mt-2">
+                        <div class="col-11 col-sm-8 col-md-7 col-lg-8 col-xl-8 rounded-3 border-1 border border-dark px-2 py-2 ms-3" style="background-color: #e9ecef">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-file"></i>
+                                </div>
+                                <div class="col-9 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                                    <input type="text" value="{{ $draft->admin->draft->draft_produk_hukum }}" style="border: none; background-color: #e9ecef; width: 105%;" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <a href="{{ asset('storage/' . $draft->admin->draft->draft_produk_hukum )}}" class="ms-2" style="vertical-align: -webkit-baseline-middle">Download</a>
+                        </div>
+                    </div>
+                    <!-- <a href="{{ asset('storage/' . $draft->admin->draft->draft_produk_hukum)}}" class="btn btn-primary mt-2">Download</a> -->
                 </div>
                 @if($draft->admin->draft->draft_produk_hukum_lama)
-                <div class="col-6">
+                <div class="col">
                     <div class="fs-6 mt-3">
                         Draft Produk Hukum Lama
                     </div>
-                    <a href="{{ asset('storage/' . $draft->admin->draft->draft_produk_hukum_lama)}}" class="btn btn-primary mt-2">Download</a>
+                    <div class="row mt-2">
+                        <div class="col-11 col-sm-8 col-md-7 col-lg-8 col-xl-8 rounded-3 border-1 border border-dark px-2 py-2 ms-3" style="background-color: #e9ecef">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-file"></i>
+                                </div>
+                                <div class="col-10">
+                                    <input type="text" value="{{ $draft->admin->draft->draft_produk_hukum_lama }}" style="border: none; background-color: #e9ecef; width: 105%;" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <a href="{{ asset('storage/' . $draft->admin->draft->draft_produk_hukum_lama )}}" class="ms-2" style="vertical-align: -webkit-baseline-middle">Download</a>
+                        </div>
+                    </div>
+                    <!-- <a href="{{ asset('storage/' . $draft->admin->draft->draft_produk_hukum_lama)}}" class="btn btn-primary mt-2">Download</a> -->
                 </div>
                 @endif
             </div>
@@ -90,7 +135,22 @@
                     <div class="fs-6 mt-3">
                         File Lama
                     </div>
-                    <a href="{{ asset('storage/' . $draft->revisi_produk_hukum)}}" class="btn btn-primary mt-2">Download</a>
+                    <div class="row mt-2">
+                        <div class="col-11 col-sm-8 col-md-7 col-lg-8 col-xl-8 rounded-3 border-1 border border-dark px-2 py-2 ms-3" style="background-color: #e9ecef">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-file"></i>
+                                </div>
+                                <div class="col-10">
+                                    <input type="text" value="{{ $draft->revisi_produk_hukum }}" style="border: none; background-color: #e9ecef; width: 105%;" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <a href="{{ asset('storage/' . $draft->revisi_produk_hukum )}}" class="ms-2" style="vertical-align: -webkit-baseline-middle">Download</a>
+                        </div>
+                    </div>
+                    <!-- <a href="{{ asset('storage/' . $draft->revisi_produk_hukum)}}" class="btn btn-primary mt-2">Download</a> -->
                 </div>
                 @endif
             </div>
@@ -115,7 +175,22 @@
                     <div class="fs-6 mt-3">
                         File Lama
                     </div>
-                    <a href="{{ asset('storage/' . $draft->npknd)}}" class="btn btn-primary mt-2">Download</a>
+                    <div class="row mt-2">
+                        <div class="col-11 col-sm-8 col-md-7 col-lg-8 col-xl-8 rounded-3 border-1 border border-dark px-2 py-2 ms-3" style="background-color: #e9ecef">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-file"></i>
+                                </div>
+                                <div class="col-10">
+                                    <input type="text" value="{{ $draft->npknd }}" style="border: none; background-color: #e9ecef; width: 105%;" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <a href="{{ asset('storage/' . $draft->npknd )}}" class="ms-2" style="vertical-align: -webkit-baseline-middle">Download</a>
+                        </div>
+                    </div>
+                    <!-- <a href="{{ asset('storage/' . $draft->npknd)}}" class="btn btn-primary mt-2">Download</a> -->
                 </div>
                 @endif
             </div>

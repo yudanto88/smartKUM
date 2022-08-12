@@ -40,7 +40,7 @@
             @enderror
 
             <div class="row">
-                <div class="col">
+                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
                     <div class="fs-6 mt-3">
                         Tanggal Pengajuan
                     </div>
@@ -79,7 +79,14 @@
                     <div class="fs-6 mt-3">
                         File Lama
                     </div>
-                    <a href="{{ asset('storage/' . $draft->surat_pengajuan)}}" class="btn btn-primary mt-2">Download</a>
+                    <div class="mt-3">
+                        <span class="rounded-3 border-1 border border-dark px-2 py-2" style="background-color: #e9ecef">
+                            <i class="fa-solid fa-file me-2"></i>
+                            <input type="text" value="{{$draft->surat_pengajuan}}" style="border: none; background-color: #e9ecef; width:50%;" readonly>
+                        </span>
+                        <a href="{{ asset('storage/' . $draft->surat_pengajuan)}}" class="ms-2" style="vertical-align: baseline">Download</a>
+                    </div>
+                    <!-- <a href="{{ asset('storage/' . $draft->surat_pengajuan)}}" class="btn btn-primary mt-2">Download</a> -->
                 </div>
             </div>
 
@@ -101,7 +108,14 @@
                     <div class="fs-6 mt-3">
                         File Lama
                     </div>
-                    <a href="{{ asset('storage/' . $draft->draft_produk_hukum)}}" class="btn btn-primary mt-2">Download</a>
+                    <div class="mt-3">
+                        <span class="rounded-3 border-1 border border-dark px-2 py-2" style="background-color: #e9ecef">
+                            <i class="fa-solid fa-file me-2"></i>
+                            <input type="text" value="{{ $draft->draft_produk_hukum }}" style="border: none; background-color: #e9ecef; width:50%;" readonly>
+                        </span>
+                        <a href="{{ asset('storage/' . $draft->draft_produk_hukum )}}" class="ms-2" style="vertical-align: baseline">Download</a>
+                    </div>
+                    <!-- <a href="{{ asset('storage/' . $draft->draft_produk_hukum)}}" class="btn btn-primary mt-2">Download</a> -->
                 </div>
             </div>
 

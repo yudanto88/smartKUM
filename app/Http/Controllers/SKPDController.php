@@ -24,6 +24,7 @@ class SKPDController extends Controller
     }
 
     public function storeprodukhukum(Request $request){
+        // ddd($request);
         $request-> validate([
             'jenis' => 'required',
             'judul' => 'required',
@@ -41,6 +42,7 @@ class SKPDController extends Controller
         ]);
 
         $filePengajuan = $request->file('file_pengajuan')->store('file-pengajuan');
+        $getOriginalName = $request->file('file_pengajuan')->getClientOriginalName();
         $draftProdukHukum = $request->file('draft_produk_hukum')->store('file-draftProdukHukum');
 
         DB::table('drafts')->insert([
