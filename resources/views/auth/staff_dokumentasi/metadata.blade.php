@@ -17,8 +17,14 @@
             <div class="fs-6">
                 No & Tahun
             </div>
+
+            @if(isset($draft->produkHukum->no_tahun))
+            <input type="text" class="form-control input @error('no_tahun') is-invalid @enderror mt-2" 
+            name="no_tahun" id="no_tahun" value="{{ old('no_tahun', $draft->produkHukum->no_tahun) }}">
+            @else
             <input type="text" class="form-control input @error('no_tahun') is-invalid @enderror mt-2" 
             name="no_tahun" id="no_tahun" value="{{ old('no_tahun') }}">
+            @endif
 
             @error('no_tahun')
                 <div class="text-danger">
@@ -29,8 +35,14 @@
             <div class="fs-6 mt-3">
                 Tentang
             </div>
+
+            @if(isset($draft->produkHukum->tentang))
+            <input type="text" class="form-control input mt-2" name="tentang" id="tentang" 
+            value="{{  old('tentang', $draft->produkHukum->tentang) }}">
+            @else
             <input type="text" class="form-control input mt-2" name="tentang" id="tentang" 
             value="{{  old('tentang', $draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->judul) }}">
+            @endif
 
             @error('tentang')
                 <div class="text-danger">
@@ -41,8 +53,14 @@
             <div class="fs-6 mt-3">
                 Subjek
             </div>
+
+            @if(isset($draft->produkHukum->subjek))
+            <input type="text" class="form-control input mt-2" name="subjek" id ="subjek" 
+            value="{{ old('subjek', $draft->produkHukum->subjek) }}">
+            @else
             <input type="text" class="form-control input mt-2" name="subjek" id ="subjek" 
             value="{{ old('subjek', $draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->jenis) }}">
+            @endif
 
             @error('subjek')
                 <div class="text-danger">
@@ -53,14 +71,24 @@
             <div class="fs-6 mt-3">
                 Status
             </div>
+
+            @if(isset($draft->produkHukum->status))
+            <input type="text" class="form-control input mt-2" value="{{ $draft->produkHukum->status }}" readonly>
+            @else
             <input type="text" class="form-control input mt-2" value="{{ $draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->status }}" readonly>
+            @endif
 
             <div class="row">
                 <div class="col-6">
                     <div class="fs-6 mt-3">
                         Tanggal Pengundangan
                     </div>
+
+                    @if(isset($draft->produkHukum->tanggal_pengundangan))
+                    <input type="date" class="form-control input mt-2" name="tanggal_pengundangan" id="tanggal_pengundangan" value="{{old('tanggal_pengundangan', $draft->produkHukum->tanggal_pengundangan)}}">
+                    @else
                     <input type="date" class="form-control input mt-2" name="tanggal_pengundangan" id="tanggal_pengundangan" value="{{old('tanggal_pengundangan')}}">
+                    @endif
 
                     @error('tanggal_pengundangan')
                         <div class="text-danger">
@@ -100,6 +128,13 @@
              </div>
             <textarea type="text" class="form-control input mt-2" 
             name="keterangan" id="keterangan" style="height:100px">{{ old('keterangan') }}</Textarea>
+
+            @if($draft->keterangan_penolakan)
+            <div class="fs-6 mt-3">
+                Keterangan Penolakan
+            </div>
+            <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->keterangan_penolakan}}</Textarea>
+            @endif
 
             <div class="row justify-content-end mt-4 mb-4">
                 <div class="col-3">

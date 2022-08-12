@@ -113,10 +113,18 @@ Route::middleware(['auth', 'role:walikota'])->group(function (){
 
 // Staff Dokumentasi
 Route::middleware(['auth', 'role:staff_dokumentasi'])->group(function (){
+    Route::get('/dashboard/produkhukumlama', [StaffController::class,'produkhukumlama']);
     Route::get('/dashboard/staffd/editprodukhukum/{id}',[StaffController::class,'editprodukhukum2']);
+    Route::get('/dashboard/staffd/editprodukhukumlama/{id}',[StaffController::class,'editprodukhukumlama']);
     Route::get('/dashboard/staffd/readprodukhukum/{id}',[StaffController::class,'readprodukhukum2']);
     Route::get('/dashboard/staffd/metadata/{id}',[StaffController::class,'next']);
     Route::post('/dashboard/staffd/process/{id}',[StaffController::class,'process']);
     Route::get('/dashboard/staffd/addprodukhukum',[StaffController::class,'addprodukhukum']);
     Route::post('/dashboard/staffd/addprodukhukum',[StaffController::class,'storeprodukhukum']);
+});
+
+// Kasubag Dokumentasi
+Route::middleware(['auth', 'role:kasubag_dokumentasi'])->group(function (){
+    Route::get('/dashboard/kasubagd/editprodukhukum/{id}',[KasubagController::class,'editprodukhukum2']);
+    Route::post('/dashboard/kasubagd/process/{id}',[KasubagController::class,'process2']);
 });

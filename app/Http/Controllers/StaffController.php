@@ -74,18 +74,22 @@ class StaffController extends Controller
         ]);
     }
 
-    public function editprodukhukum2(Request $request, StaffDokumentasi $draft){
-        $searchDraft = StaffDokumentasi::find($request->id);
+    public function produkhukumlama(Request $request){
+        return view('auth.staff_dokumentasi.produkhukumlama',[
+            'staff_dokumentasi' => StaffDokumentasi::all(),
+        ]);
+    }
 
-        if(isset($searchDraft->walikota_id)){
-            return view('auth.staff_dokumentasi.editprodukhukum',[
-                'draft' => $draft::find($request->id),
-            ]);
-        }else {
-            return view('auth.staff_dokumentasi.metadata',[
-                'draft' => $draft::find($request->id),
-            ]);
-        }
+    public function editprodukhukum2(Request $request, StaffDokumentasi $draft){
+        return view('auth.staff_dokumentasi.editprodukhukum',[
+            'draft' => $draft::find($request->id),
+        ]);
+    }
+
+    public function editprodukhukumlama(Request $request, StaffDokumentasi $draft){
+        return view('auth.staff_dokumentasi.metadata',[
+            'draft' => $draft::find($request->id),
+        ]);
     }
 
     public function readprodukhukum2(Request $request, StaffDokumentasi $draft){
@@ -183,18 +187,26 @@ class StaffController extends Controller
         $ttdWalikota = $request->file('ttd_walikota')->store('file-ttdWalikota');
         
         DB::table('staff_dokumentasis')->insert([
+            'status' => 'diterima',
+            'ttd_walikota' => $ttdWalikota,
+            'keterangan' => $request->keterangan,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('produk_hukums')->insert([
             'no_tahun' => $request->no_tahun,
             'tentang' => $request->tentang,
             'subjek' => $request->subjek,
             'status' => 'menunggu',
             'tanggal_pengundangan' => $request->tanggal_pengundangan,
-            'ttd_walikota' => $ttdWalikota,
+            'staff_dokumentasi_id' => DB::getPdo()->lastInsertId(),
             'created_at' => now(),
             'updated_at' => now()
         ]);
         
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         
-        return redirect('/dashboard/staffd/addprodukhukum');
+        return redirect('/dashboard');
     }
 }

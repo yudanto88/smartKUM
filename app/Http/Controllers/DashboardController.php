@@ -16,6 +16,7 @@ use App\Models\KepalaDinas;
 use App\Models\Sekda;
 use App\Models\Walikota;
 use App\Models\StaffDokumentasi;
+use App\Models\ProdukHukum;
 
 class DashboardController extends Controller
 {
@@ -70,7 +71,9 @@ class DashboardController extends Controller
                 'staff_dokumentasi' => StaffDokumentasi::all(),
             ]);
         } else if(Auth::user()->role->role == 'kasubag_dokumentasi'){
-            return view('auth.kasubag_dokumentasi.dashboard');
+            return view('auth.kasubag_dokumentasi.dashboard', [
+                'produk_hukums' => ProdukHukum::all(),
+            ]);
         } else {
             return view('auth.pages.user', [
                 'users' => User::all(),

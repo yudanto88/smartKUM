@@ -3,7 +3,7 @@
         <ul class="nav flex-column">
             @canany(['newuser','skpd','admin_fo','staff_perundang_undangan',
             'kasubag_perundang_undangan','kabag','kepala_dinas','sekda','walikota',
-            'staff_dokumentasi','kasubag_dokumentasi'])
+            'kasubag_dokumentasi'])
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
                     <span class="align-text-bottom"><i class="fa-solid fa-table-columns"></i></span>
@@ -22,6 +22,18 @@
             @endcan
 
             @can('staff_dokumentasi')
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
+                    <span class="align-text-bottom"><i class="fa-solid fa-table-columns"></i></span>
+                    Pengajuan Produk Hukum
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/produkhukumlama') ? 'active' : '' }}" aria-current="page" href="/dashboard/produkhukumlama">
+                    <span class="align-text-bottom"><i class="fa-solid fa-table-columns"></i></span>
+                    Produk Hukum Lama
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('dashboard/staffd/addprodukhukum') ? 'active' : '' }}" aria-current="page" href="/dashboard/staffd/addprodukhukum">
                     <span class="align-text-bottom"><i class="fa-solid fa-plus"></i></span>

@@ -12,28 +12,30 @@
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Daftar Pengajuan Produk Hukum</h1>
+                    <h1 class="h2">Produk Hukum Lama</h1>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
                     <thead>
                         <tr class="text-center">
                         <th scope="col">No</th>
-                        <th scope="col">Jenis / Bentuk Peraturan</th>
-                        <th scope="col">Judul Produk Hukum</th>
-                        <th scope="col">Tanggal Pengajuan</th>
+                        <th scope="col">No dan Tahun</th>
+                        <th scope="col">tentang</th>
+                        <th scope="col">Subjek</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Tanggal Pengundangan</th>
                         <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        @foreach($staff_dokumentasi->whereNotNull('walikota_id') as $draft)
+                        @foreach($staff_dokumentasi->whereNull('walikota_id') as $draft)
                         <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->jenis}}</td>
-                        <td>{{$draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->judul}}</td>
-                        <td>{{$draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->tanggal_pengajuan}}</td>
-                        <td>{{$draft->status}}</td>
+                        <td>{{$draft->produkHukum->no_tahun}}</td>
+                        <td>{{$draft->produkHukum->tentang}}</td>
+                        <td>{{$draft->produkHukum->subjek}}</td>
+                        <td>{{$draft->produkHukum->status}}</td>
+                        <td>{{$draft->produkHukum->tanggal_pengundangan}}</td>
                         <td>
                             <div class="mx-auto">
                                 <button type="button" class="badge bg-warning border-0">
@@ -41,7 +43,7 @@
                                 </button>
 
                                 @if($draft->status == 'menunggu' || $draft->status == 'ditolak')
-                                <a href="/dashboard/staffd/editprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
+                                <a href="/dashboard/staffd/editprodukhukumlama/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
                                 @endif
 
                                 @if($draft->status == 'diterima')
