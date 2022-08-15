@@ -20,6 +20,6 @@ class KasubagUndang extends Model
     }
 
     public function kabag(){
-        return $this->hasOne(KabagUndang::class);
+        return $this->hasOne(Kabag::class);
     }
 }

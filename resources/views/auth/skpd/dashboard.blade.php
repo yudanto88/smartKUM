@@ -36,9 +36,188 @@
                         <td>{{$draft->status}}</td>
                         <td>
                             <div class="mx-auto">
-                                <button type="button" class="badge bg-warning border-0">
+                                <button type="button" class="badge bg-warning border-0" data-bs-toggle="modal" data-bs-target="#trayek{{$draft->id}}">
                                     trayek
                                 </button>
+
+                            <!-- Modal Trayek -->
+                            <div class="modal fade " id="trayek{{$draft->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Trayek</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-1 fs-6">
+                                            1. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Operator SKPD 
+                                                <div class="fs-7">
+                                                    Diajukan pada {{$draft->tanggal_pengajuan}} oleh {{$draft->user->name}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-1 fs-6">
+                                            2. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Admin FO 
+                                                <div class="fs-7">
+                                                    @if($draft->draft_admins->status == 'menunggu')
+                                                    {{$draft->draft_admins->status}} pada {{$draft->draft_admins->updated_at}}
+                                                    @else
+                                                    {{$draft->draft_admins->status}} pada {{$draft->draft_admins->updated_at}} oleh {{$draft->draft_admins->validated}}
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-1 fs-6">
+                                            3. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Staff perundang undangan 
+                                                <div class="fs-7">
+                                                    @if(isset($draft->draft_admins->staffUndang->status))
+                                                        @if($draft->draft_admins->staffUndang->status == 'menunggu')
+                                                        {{$draft->draft_admins->staffUndang->status}} pada {{$draft->draft_admins->staffUndang->updated_at}}
+                                                        @else
+                                                        {{$draft->draft_admins->staffUndang->status}} pada {{$draft->draft_admins->staffUndang->updated_at}} oleh {{$draft->draft_admins->staffUndang->validated}}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-1 fs-6">
+                                            4. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Kasubag perundang undangan 
+                                                <div class="fs-7">
+                                                    @if(isset($draft->draft_admins->staffUndang->kasubagUndang->status))
+                                                        @if($draft->draft_admins->staffUndang->kasubagUndang->status == 'menunggu' || $draft->draft_admins->staffUndang->kasubagUndang->status == 'ditolak oleh kabag')
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->updated_at}}
+                                                        @else
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->updated_at}} oleh {{$draft->draft_admins->staffUndang->kasubagUndang->validated}}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-1 fs-6">
+                                            5. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Kabag
+                                                <div class="fs-7">
+                                                    @if(isset($draft->draft_admins->staffUndang->kasubagUndang->kabag->status))
+                                                        @if($draft->draft_admins->staffUndang->kasubagUndang->kabag->status == 'menunggu' || $draft->draft_admins->staffUndang->kasubagUndang->kabag->status == 'ditolak oleh sekda' || $draft->draft_admins->staffUndang->kasubagUndang->kabag->status == 'ditolak oleh walikota')
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->updated_at}}
+                                                        @else
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->updated_at}} oleh {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->validated}}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-1 fs-6">
+                                            6. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Kepala Dinas
+                                                <div class="fs-7">
+                                                    @if(isset($draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->status))
+                                                        @if($draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->status == 'menunggu' || $draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->status == 'ditolak oleh sekda')
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->updated_at}}
+                                                        @else
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->updated_at}} oleh {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->validated}}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-1 fs-6">
+                                            7. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Sekda
+                                                <div class="fs-7">
+                                                    @if(isset($draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->status))
+                                                        @if($draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->status == 'menunggu' || $draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->status == 'ditolak oleh walikota')
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->updated_at}}
+                                                        @else
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->updated_at}} oleh {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->validated}}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-1 fs-6">
+                                            8. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Walikota
+                                                <div class="fs-7">
+                                                    @if(isset($draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->status))
+                                                        @if($draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->status == 'menunggu')
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->updated_at}}
+                                                        @else
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->updated_at}} oleh {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->validated}}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-1 fs-6">
+                                            9. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Staff Dokumentasi
+                                                <div class="fs-7">
+                                                    @if(isset($draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->walikota_id))
+                                                        @if($draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->status == 'menunggu')
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at}}
+                                                        @else
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at}} oleh {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->validated}}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-1 fs-6">
+                                            10. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Kasubag Dokumentasi
+                                                <div class="fs-7">
+                                                    @if(isset($draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status))
+                                                        @if($draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status == 'menunggu')
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at}}
+                                                        @else
+                                                        {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status}} pada {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at}} oleh {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->validated}}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
 
                                 @if($draft->status == 'menunggu' || $draft->status == 'diterima')
                                 <a href="/dashboard/skpd/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>

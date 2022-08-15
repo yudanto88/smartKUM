@@ -44,7 +44,7 @@
                                 <a href="/dashboard/kabag/readprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
                                 @endif
 
-                                @if($draft->status == 'diterima')
+                                @if($draft->status == 'diterima' || $draft->status == 'ditolak')
                                     <a href="/dashboard/kabag/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>
                                 @endif
                             </div>

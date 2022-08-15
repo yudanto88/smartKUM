@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Walikota;
 use App\Models\Sekda;
 use App\Models\KepalaDinas;
@@ -28,6 +29,7 @@ class WalikotaController extends Controller
 
                 DB::table('walikotas')->where('id', $request->id)->update([
                     'status' => 'ditolak',
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
 
@@ -57,6 +59,7 @@ class WalikotaController extends Controller
                 DB::table('walikotas')->where('id', $request->id)->update([
                     'status' => 'diterima',
                     'keterangan' => $request->keterangan,
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
 

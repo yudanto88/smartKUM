@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\StaffUndang;
 use App\Models\KasubagUndang;
@@ -46,6 +47,7 @@ class StaffController extends Controller
             'npknd' => $npknd,
             'status' => 'diterima',
             'keterangan' => $request->keterangan,
+            'validated' => Auth::user()->name,
             'updated_at' => now()
         ]);
 
@@ -134,6 +136,7 @@ class StaffController extends Controller
             'status' => 'diterima',
             'ttd_walikota' => $ttdWalikota,
             'keterangan' => $request->keterangan,
+            'validated' => Auth::user()->name,
             'updated_at' => now()
         ]);
 

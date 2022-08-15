@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\KasubagUndang;
 use App\Models\StaffUndang;
 use App\Models\Kabag;
@@ -29,11 +30,12 @@ class KasubagController extends Controller
 
                 DB::table('kasubag_undangs')->where('id', $request->id)->update([
                     'status' => 'ditolak',
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
         
                 DB::table('staff_undangs')->where('id', $searchDraft->staff_undang_id)->update([
-                    'status' => 'ditolak',
+                    'status' => 'menunggu',
                     'keterangan_penolakan' => $request->keterangan,
                     'updated_at' => now()
                 ]);
@@ -50,6 +52,7 @@ class KasubagController extends Controller
                 DB::table('kasubag_undangs')->where('id', $request->id)->update([
                     'status' => 'diterima',
                     'keterangan' => $request->keterangan,
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
 
@@ -88,6 +91,7 @@ class KasubagController extends Controller
 
                 DB::table('produk_hukums')->where('id', $request->id)->update([
                     'status' => 'ditolak',
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
         
@@ -122,6 +126,7 @@ class KasubagController extends Controller
 
                 DB::table('produk_hukums')->where('id', $request->id)->update([
                     'status' => 'diterima',
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
 use App\Models\Draft;
 use App\Models\StaffUndang;
@@ -23,6 +24,7 @@ class AdminController extends Controller
 
                 DB::table('admins')->where('id', $request->id)->update([
                     'status' => 'ditolak',
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
         
@@ -42,6 +44,7 @@ class AdminController extends Controller
                 DB::table('admins')->where('id', $request->id)->update([
                     'status' => 'diterima',
                     'keterangan' => $request->keterangan,
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
 

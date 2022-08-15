@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\KepalaDinas;
 use App\Models\Sekda;
 
@@ -23,6 +24,7 @@ class KepalaDinasController extends Controller
         DB::table('kepala_dinas')->where('id', $request->id)->update([
             'status' => 'diterima',
             'keterangan' => $request->keterangan,
+            'validated' => Auth::user()->name,
             'updated_at' => now()
         ]);
 

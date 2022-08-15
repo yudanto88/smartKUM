@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Kabag;
 use App\Models\KepalaDinas;
 
@@ -22,6 +23,7 @@ class KabagController extends Controller
 
                 DB::table('kabags')->where('id', $request->id)->update([
                     'status' => 'ditolak',
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
         
@@ -43,6 +45,7 @@ class KabagController extends Controller
                 DB::table('kabags')->where('id', $request->id)->update([
                     'status' => 'diterima',
                     'keterangan' => $request->keterangan,
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
 

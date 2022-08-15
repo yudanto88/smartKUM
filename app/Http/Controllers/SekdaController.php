@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Sekda;
 use App\Models\KepalaDinas;
 use App\Models\Walikota;
@@ -26,6 +27,7 @@ class SekdaController extends Controller
 
                 DB::table('sekdas')->where('id', $request->id)->update([
                     'status' => 'ditolak',
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
 
@@ -66,6 +68,7 @@ class SekdaController extends Controller
                     'status' => 'diterima',
                     'persetujuan' => $persetujuan,
                     'keterangan' => $request->keterangan,
+                    'validated' => Auth::user()->name,
                     'updated_at' => now()
                 ]);
 

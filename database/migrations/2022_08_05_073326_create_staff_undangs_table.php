@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('npknd')->nullable();
             $table->text('keterangan')->nullable();;
             $table->string('keterangan_penolakan')->nullable();
+            $table->string('validated')->nullable();
             $table->foreignId('admin_id');
             $table->timestamps();
         });
