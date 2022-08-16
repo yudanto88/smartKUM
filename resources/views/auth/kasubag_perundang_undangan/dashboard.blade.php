@@ -32,7 +32,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$draft->staffUndang->admin->draft->jenis}}</td>
                         <td>{{$draft->staffUndang->admin->draft->judul}}</td>
-                        <td>{{$draft->staffUndang->admin->draft->tanggal_pengajuan}}</td>
+                        <td>{{date('d-m-Y', strtotime($draft->staffUndang->admin->draft->tanggal_pengajuan))}}</td>
                         <td>{{$draft->status}}</td>
                         <td>
                             <div class="mx-auto">
@@ -56,7 +56,7 @@
                                             <div class="col-11 fs-6 text-start">
                                             Operator SKPD 
                                                 <div class="fs-7">
-                                                    Diajukan pada {{$draft->staffUndang->admin->draft->tanggal_pengajuan}} oleh {{$draft->staffUndang->admin->draft->user->name}}
+                                                    Diajukan pada {{date('d-m-Y', strtotime($draft->staffUndang->admin->draft->tanggal_pengajuan))}} oleh {{$draft->staffUndang->admin->draft->user->name}}
                                                 </div>
                                             </div>
                                         </div>
@@ -68,9 +68,9 @@
                                             Admin FO 
                                                 <div class="fs-7">
                                                     @if($draft->staffUndang->admin->status == 'menunggu')
-                                                    {{$draft->staffUndang->admin->status}} pada {{$draft->staffUndang->admin->updated_at}}
+                                                    {{$draft->staffUndang->admin->status}} pada {{date('d-m-Y', strtotime($draft->staffUndang->admin->updated_at))}}
                                                     @else
-                                                    {{$draft->staffUndang->admin->status}} pada {{$draft->staffUndang->admin->updated_at}} oleh {{$draft->staffUndang->admin->validated}}
+                                                    {{$draft->staffUndang->admin->status}} pada {{date('d-m-Y', strtotime($draft->staffUndang->admin->updated_at))}} oleh {{$draft->staffUndang->admin->validated}}
                                                     @endif
                                                 </div>
                                             </div>
@@ -83,9 +83,9 @@
                                             Staff perundang undangan 
                                                 <div class="fs-7">
                                                     @if($draft->staffUndang->status == 'menunggu')
-                                                    {{$draft->staffUndang->status}} pada {{$draft->staffUndang->updated_at}}
+                                                    {{$draft->staffUndang->status}} pada {{date('d-m-Y', strtotime($draft->staffUndang->updated_at))}}
                                                     @else
-                                                    {{$draft->staffUndang->status}} pada {{$draft->staffUndang->updated_at}} oleh {{$draft->staffUndang->validated}}
+                                                    {{$draft->staffUndang->status}} pada {{date('d-m-Y', strtotime($draft->staffUndang->updated_at))}} oleh {{$draft->staffUndang->validated}}
                                                     @endif
                                                 </div>
                                             </div>
@@ -98,9 +98,9 @@
                                             Kasubag perundang undangan 
                                                 <div class="fs-7">
                                                     @if($draft->status == 'menunggu' || $draft->status == 'ditolak oleh kabag')
-                                                    {{$draft->status}} pada {{$draft->updated_at}}
+                                                    {{$draft->status}} pada {{date('d-m-Y', strtotime($draft->updated_at))}}
                                                     @else
-                                                    {{$draft->status}} pada {{$draft->updated_at}} oleh {{$draft->validated}}
+                                                    {{$draft->status}} pada {{date('d-m-Y', strtotime($draft->updated_at))}} oleh {{$draft->validated}}
                                                     @endif
                                                 </div>
                                             </div>
@@ -114,9 +114,9 @@
                                                 <div class="fs-7">
                                                     @if(isset($draft->kabag->status))
                                                         @if($draft->kabag->status == 'menunggu' || $draft->kabag->status == 'ditolak oleh sekda' || $draft->kabag->status == 'ditolak oleh walikota')
-                                                        {{$draft->kabag->status}} pada {{$draft->kabag->updated_at}}
+                                                        {{$draft->kabag->status}} pada {{date('d-m-Y', strtotime($draft->kabag->updated_at))}}
                                                         @else
-                                                        {{$draft->kabag->status}} pada {{$draft->kabag->updated_at}} oleh {{$draft->kabag->validated}}
+                                                        {{$draft->kabag->status}} pada {{date('d-m-Y', strtotime($draft->kabag->updated_at))}} oleh {{$draft->kabag->validated}}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -131,9 +131,9 @@
                                                 <div class="fs-7">
                                                     @if(isset($draft->kabag->kepalaDinas->status))
                                                         @if($draft->kabag->kepalaDinas->status == 'menunggu' || $draft->kabag->kepalaDinas->status == 'ditolak oleh sekda')
-                                                        {{$draft->kabag->kepalaDinas->status}} pada {{$draft->kabag->kepalaDinas->updated_at}}
+                                                        {{$draft->kabag->kepalaDinas->status}} pada {{date('d-m-Y', strtotime($draft->kabag->kepalaDinas->updated_at))}}
                                                         @else
-                                                        {{$draft->kabag->kepalaDinas->status}} pada {{$draft->kabag->kepalaDinas->updated_at}} oleh {{$draft->kabag->kepalaDinas->validated}}
+                                                        {{$draft->kabag->kepalaDinas->status}} pada {{date('d-m-Y', strtotime($draft->kabag->kepalaDinas->updated_at))}} oleh {{$draft->kabag->kepalaDinas->validated}}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -148,9 +148,9 @@
                                                 <div class="fs-7">
                                                     @if(isset($draft->kabag->kepalaDinas->sekda->status))
                                                         @if($draft->kabag->kepalaDinas->sekda->status == 'menunggu' || $draft->kabag->kepalaDinas->sekda->status == 'ditolak oleh walikota')
-                                                        {{$draft->kabag->kepalaDinas->sekda->status}} pada {{$draft->kabag->kepalaDinas->sekda->updated_at}}
+                                                        {{$draft->kabag->kepalaDinas->sekda->status}} pada {{date('d-m-Y', strtotime($draft->kabag->kepalaDinas->sekda->updated_at))}}
                                                         @else
-                                                        {{$draft->kabag->kepalaDinas->sekda->status}} pada {{$draft->kabag->kepalaDinas->sekda->updated_at}} oleh {{$draft->kabag->kepalaDinas->sekda->validated}}
+                                                        {{$draft->kabag->kepalaDinas->sekda->status}} pada {{date('d-m-Y', strtotime($draft->kabag->kepalaDinas->sekda->updated_at))}} oleh {{$draft->kabag->kepalaDinas->sekda->validated}}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -165,9 +165,9 @@
                                                 <div class="fs-7">
                                                     @if(isset($draft->kabag->kepalaDinas->sekda->walikota->status))
                                                         @if($draft->kabag->kepalaDinas->sekda->walikota->status == 'menunggu')
-                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->status}} pada {{$draft->kabag->kepalaDinas->sekda->walikota->updated_at}}
+                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->status}} pada {{date('d-m-Y', strtotime($draft->kabag->kepalaDinas->sekda->walikota->updated_at))}}
                                                         @else
-                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->status}} pada {{$draft->kabag->kepalaDinas->sekda->walikota->updated_at}} oleh {{$draft->kabag->kepalaDinas->sekda->walikota->validated}}
+                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->status}} pada {{date('d-m-Y', strtotime($draft->kabag->kepalaDinas->sekda->walikota->updated_at))}} oleh {{$draft->kabag->kepalaDinas->sekda->walikota->validated}}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -182,9 +182,9 @@
                                                 <div class="fs-7">
                                                     @if(isset($draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->walikota_id))
                                                         @if($draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->status == 'menunggu')
-                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->status}} pada {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at}}
+                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->status}} pada {{date('d-m-Y', strtotime($draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at))}}
                                                         @else
-                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->status}} pada {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at}} oleh {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->validated}}
+                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->status}} pada {{date('d-m-Y', strtotime($draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at))}} oleh {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->validated}}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -199,9 +199,9 @@
                                                 <div class="fs-7">
                                                     @if(isset($draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status))
                                                         @if($draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status == 'menunggu')
-                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status}} pada {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at}}
+                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status}} pada {{date('d-m-Y', strtotime($draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at))}}
                                                         @else
-                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status}} pada {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at}} oleh {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->validated}}
+                                                        {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status}} pada {{date('d-m-Y', strtotime($draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at))}} oleh {{$draft->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->validated}}
                                                         @endif
                                                     @endif
                                                 </div>

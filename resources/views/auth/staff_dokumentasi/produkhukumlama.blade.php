@@ -29,6 +29,7 @@
                     </thead>
                     <tbody class="text-center">
                         @foreach($staff_dokumentasi->whereNull('walikota_id') as $draft)
+                        @if(isset($draft->produkHukum))
                         <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$draft->produkHukum->no_tahun}}</td>
@@ -103,6 +104,7 @@
                             </div>
                         </td>
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                     </table>
