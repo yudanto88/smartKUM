@@ -133,7 +133,7 @@
                                                         @if($draft->staffDokumentasi->walikota->sekda->kepalaDinas->status == 'menunggu' || $draft->staffDokumentasi->walikota->sekda->kepalaDinas->status == 'ditolak oleh sekda')
                                                         {{$draft->staffDokumentasi->walikota->sekda->kepalaDinas->status}} pada {{$draft->staffDokumentasi->walikota->sekda->kepalaDinas->updated_at}}
                                                         @else
-                                                        {{$draft->staffDokumentasi->walikota->sekda->kepalaDinas->status}} pada {{$draft->staffDokumentasi->walikota->sekda->kepalaDinas->updated_at}} oleh {{$draft->walikota->sekda->kepalaDinas->validated}}
+                                                        {{$draft->staffDokumentasi->walikota->sekda->kepalaDinas->status}} pada {{$draft->staffDokumentasi->walikota->sekda->kepalaDinas->updated_at}} oleh {{$draft->staffDokumentasi->walikota->sekda->kepalaDinas->validated}}
                                                         @endif
                                                     </div>
                                                 </div>
