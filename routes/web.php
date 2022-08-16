@@ -127,4 +127,5 @@ Route::middleware(['auth', 'role:staff_dokumentasi'])->group(function (){
 Route::middleware(['auth', 'role:kasubag_dokumentasi'])->group(function (){
     Route::get('/dashboard/kasubagd/editprodukhukum/{id}',[KasubagController::class,'editprodukhukum2']);
     Route::post('/dashboard/kasubagd/process/{id}',[KasubagController::class,'process2']);
+    Route::get('/dashboard/kasubagd/readprodukhukum/{id}',[KasubagController::class,'readprodukhukum2']);
 });

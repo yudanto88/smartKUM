@@ -141,4 +141,10 @@ class KasubagController extends Controller
                 break;
         }
     }
+
+    public function readprodukhukum2(Request $request, ProdukHukum $draft){
+        return view('auth.kasubag_dokumentasi.readprodukhukum',[
+            'draft' => $draft::find($request->id),
+        ]);
+    }
 }

@@ -259,7 +259,7 @@
                                 @endif
 
                                 @if($draft->status == 'diterima' || $draft->status == 'ditolak')
-                                    <a href="/dashboard/staffd/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>
+                                    <a href="/dashboard/kasubagd/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>
                                 @endif
                             </div>
                         </td>
