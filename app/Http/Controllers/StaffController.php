@@ -193,6 +193,7 @@ class StaffController extends Controller
             'status' => 'diterima',
             'ttd_walikota' => $ttdWalikota,
             'keterangan' => $request->keterangan,
+            'validated' => Auth::user()->name,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -210,6 +211,6 @@ class StaffController extends Controller
         
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         
-        return redirect('/dashboard');
+        return redirect('/dashboard/produkhukumlama');
     }
 }

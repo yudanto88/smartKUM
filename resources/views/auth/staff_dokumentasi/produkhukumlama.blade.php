@@ -38,9 +38,60 @@
                         <td>{{$draft->produkHukum->tanggal_pengundangan}}</td>
                         <td>
                             <div class="mx-auto">
-                                <button type="button" class="badge bg-warning border-0">
+                                <button type="button" class="badge bg-warning border-0" data-bs-toggle="modal" data-bs-target="#trayek{{$draft->id}}">
                                     trayek
                                 </button>
+
+                            <!-- Modal Trayek -->
+                            <div class="modal fade " id="trayek{{$draft->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Trayek</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-1 fs-6">
+                                            1. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Staff Dokumentasi
+                                                <div class="fs-7">
+                                                    @if(!isset($draft->walikota_id))
+                                                        @if($draft->status == 'menunggu')
+                                                        {{$draft->status}} pada {{$draft->updated_at}}
+                                                        @else
+                                                        {{$draft->status}} pada {{$draft->updated_at}} oleh {{$draft->validated}}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-1 fs-6">
+                                            2. 
+                                            </div>
+                                            <div class="col-11 fs-6 text-start">
+                                            Kasubag Dokumentasi
+                                                <div class="fs-7">
+                                                    @if(isset($draft->produkHukum->status))
+                                                        @if($draft->produkHukum->status == 'menunggu')
+                                                        {{$draft->produkHukum->status}} pada {{$draft->produkHukum->updated_at}}
+                                                        @else
+                                                        {{$draft->produkHukum->status}} pada {{$draft->produkHukum->updated_at}} oleh {{$draft->produkHukum->validated}}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
 
                                 @if($draft->status == 'menunggu' || $draft->status == 'ditolak')
                                 <a href="/dashboard/staffd/editprodukhukumlama/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
