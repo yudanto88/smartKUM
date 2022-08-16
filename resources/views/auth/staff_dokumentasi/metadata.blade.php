@@ -122,6 +122,31 @@
                 </div>
                 @endif
             </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="fs-6 mt-3">
+                        Upload TTD Walikota Salinan
+                    </div>
+                    <input type="file" class="form-control input @error('ttd_walikota_salinan') is-invalid @enderror mt-2" 
+                    name="ttd_walikota_salinan" id="ttd_walikota_salinan">
+
+                    @error('ttd_walikota_salinan')
+                    <div class="text-danger">
+                        <small>{{ $message }}</small> 
+                    </div>
+                    @enderror
+                </div>
+
+                @if(isset($draft->produkHukum->ttd_walikota_salinan))
+                <div class="col-6">
+                    <div class="fs-6 mt-3">
+                        File Lama
+                    </div>
+                    <a href="{{ asset('storage/' . $draft->ttd_walikota_salinan)}}" class="btn btn-primary mt-2">Download</a>
+                </div>
+                @endif
+            </div>
         
             <div class="fs-6 mt-3">
                 Keterangan

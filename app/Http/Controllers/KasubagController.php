@@ -108,32 +108,40 @@ class KasubagController extends Controller
             case 'proses':
                 $searchDraft = ProdukHukum::find($request->id);
 
-                $searchDraftStaffDokumentasi = StaffDokumentasi::where('id', $searchDraft->staff_dokumentasi_id)->first();
+                if(isset($searchDraft->staffDokumentasi->walikota_id)){
+                    $searchDraftStaffDokumentasi = StaffDokumentasi::where('id', $searchDraft->staff_dokumentasi_id)->first();
 
-                $searchDraftWalikota = Walikota::where('id', $searchDraftStaffDokumentasi->walikota_id)->first();
-
-                $searchDraftSekda = Sekda::where('id', $searchDraftWalikota->sekda_id)->first();
-
-                $searchDraftKepalaDinas = KepalaDinas::where('id', $searchDraftSekda->kepala_dinas_id)->first();
-
-                $searchDraftKabag = Kabag::where('id', $searchDraftKepalaDinas->kabag_id)->first();
-
-                $searchDraftKasubagUndang = KasubagUndang::where('id', $searchDraftKabag->kasubag_undang_id)->first();
-
-                $searchDraftStaffUndang = StaffUndang::where('id', $searchDraftKasubagUndang->staff_undang_id)->first();
-
-                $searchDraftAdmin = Admin::where('id', $searchDraftStaffUndang->admin_id)->first();
-
-                DB::table('produk_hukums')->where('id', $request->id)->update([
-                    'status' => 'diterima',
-                    'validated' => Auth::user()->name,
-                    'updated_at' => now()
-                ]);
-
-                DB::table('drafts')->where('id', $searchDraftAdmin->draft_id)->update([
-                    'status' => 'diterima',
-                    'updated_at' => now()
-                ]);
+                    $searchDraftWalikota = Walikota::where('id', $searchDraftStaffDokumentasi->walikota_id)->first();
+    
+                    $searchDraftSekda = Sekda::where('id', $searchDraftWalikota->sekda_id)->first();
+    
+                    $searchDraftKepalaDinas = KepalaDinas::where('id', $searchDraftSekda->kepala_dinas_id)->first();
+    
+                    $searchDraftKabag = Kabag::where('id', $searchDraftKepalaDinas->kabag_id)->first();
+    
+                    $searchDraftKasubagUndang = KasubagUndang::where('id', $searchDraftKabag->kasubag_undang_id)->first();
+    
+                    $searchDraftStaffUndang = StaffUndang::where('id', $searchDraftKasubagUndang->staff_undang_id)->first();
+    
+                    $searchDraftAdmin = Admin::where('id', $searchDraftStaffUndang->admin_id)->first();
+    
+                    DB::table('produk_hukums')->where('id', $request->id)->update([
+                        'status' => 'diterima',
+                        'validated' => Auth::user()->name,
+                        'updated_at' => now()
+                    ]);
+    
+                    DB::table('drafts')->where('id', $searchDraftAdmin->draft_id)->update([
+                        'status' => 'diterima',
+                        'updated_at' => now()
+                    ]);
+                }else{
+                    DB::table('produk_hukums')->where('id', $request->id)->update([
+                        'status' => 'diterima',
+                        'validated' => Auth::user()->name,
+                        'updated_at' => now()
+                    ]);
+                }
                 
                 $request->session()->flash('success', 'Data berhasil diproses');
         

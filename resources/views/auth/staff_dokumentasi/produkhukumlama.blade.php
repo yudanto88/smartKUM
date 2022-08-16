@@ -36,7 +36,7 @@
                         <td>{{$draft->produkHukum->tentang}}</td>
                         <td>{{$draft->produkHukum->subjek}}</td>
                         <td>{{$draft->produkHukum->status}}</td>
-                        <td>{{$draft->produkHukum->tanggal_pengundangan}}</td>
+                        <td>{{date('d-m-Y', strtotime($draft->produkHukum->tanggal_pengundangan))}}</td>
                         <td>
                             <div class="mx-auto">
                                 <button type="button" class="badge bg-warning border-0" data-bs-toggle="modal" data-bs-target="#trayek{{$draft->id}}">
@@ -61,9 +61,9 @@
                                                 <div class="fs-7">
                                                     @if(!isset($draft->walikota_id))
                                                         @if($draft->status == 'menunggu')
-                                                        {{$draft->status}} pada {{$draft->updated_at}}
+                                                        {{$draft->status}} pada {{date('d-m-Y', strtotime($draft->updated_at))}}
                                                         @else
-                                                        {{$draft->status}} pada {{$draft->updated_at}} oleh {{$draft->validated}}
+                                                        {{$draft->status}} pada {{date('d-m-Y', strtotime($draft->updated_at))}} oleh {{$draft->validated}}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -78,9 +78,9 @@
                                                 <div class="fs-7">
                                                     @if(isset($draft->produkHukum->status))
                                                         @if($draft->produkHukum->status == 'menunggu')
-                                                        {{$draft->produkHukum->status}} pada {{$draft->produkHukum->updated_at}}
+                                                        {{$draft->produkHukum->status}} pada {{date('d-m-Y', strtotime($draft->produkHukum->updated_at))}}
                                                         @else
-                                                        {{$draft->produkHukum->status}} pada {{$draft->produkHukum->updated_at}} oleh {{$draft->produkHukum->validated}}
+                                                        {{$draft->produkHukum->status}} pada {{date('d-m-Y', strtotime($draft->produkHukum->updated_at))}} oleh {{$draft->produkHukum->validated}}
                                                         @endif
                                                     @endif
                                                 </div>

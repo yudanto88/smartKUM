@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('subjek');
             $table->string('status');
             $table->date('tanggal_pengundangan');
+            $table->string('ttd_walikota_salinan')->nullable();
             $table->string('validated')->nullable();
             $table->foreignId('staff_dokumentasi_id');
             $table->timestamps();

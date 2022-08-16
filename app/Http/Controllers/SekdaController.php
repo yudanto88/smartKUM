@@ -48,10 +48,10 @@ class SekdaController extends Controller
                 break;
             case 'proses':
                 $request->validate([
-                    'persetujuan' => 'required|mimes:pdf',
+                    'persetujuan' => 'required|mimes:pdf,doc,docx',
                 ], [
                     'persetujuan.required' => 'File persetujuan tidak boleh kosong',
-                    'persetujuan.mimes' => 'File persetujuan harus berformat PDF',
+                    'persetujuan.mimes' => 'File persetujuan harus berformat PDF atau Word',
                 ]);
 
                 $searchDraft = Sekda::find($request->id);
