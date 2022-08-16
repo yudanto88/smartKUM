@@ -46,7 +46,22 @@
                 <div class="fs-6 mt-3">
                     TTD Walikota
                 </div>
-                <a href="{{ asset('storage/' . $draft->ttd_walikota)}}" class="btn btn-primary mt-2">Download</a> 
+                <div class="row mt-2">
+                    <div class="col-11 col-sm-8 col-md-7 col-lg-8 col-xl-8 rounded-3 border-1 border border-dark px-2 py-2 ms-3" style="background-color: #e9ecef">
+                        <div class="row">
+                            <div class="col-1">
+                                <i class="fa-solid fa-file"></i>
+                            </div>
+                            <div class="col-10">
+                                <input type="text" value="{{ $draft->ttd_walikota }}" style="border: none; background-color: #e9ecef; width: 105%;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <a href="{{ asset('storage/' . $draft->ttd_walikota )}}" class="ms-2" style="vertical-align: -webkit-baseline-middle">Download</a>
+                    </div>
+                </div>
+                <!-- <a href="{{ asset('storage/' . $draft->ttd_walikota)}}" class="btn btn-primary mt-2">Download</a>  -->
             </div>
         </div>
 
