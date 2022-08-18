@@ -56,7 +56,7 @@
                                             <div class="col-11 fs-6 text-start">
                                             Operator SKPD 
                                                 <div class="fs-7">
-                                                    Diajukan pada {{ date('d-m-Y', strtotime($draft->tanggal_pengajuan))}} pukul {{ date('H:i', strtotime($draft->updated_at))}} oleh {{$draft->user->name}}
+                                                    Diajukan pada {{ date('d-m-Y', strtotime($draft->tanggal_pengajuan))}} pukul {{ date('H:i', strtotime($draft->created_at))}} oleh {{$draft->user->name}}
                                                 </div>
                                             </div>
                                         </div>
