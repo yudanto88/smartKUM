@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->bigInteger('nip')->unique();
+            $table->bigInteger('nip')->unique()->nullable();
             $table->foreignId('dinas_id');
             $table->foreignId('role_id');
             $table->rememberToken();

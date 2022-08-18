@@ -15,12 +15,12 @@ class SekdaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sekdas')->insert([
-            'status' => 'diterima',
-            'keterangan' => 'test6',
-            'kepala_dinas_id' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // DB::table('sekdas')->insert([
+        //     'status' => 'diterima',
+        //     'keterangan' => 'test6',
+        //     'kepala_dinas_id' => 1,
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
     }
 }

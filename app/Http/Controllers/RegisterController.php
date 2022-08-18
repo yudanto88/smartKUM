@@ -23,7 +23,7 @@ class RegisterController
             'password' => 'required|min:6',
             'confirmPassword' => 'required|same:password',
             'name' => 'required|unique:users,name',
-            'nip' => 'required|unique:users,nip',
+            'nip' => 'unique:users,nip',
             'dinas_id' => 'required',
         ], [
             'email.required' => 'Email tidak boleh kosong',
@@ -35,7 +35,6 @@ class RegisterController
             'confirmPassword.same' => 'Konfirmasi password tidak sama',
             'name.required' => 'Username tidak boleh kosong',
             'name.unique' => 'Username sudah terdaftar',
-            'nip.required' => 'NIP tidak boleh kosong',
             'nip.unique' => 'NIP sudah terdaftar',
             'dinas_id.required' => 'Dinas tidak boleh kosong',
         ]);

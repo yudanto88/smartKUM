@@ -15,12 +15,12 @@ class KasubagUndangSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('kasubag_undangs')->insert([
-            'status' => 'diterima',
-            'keterangan' => 'test6',
-            'staff_undang_id' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // DB::table('kasubag_undangs')->insert([
+        //     'status' => 'diterima',
+        //     'keterangan' => 'test6',
+        //     'staff_undang_id' => 1,
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
     }
 }

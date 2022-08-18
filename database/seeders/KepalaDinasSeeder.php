@@ -15,12 +15,12 @@ class KepalaDinasSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('kepala_dinas')->insert([
-            'status' => 'diterima',
-            'keterangan' => 'test6',
-            'kabag_id' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // DB::table('kepala_dinas')->insert([
+        //     'status' => 'diterima',
+        //     'keterangan' => 'test6',
+        //     'kabag_id' => 1,
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
     }
 }

@@ -15,13 +15,13 @@ class StaffUndangSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('staff_undangs')->insert([
-            'status' => 'diterima',
-            'keterangan' => 'test6',
-            'admin_id' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // DB::table('staff_undangs')->insert([
+        //     'status' => 'diterima',
+        //     'keterangan' => 'test6',
+        //     'admin_id' => 1,
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
 
         // DB::table('staff_undangs')->insert([
         //     'status' => 'menunggu',
