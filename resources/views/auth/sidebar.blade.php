@@ -29,9 +29,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/produkhukumlama') ? 'active' : '' }}" aria-current="page" href="/dashboard/produkhukumlama">
+                <a class="nav-link {{ Request::is('dashboard/katalogprodukhukum') ? 'active' : '' }}" aria-current="page" href="/dashboard/katalogprodukhukum">
                     <span class="align-text-bottom"><i class="fa-solid fa-table-columns"></i></span>
-                    Produk Hukum Lama
+                    Katalog Produk Hukum 
                 </a>
             </li>
             <li class="nav-item">

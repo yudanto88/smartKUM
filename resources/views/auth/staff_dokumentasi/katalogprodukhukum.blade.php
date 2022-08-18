@@ -61,9 +61,9 @@
                                                 <div class="fs-7">
                                                     @if(!isset($draft->walikota_id))
                                                         @if($draft->status == 'menunggu')
-                                                        {{$draft->status}} pada {{date('d-m-Y', strtotime($draft->updated_at))}}
+                                                        {{$draft->status}} pada {{date('d-m-Y', strtotime($draft->updated_at))}} pukul {{date('H:i', strtotime($draft->updated_at))}}
                                                         @else
-                                                        {{$draft->status}} pada {{date('d-m-Y', strtotime($draft->updated_at))}} oleh {{$draft->validated}}
+                                                        {{$draft->status}} pada {{date('d-m-Y', strtotime($draft->updated_at))}} pukul {{date('H:i', strtotime($draft->updated_at))}} oleh {{$draft->validated}}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -78,9 +78,9 @@
                                                 <div class="fs-7">
                                                     @if(isset($draft->produkHukum->status))
                                                         @if($draft->produkHukum->status == 'menunggu')
-                                                        {{$draft->produkHukum->status}} pada {{date('d-m-Y', strtotime($draft->produkHukum->updated_at))}}
+                                                        {{$draft->produkHukum->status}} pada {{date('d-m-Y', strtotime($draft->produkHukum->updated_at))}} pukul {{date('H:i', strtotime($draft->produkHukum->updated_at))}}
                                                         @else
-                                                        {{$draft->produkHukum->status}} pada {{date('d-m-Y', strtotime($draft->produkHukum->updated_at))}} oleh {{$draft->produkHukum->validated}}
+                                                        {{$draft->produkHukum->status}} pada {{date('d-m-Y', strtotime($draft->produkHukum->updated_at))}} pukul {{date('H:i', strtotime($draft->produkHukum->updated_at))}} oleh {{$draft->produkHukum->validated}}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -95,7 +95,7 @@
                             </div>
 
                                 @if($draft->status == 'menunggu' || $draft->status == 'ditolak')
-                                <a href="/dashboard/staffd/editprodukhukumlama/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
+                                <a href="/dashboard/staffd/editkatalogprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
                                 @endif
 
                                 @if($draft->status == 'diterima')

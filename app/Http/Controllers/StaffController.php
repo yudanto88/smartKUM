@@ -76,8 +76,8 @@ class StaffController extends Controller
         ]);
     }
 
-    public function produkhukumlama(Request $request){
-        return view('auth.staff_dokumentasi.produkhukumlama',[
+    public function katalogprodukhukum(Request $request){
+        return view('auth.staff_dokumentasi.katalogprodukhukum',[
             'staff_dokumentasi' => StaffDokumentasi::all(),
         ]);
     }
