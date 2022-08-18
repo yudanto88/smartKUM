@@ -33,7 +33,7 @@
         <input type="text" class="form-control input mt-2" value="{{ $draft->produkHukum->status }}" readonly>
 
          <div class="row">
-            <div class="col-6">
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
                 <div class="fs-6 mt-3">
                     Tanggal Pengundangan
                 </div>
