@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('draft_produk_hukum_lama')->nullable();
             $table->text('keterangan_penolakan')->nullable();
             $table->string('status');
+            $table->string('no_regristrasi')->nullable();
             $table->foreignId('user_id');
             $table->timestamps();
         });

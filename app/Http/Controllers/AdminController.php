@@ -39,7 +39,18 @@ class AdminController extends Controller
                 return redirect('/dashboard');
                 break;
             case 'proses':
+                $request-> validate([
+                    'no_regristrasi' => 'required',
+                ], [
+                    'no_regristrasi.required' => 'No Registrasi tidak boleh kosong',
+                ]);
+
                 $searchDraft = Admin::find($request->id);
+
+                DB::table('drafts')->where('id', $searchDraft->draft_id)->update([
+                    'no_regristrasi' => $request->no_regristrasi,
+                    'updated_at' => now()
+                ]);
 
                 DB::table('admins')->where('id', $request->id)->update([
                     'status' => 'diterima',

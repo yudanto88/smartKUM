@@ -19,6 +19,7 @@
                     <thead>
                         <tr class="text-center">
                         <th scope="col">No</th>
+                        <th scope="col">No Regristrasi</th>
                         <th scope="col">Jenis / Bentuk Peraturan</th>
                         <th scope="col">Judul Produk Hukum</th>
                         <th scope="col">Tanggal Pengajuan</th>
@@ -30,6 +31,7 @@
                         @foreach($kasubag_undangs as $draft)
                         <tr>
                         <td>{{$loop->iteration}}</td>
+                        <td>{{$draft->staffUndang->admin->draft->no_regristrasi}}</td>
                         <td>{{$draft->staffUndang->admin->draft->jenis}}</td>
                         <td>{{$draft->staffUndang->admin->draft->judul}}</td>
                         <td>{{date('d-m-Y', strtotime($draft->staffUndang->admin->draft->tanggal_pengajuan))}}</td>

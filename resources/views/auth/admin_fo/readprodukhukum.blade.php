@@ -55,7 +55,6 @@
                         <a href="{{ asset('storage/' . $draft->draft->surat_pengajuan )}}" class="ms-2" style="vertical-align: -webkit-baseline-middle">Download</a>
                     </div>
                 </div>
-                <!-- <a href="{{ asset('storage/' . $draft->draft->surat_pengajuan)}}" class="btn btn-primary mt-2">Download</a> -->
             </div>
         </div>
 
@@ -79,7 +78,6 @@
                         <a href="{{ asset('storage/' . $draft->draft->draft_produk_hukum )}}" class="ms-2" style="vertical-align: -webkit-baseline-middle">Download</a>
                     </div>
                 </div>
-                <!-- <a href="{{ asset('storage/' . $draft->draft->draft_produk_hukum )}}" class="btn btn-primary mt-2">Download</a> -->
             </div>
             @if($draft->draft->draft_produk_hukum_lama)
             <div class="col-6">
@@ -101,7 +99,6 @@
                         <a href="{{ asset('storage/' . $draft->draft->draft_produk_hukum_lama )}}" class="ms-2" style="vertical-align: -webkit-baseline-middle">Download</a>
                     </div>
                 </div>
-                <!-- <a href="{{ asset('storage/' . $draft->draft->draft_produk_hukum_lama)}}" class="btn btn-primary mt-2">Download</a> -->
             </div>
             @endif
         </div>
@@ -109,6 +106,18 @@
         @if($draft->status == 'menunggu')
         <form action="/dashboard/admin/process/{{$draft->id}}" method="post">
             @csrf
+            <div class="fs-6 mt-3">
+                No Regristrasi
+            </div>
+            <input type="text" class="form-control input @error('no_regristrasi') is-invalid @enderror mt-2" 
+            name="no_regristrasi" id="no_regristrasi" value="{{ old('no_regristrasi') }}">
+
+            @error('no_regristrasi')
+            <div class="text-danger">
+                <small>{{ $message }}</small> 
+            </div>
+            @enderror
+
             <div class="fs-6 mt-3">
                 Keterangan
              </div>
