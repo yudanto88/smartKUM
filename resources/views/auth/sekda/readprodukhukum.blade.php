@@ -158,7 +158,7 @@
         <form action="/dashboard/sekda/process/{{$draft->id}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                <div class="col-6">
+                <div class="col-5 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="fs-6 mt-3">
                         Upload Persetujuan
                     </div>
@@ -172,11 +172,26 @@
                 </div>
 
                 @if(isset($draft->persetujuan))
-                <div class="col-6">
+                <div class="col">
                     <div class="fs-6 mt-3">
                         File Lama
                     </div>
-                    <a href="{{ asset('storage/' . $draft->persetujuan)}}" class="btn btn-primary mt-2">Download</a>
+                    <div class="row mt-2">
+                        <div class="col-11 col-sm-8 col-md-7 col-lg-8 col-xl-8 rounded-3 border-1 border border-dark px-2 py-2 ms-3" style="background-color: #e9ecef">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-file"></i>
+                                </div>
+                                <div class="col-10">
+                                    <input type="text" value="{{ $draft->persetujuan }}" style="border: none; background-color: #e9ecef; width: 105%;" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <a href="{{ asset('storage/' . $draft->persetujuan )}}" class="ms-2" style="vertical-align: -webkit-baseline-middle">Download</a>
+                        </div>
+                    </div>
+                    <!-- <a href="{{ asset('storage/' . $draft->persetujuan)}}" class="btn btn-primary mt-2">Download</a> -->
                 </div>
                 @endif
             </div>
