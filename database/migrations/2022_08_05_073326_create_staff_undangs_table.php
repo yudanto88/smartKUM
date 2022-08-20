@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('staff_undangs', function (Blueprint $table) {
             $table->id();
             $table->string('status');
-            $table->string('revisi_produk_hukum');
-            $table->string('npknd');
-            $table->text('keterangan')->nullable();;
+            $table->string('revisi_produk_hukum')->nullable();
+            $table->string('npknd')->nullable();
+            $table->text('keterangan')->nullable();
             $table->string('keterangan_penolakan')->nullable();
             $table->string('validated')->nullable();
             $table->foreignId('admin_id');
