@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('drafts', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis');
+            $table->foreignId('jenis_id');
             $table->string('judul');
             $table->date('tanggal_pengajuan');
             $table->text('keterangan')->nullable();
-            $table->string('surat_pengajuan')->nullable();
-            $table->string('draft_produk_hukum')->nullable();
+            $table->string('surat_pengajuan');
+            $table->string('draft_produk_hukum');
             $table->string('draft_produk_hukum_lama')->nullable();
             $table->text('keterangan_penolakan')->nullable();
             $table->string('status');

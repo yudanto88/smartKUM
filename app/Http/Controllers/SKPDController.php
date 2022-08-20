@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Jenis;
 use App\Models\Draft;
 use App\Models\Admin;
 use App\Models\StaffUndang;
@@ -20,7 +21,9 @@ class SKPDController extends Controller
     }
 
     public function addprodukhukum(){
-        return view('auth.skpd.addprodukhukum');
+        return view('auth.skpd.addprodukhukum',[
+            'jenis' => Jenis::all(),
+        ]);
     }
 
     public function storeprodukhukum(Request $request){
@@ -45,7 +48,7 @@ class SKPDController extends Controller
         $draftProdukHukum = $request->file('draft_produk_hukum')->store('file-draftProdukHukum');
 
         DB::table('drafts')->insert([
-            'jenis' => $request->jenis,
+            'jenis_id' => $request->jenis,
             'judul' => $request->judul,
             'tanggal_pengajuan' => $request->tanggal,
             'keterangan' => $request->keterangan,

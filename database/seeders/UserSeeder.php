@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('superadmin'),
             'nip' => '1',
-            'dinas_id' => 1,
+            'dinas_id' => 2,
             'role_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
             'nip' => '2',
-            'dinas_id' => 2,
+            'dinas_id' => 3,
             'role_id' => 3,
             'created_at' => now(),
             'updated_at' => now()
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
             'nip' => '3',
-            'dinas_id' => 1,
+            'dinas_id' => 2,
             'role_id' => 4,
             'created_at' => now(),
             'updated_at' => now()
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
             'nip' => '4',
-            'dinas_id' => 2,
+            'dinas_id' => 3,
             'role_id' =>5,
             'created_at' => now(),
             'updated_at' => now()
@@ -70,7 +70,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
             'nip' => '5',
-            'dinas_id' => 1,
+            'dinas_id' => 2,
             'role_id' =>6,
             'created_at' => now(),
             'updated_at' => now()
@@ -82,7 +82,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
             'nip' => '6',
-            'dinas_id' => 2,
+            'dinas_id' => 3,
             'role_id' =>7,
             'created_at' => now(),
             'updated_at' => now()
@@ -94,7 +94,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
             'nip' => '7',
-            'dinas_id' => 1,
+            'dinas_id' => 2,
             'role_id' =>8,
             'created_at' => now(),
             'updated_at' => now()
@@ -106,7 +106,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
             'nip' => '8',
-            'dinas_id' => 2,
+            'dinas_id' => 3,
             'role_id' =>9,
             'created_at' => now(),
             'updated_at' => now()
@@ -130,7 +130,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
             'nip' => '10',
-            'dinas_id' => 2,
+            'dinas_id' => 3,
             'role_id' =>11,
             'created_at' => now(),
             'updated_at' => now()
@@ -142,7 +142,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
             'nip' => '11',
-            'dinas_id' => 1,
+            'dinas_id' => 2,
             'role_id' =>12,
             'created_at' => now(),
             'updated_at' => now()

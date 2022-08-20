@@ -8,17 +8,16 @@
     <div class="col">
         <form action="/dashboard/skpd/addprodukhukum" method="post" enctype="multipart/form-data">
         @csrf
+
             <div class="fs-6">
                 Jenis / Bentuk Peraturan 
             </div>
-            <input type="text" class="form-control input @error('jenis') is-invalid @enderror mt-2" 
-            name="jenis" id="jenis" value="{{ old('jenis') }}">
-
-            @error('jenis')
-            <div class="text-danger">
-                <small>{{ $message }}</small> 
-            </div>
-            @enderror
+            <select class="form-select mt-2" aria-label="Default select example" 
+            name="jenis" id="jenis">
+            @foreach($jenis as $x)
+            <option value="{{$x->id}}" {{ old('jenis') == $x->id ? 'selected' : null }} >{{$x->jenis}}</option>
+            @endforeach
+            </select>
 
             <div class="fs-6 mt-3">
                 Judul Produk Hukum 

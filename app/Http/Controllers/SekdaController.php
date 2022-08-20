@@ -48,9 +48,8 @@ class SekdaController extends Controller
                 break;
             case 'proses':
                 $request->validate([
-                    'persetujuan' => 'required|mimes:pdf,doc,docx',
+                    'persetujuan' => 'mimes:pdf,doc,docx',
                 ], [
-                    'persetujuan.required' => 'File persetujuan tidak boleh kosong',
                     'persetujuan.mimes' => 'File persetujuan harus berformat PDF atau Word',
                 ]);
 
@@ -61,12 +60,17 @@ class SekdaController extends Controller
                 if(isset($searchDraft->persetujuan)){
                     Storage::delete($searchDraft->persetujuan);
                 }
-                
-                $persetujuan = $request->file('persetujuan')->store('file-persetujuan');
+
+                if(isset($request->persetujuan)){
+                    $persetujuan = $request->file('persetujuan')->store('file-persetujuan')->getClientOriginalName();
+
+                    DB::table('sekdas')->where('id', $request->id)->update([
+                        'persetujuan' => $persetujuan,
+                    ]);
+                }
 
                 DB::table('sekdas')->where('id', $request->id)->update([
                     'status' => 'diterima',
-                    'persetujuan' => $persetujuan,
                     'keterangan' => $request->keterangan,
                     'validated' => Auth::user()->name,
                     'updated_at' => now()

@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class DinasSeeder extends Seeder
+class JenisSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,20 +15,20 @@ class DinasSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('dinas')->insert([
-            'dinas' => '-',
+        DB::table('jenis')->insert([
+            'jenis' => 'tes',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
-        DB::table('dinas')->insert([
-            'dinas' => 'Dinas Komunikasi dan Informatika',
+        DB::table('jenis')->insert([
+            'jenis' => 'tes2',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
-        DB::table('dinas')->insert([
-            'dinas' => 'Dinas Sosial',
+        DB::table('jenis')->insert([
+            'jenis' => 'tes3',
             'created_at' => now(),
             'updated_at' => now()
         ]);

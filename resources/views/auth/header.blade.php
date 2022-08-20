@@ -6,7 +6,7 @@
     <button class="navbar-toggler position-absolute d-md-none collapsed me-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark rounded-3 border-1 search-bar" type="text" placeholder="Search" aria-label="Search">
+    <!-- <input class="form-control form-control-dark rounded-3 border-1 search-bar" type="text" placeholder="Search" aria-label="Search"> -->
     
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">

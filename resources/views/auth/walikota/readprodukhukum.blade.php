@@ -14,7 +14,7 @@
         <div class="fs-6 mt-3">
             Jenis / Bentuk Peraturan
         </div>
-        <input type="text" class="form-control input mt-2" value="{{ $draft->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->jenis }}" readonly>
+        <input type="text" class="form-control input mt-2" value="{{ $draft->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->jenis->jenis }}" readonly>
 
         <div class="fs-6 mt-3">
             Judul Produk Hukum
@@ -154,6 +154,7 @@
             </div>
         </div>
 
+        @if(isset($draft->sekda->persetujuan))
         <div class="row">
             <div class="col-6">
                 <div class="fs-6 mt-3">
@@ -177,10 +178,27 @@
                 <!-- <a href="{{ asset('storage/' . $draft->sekda->persetujuan)}}" class="btn btn-primary mt-2">Download</a> -->
             </div>
         </div>
+        @endif
 
         @if($draft->status == 'menunggu')
         <form action="/dashboard/walikota/process/{{$draft->id}}" method="post">
             @csrf
+            <div class="row">
+                <div class="col-5 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    <div class="fs-6 mt-3">
+                        Upload TTD Walikota
+                    </div>
+                    <input type="file" class="form-control input @error('ttd_walikota') is-invalid @enderror mt-2" 
+                    name="ttd_walikota" id="ttd_walikota">
+
+                    @error('ttd_walikota')
+                    <div class="text-danger">
+                        <small>{{ $message }}</small> 
+                    </div>
+                    @enderror
+                </div>
+            </div>
+            
             <div class="fs-6 mt-3">
                 Keterangan
             </div>

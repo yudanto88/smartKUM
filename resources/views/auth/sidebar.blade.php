@@ -50,15 +50,15 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/role') ? 'active' : '' }}" href="/dashboard/role">
-                    <span class="align-text-bottom"><i class="fa-solid fa-circle-check pe-1"></i></span>
-                    Role
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link {{ Request::is('dashboard/dinas') ? 'active' : '' }}" aria-current="page" href="/dashboard/dinas">
                     <span class="align-text-bottom"><i class="fa-solid fa-building-user"></i></span>
                     Dinas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/jenis') ? 'active' : '' }}" aria-current="page" href="/dashboard/jenis">
+                    <span class="align-text-bottom"><i class="fa-solid fa-list pe-1"></i></span>
+                    Jenis
                 </a>
             </li>
             @endcan

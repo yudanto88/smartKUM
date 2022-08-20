@@ -13,7 +13,7 @@
                 Jenis / Bentuk Peraturan 
             </div>
             <input type="text" class="form-control input @error('jenis') is-invalid @enderror mt-2" 
-            name="jenis" id="jenis" value="{{ old('jenis', $draft->jenis)}}">
+            name="jenis" id="jenis" value="{{ old('jenis', $draft->jenis->jenis)}}">
 
             @error('jenis')
             <div class="text-danger">

@@ -20,6 +20,11 @@ class Draft extends Model
         'status',
     ];
 
+    public function jenis()
+    {
+        return $this->belongsTo(Jenis::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

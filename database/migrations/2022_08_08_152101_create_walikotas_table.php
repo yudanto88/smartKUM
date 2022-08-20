@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('walikotas', function (Blueprint $table) {
             $table->id();
             $table->string('status');
+            $table->string('ttd_walikota')->nullable();
             $table->text('keterangan')->nullable();
-            $table->string('keterangan_penolakan')->nullable();
             $table->string('validated')->nullable();
             $table->foreignId('sekda_id');
             $table->timestamps();

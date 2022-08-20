@@ -32,7 +32,7 @@
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$draft->admin->draft->no_regristrasi}}</td>
-                                <td>{{$draft->admin->draft->jenis}}</td>
+                                <td>{{$draft->admin->draft->jenis->jenis}}</td>
                                 <td>{{$draft->admin->draft->judul}}</td>
                                 <td>{{date('d-m-Y', strtotime($draft->admin->draft->tanggal_pengajuan))}}</td>
                                 <td>{{$draft->status}}</td>

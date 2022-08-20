@@ -54,6 +54,12 @@ class WalikotaController extends Controller
                 return redirect('/dashboard');
                 break;
             case 'proses':
+                $request->validate([
+                    'ttd_walikota' => 'mimes:pdf,doc,docx',
+                ], [
+                    'ttd_walikota.mimes' => 'Tanda Tangan Walikota harus berformat PDF atau Word',
+                ]);
+
                 $searchDraft = Walikota::find($request->id);
 
                 DB::table('walikotas')->where('id', $request->id)->update([

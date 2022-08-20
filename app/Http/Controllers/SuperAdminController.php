@@ -8,24 +8,24 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
-use App\Models\Role;
+use App\Models\Jenis;
 use App\Models\Dinas;
 
 class SuperAdminController extends Controller
 {
-    public function role()
-    {
-        return view('auth.pages.role', [
-            'user' => Auth::user(),
-            'role' => Role::all()
-        ]);
-    }
-
     public function dinas()
     {
         return view('auth.pages.dinas', [
             'user' => Auth::user(),
             'dinas' => Dinas::all()
+        ]);
+    }
+
+    public function jenis()
+    {
+        return view('auth.pages.jenis', [
+            'user' => Auth::user(),
+            'jenis' => Jenis::all()
         ]);
     }
 
@@ -116,58 +116,6 @@ class SuperAdminController extends Controller
 
         return redirect('/dashboard');
     }
-
-    public function addRole(Request $request)
-    {
-        $request-> validate([
-            'role' => 'required|unique:roles,role',
-        ], [
-            'role.required' => 'Role tidak boleh kosong',
-            'role.unique' => 'Role sudah terdaftar',
-        ]);
-
-        DB::table('roles')->insert([
-            'role' => $request->role,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        $request->session()->flash('success', 'Data role berhasil ditambahkan');
-
-        return redirect('/dashboard/role');
-    }
-
-    public function editRole(Request $request)
-    {
-        $validate = [
-            'edit_role' => 'required|unique:roles,role',
-        ];
-
-        $validator = Validator::make($request->all(), $validate);
-
-        if ($validator->fails()) {
-             $request->session()->flash('error', 'Data role gagal diubah');
-             return redirect()->back()->withInput()->withErrors($validator->errors());
-        }
-
-        DB::table('roles')->where('id', $request->id)->update([
-            'role' => $request->edit_role,
-            'updated_at' => now()
-        ]);
-
-        $request->session()->flash('success', 'Data role berhasil diubah');
-
-        return redirect('/dashboard/role');
-    }
-
-    public function deleteRole(Request $request)
-    {
-        DB::table('roles')->where('id', $request->id)->delete();
-
-        $request->session()->flash('success', 'Data role berhasil dihapus');
-
-        return redirect('/dashboard/role');
-    }
     
     public function addDinas(Request $request)
     {
@@ -218,5 +166,56 @@ class SuperAdminController extends Controller
         $request->session()->flash('success', 'Data dinas berhasil dihapus');
 
         return redirect('/dashboard/dinas');
+    }
+
+    public function addJenis(Request $request)
+    {
+        $request-> validate([
+            'jenis' => 'required|unique:jenis,jenis',
+        ], [
+            'jenis.required' => 'Jenis tidak boleh kosong',
+            'jenis.unique' => 'Jinas sudah terdaftar',
+        ]);
+
+        DB::table('jenis')->insert([
+            'jenis' => $request->jenis,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        $request->session()->flash('success', 'Data jenis berhasil ditambahkan');
+
+        return redirect('/dashboard/jenis');
+    }
+
+    public function editJenis(Request $request){
+        $validate = [
+            'edit_jenis' => 'required|unique:jenis,jenis',
+        ];
+
+        $validator = Validator::make($request->all(), $validate);
+
+        if ($validator->fails()) {
+             $request->session()->flash('error', 'Data jenis gagal diubah');
+             return redirect()->back()->withInput()->withErrors($validator->errors());
+        }
+
+        DB::table('jenis')->where('id', $request->id)->update([
+            'jenis' => $request->edit_jenis,
+            'updated_at' => now()
+        ]);
+
+        $request->session()->flash('success', 'Data jenis berhasil diubah');
+
+        return redirect('/dashboard/jenis');
+    }
+
+    public function deleteJenis(Request $request)
+    {
+        DB::table('jenis')->where('id', $request->id)->delete();
+
+        $request->session()->flash('success', 'Data jenis berhasil dihapus');
+
+        return redirect('/dashboard/jenis');
     }
 }

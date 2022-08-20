@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('status');
             $table->string('persetujuan')->nullable();
             $table->text('keterangan')->nullable();
-            $table->string('keterangan_penolakan')->nullable();
             $table->string('validated')->nullable();
             $table->foreignId('kepala_dinas_id');
             $table->timestamps();

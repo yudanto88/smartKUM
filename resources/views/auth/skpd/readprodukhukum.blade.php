@@ -9,7 +9,7 @@
         <div class="fs-6">
             Jenis / Bentuk Peraturan 
         </div>
-        <input type="text" class="form-control input mt-2" value="{{ $draft->jenis}}" readonly>
+        <input type="text" class="form-control input mt-2" value="{{ $draft->jenis->jenis}}" readonly>
 
         <div class="fs-6 mt-3">
             Judul Produk Hukum 
