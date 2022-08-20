@@ -53,7 +53,7 @@
                                                     <div class="modal-body">
 
                                                         <!-- SKPD -->
-                                                        <div class="row border-bottom">
+                                                        <div class="row">
                                                             <div class="col-1 px-0">
                                                                 @if($draft->draft->status == 'diterima')
                                                                 <i class="fa-solid fa-circle" style="color: #198754;"></i>
@@ -97,7 +97,7 @@
                                                         </div>
 
                                                         <!-- ADMIN FO -->
-                                                        <div class="row border-bottom">
+                                                        <div class="row border-top">
                                                             <div class="col-1 px-0">
                                                                 @if($draft->status == 'diterima')
                                                                 <i class="fa-solid fa-circle" style="color: #198754;"></i>
@@ -162,7 +162,7 @@
 
                                                         @if(isset($draft->staffUndang->admin_id))
                                                         <!-- STAFF UU -->
-                                                        <div class="row border-bottom">
+                                                        <div class="row border-top">
                                                             <div class="col-1 px-0">
                                                                 @if(isset($draft->staffUndang->status))
                                                                 @if($draft->staffUndang->status == 'diterima')
@@ -236,7 +236,7 @@
 
                                                         @if(isset($draft->staffUndang->kasubagUndang->staff_undang_id))
                                                         <!-- KASUBAG PERUNDANG-UNDANGAN -->
-                                                        <div class="row border-bottom">
+                                                        <div class="row border-top">
                                                             <div class="col-1 px-0">
                                                                 @if(isset($draft->staffUndang->kasubagUndang->status))
                                                                 @if($draft->staffUndang->kasubagUndang->status == 'diterima')
@@ -320,7 +320,7 @@
 
                                                         @if(isset($draft->staffUndang->kasubagUndang->kabag->kasubag_undang_id))
                                                         <!-- KABAG -->
-                                                        <div class="row border-bottom">
+                                                        <div class="row border-top">
                                                             <div class="col-1 px-0">
                                                                 @if(isset($draft->staffUndang->kasubagUndang->kabag->status))
                                                                 @if($draft->staffUndang->kasubagUndang->kabag->status == 'diterima')
