@@ -113,7 +113,7 @@ class SKPDController extends Controller
         Storage::delete($searchDraft->surat_pengajuan);
 
         DB::table('drafts')->where('id', $request->id)->update([
-            'jenis' => $request->jenis,
+            'jenis_id' => $request->jenis,
             'judul' => $request->judul,
             'tanggal_pengajuan' => $request->tanggal,
             'keterangan' => $request->keterangan,

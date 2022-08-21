@@ -11,8 +11,11 @@
 				<li class="nav-item active me-4">
 					<a class="nav-link text-white " href="/login"><i class="fa-solid fa-right-to-bracket pe-2"></i>Login</a>
 				</li>
-				<li class="nav-item active">
+				<li class="nav-item active me-3">
 					<a class="nav-link text-white " href="/register"><i class="fa-solid fa-book-bookmark pe-2"></i>Register</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link text-white " href="/status"><i class="fa-solid fa-folder-tree pe-2"></i>Status</a>
 				</li>
 			</ul>
 		</div>

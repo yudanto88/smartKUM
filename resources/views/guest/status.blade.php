@@ -24,10 +24,10 @@
       @endif
 
       <div class="row rounded p-4 login-page" style="background-color:#FFFFFF">
-        <p class="text-center fs-3">Login</p>
-        <form action="/login" method="post">
+        <p class="text-center fs-3 mt-4">Cek Status Draft</p>
+        <form action="/searchstatus" method="post">
           @csrf
-          <div class="mt-5 form-input">
+          <div class="mt-4 form-input">
             <i class="fa-solid fa-envelope icon"></i>
             <input type="email" class="form-control input @error('email') is-invalid @enderror" name="email" id="email" aria-describedby="emailHelp" placeholder="Email" value="{{ old('email') }}" autofocus>
           </div>
@@ -39,26 +39,8 @@
             @enderror
           </div>
 
-          <div class="mt-3 form-input">
-            <i class="fa-solid fa-key icon"></i>
-            <input type="password" class="form-control input @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password">
-          </div>
-          <div>
-            @error('password')
-            <div class="text-danger">
-              <small>{{ $message }}</small>
-            </div>
-            @enderror
-          </div>
-
-          <div class="mt-4 d-grid gap-2 mb-3">
-            <button class="btn btn-success rounded-pill fw-bold" type="button">sign in with google <i class="fa-brands fa-google"></i></button>
-          </div>
-          <div class="text-center">
-            <p>or</p>
+          <div class="text-center mt-5">
             <button class="btn btn-warning rounded-pill text-white fw-bold px-4" type="submit">sign in</button>
-            <div class="mt-3">
-            </div>
           </div>
         </form>
       </div>

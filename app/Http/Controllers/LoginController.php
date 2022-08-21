@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Draft;
 
 class LoginController extends Controller
 {
@@ -38,5 +39,11 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
+    }
+
+    public function status(){
+        return view('guest.status', [
+            'draft' => Draft::all(),
+        ]);
     }
 }
