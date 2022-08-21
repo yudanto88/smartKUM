@@ -126,14 +126,16 @@
                                                                 <p class="text-uppercase fw-bold mb-0">admin fo</p>
                                                                 <p class="mb-0">Keterangan :</p>
 
+                                                                @if($draft->status == 'menunggu')
                                                                 <div class="row">
                                                                     <div class="col-1 pe-0">
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->status}} oleh oleh {{$draft->validated}}</p>
+                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->status}}</p>
                                                                     </div>
                                                                 </div>
+                                                                @endif
 
                                                                 @if($draft->status == 'diterima')
                                                                 <div class="row">
@@ -141,7 +143,15 @@
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p style="text-align: justify;">{{ $draft->keterangan }}</p>
+                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->status}} oleh {{$draft->validated}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->keterangan}}</p>
                                                                     </div>
                                                                 </div>
                                                                 @endif
@@ -152,7 +162,15 @@
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p style="text-align: justify;">{{ $draft->keterangan_penolakan }}</p>
+                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->status}} oleh {{$draft->validated}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->draft->keterangan_penolakan}}</p>
                                                                     </div>
                                                                 </div>
                                                                 @endif
@@ -826,7 +844,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#tableAdmin').DataTable();
-    } );
+    });
 </script>
 @endsection
 

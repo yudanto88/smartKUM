@@ -126,14 +126,16 @@
                                                                 <p class="text-uppercase fw-bold mb-0">admin fo</p>
                                                                 <p class="mb-0">Keterangan :</p>
 
+                                                                @if($draft->draft_admins->status == 'menunggu')
                                                                 <div class="row">
                                                                     <div class="col-1 pe-0">
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->draft_admins->status}} oleh {{$draft->draft_admins->validated}}</p>
+                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->draft_admins->status}}</p>
                                                                     </div>
                                                                 </div>
+                                                                @endif
 
                                                                 @if($draft->draft_admins->status == 'diterima')
                                                                 <div class="row">
@@ -141,7 +143,15 @@
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p style="text-align: justify;">{{ $draft->draft_admins->keterangan }}</p>
+                                                                        {{$draft->draft_admins->status}} oleh {{$draft->draft_admins->validated}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{ $draft->draft_admins->keterangan }} </p>
                                                                     </div>
                                                                 </div>
                                                                 @endif
@@ -852,7 +862,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#tableSKPD').DataTable();
-    } );
+    });
 </script>
 @endsection
 

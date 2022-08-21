@@ -14,20 +14,23 @@ use App\Models\StaffUndang;
 class SKPDController extends Controller
 {
 
-    public function readprodukhukum(Request $request, Draft $draft){
-        return view('auth.skpd.readprodukhukum',[
+    public function readprodukhukum(Request $request, Draft $draft)
+    {
+        return view('auth.skpd.readprodukhukum', [
             'draft' => $draft::find($request->id),
         ]);
     }
 
-    public function addprodukhukum(){
-        return view('auth.skpd.addprodukhukum',[
+    public function addprodukhukum()
+    {
+        return view('auth.skpd.addprodukhukum', [
             'jenis' => Jenis::all(),
         ]);
     }
 
-    public function storeprodukhukum(Request $request){
-        $request-> validate([
+    public function storeprodukhukum(Request $request)
+    {
+        $request->validate([
             'jenis' => 'required',
             'judul' => 'required',
             'tanggal' => 'required',
@@ -72,14 +75,17 @@ class SKPDController extends Controller
         return redirect('/dashboard');
     }
 
-    public function editprodukhukum(Request $request, Draft $draft){
-        return view('auth.skpd.editprodukhukum',[
+    public function editprodukhukum(Request $request, Draft $draft)
+    {
+        return view('auth.skpd.editprodukhukum', [
             'draft' => $draft::find($request->id),
+            'jenis' => Jenis::all(),
         ]);
     }
 
-    public function updateprodukhukum(Request $request){
-        $request-> validate([
+    public function updateprodukhukum(Request $request)
+    {
+        $request->validate([
             'jenis' => 'required',
             'judul' => 'required',
             'tanggal' => 'required',
@@ -97,14 +103,16 @@ class SKPDController extends Controller
 
         $searchDraft = Draft::find($request->id);
 
-        if(!isset($searchDraft->draft_produk_hukum_lama)){
+        if (!isset($searchDraft->draft_produk_hukum_lama)) {
             DB::table('drafts')->where('id', $request->id)->update([
                 'draft_produk_hukum_lama' => $searchDraft->draft_produk_hukum,
             ]);
-        } 
+        }
 
-        if(isset($searchDraft->surat_pengajuan) && isset($searchDraft->draft_produk_hukum)
-            && isset($searchDraft->draft_produk_hukum_lama)){
+        if (
+            isset($searchDraft->surat_pengajuan) && isset($searchDraft->draft_produk_hukum)
+            && isset($searchDraft->draft_produk_hukum_lama)
+        ) {
             Storage::delete($searchDraft->draft_produk_hukum);
         }
 
@@ -137,10 +145,11 @@ class SKPDController extends Controller
         return redirect('/dashboard');
     }
 
-    public function deleteprodukhukum(Request $request, Draft $draft){
+    public function deleteprodukhukum(Request $request, Draft $draft)
+    {
         $searchDraft = Draft::find($request->id);
 
-        if(isset($searchDraft->draft_produk_hukum_lama)){
+        if (isset($searchDraft->draft_produk_hukum_lama)) {
             Storage::delete($searchDraft->draft_produk_hukum_lama);
         }
         Storage::delete($searchDraft->surat_pengajuan);

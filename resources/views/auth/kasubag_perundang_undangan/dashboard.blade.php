@@ -265,6 +265,24 @@
                                                                     </div>
                                                                 </div>
 
+                                                                @elseif($draft->status == 'ditolak')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->status}} oleh {{$draft->validated}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->staffUndang->keterangan_penolakan}}
+                                                                    </div>
+                                                                </div>
+
                                                                 @else
                                                                 <div class="row">
                                                                     <div class="col-1 pe-0">
@@ -808,7 +826,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#tableKasubagUndang').DataTable();
-    } );
+    });
 </script>
 @endsection
 
