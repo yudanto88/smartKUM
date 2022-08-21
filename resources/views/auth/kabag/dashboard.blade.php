@@ -273,13 +273,31 @@
                                                                 <p class="text-uppercase fw-bold mb-0">kasubag perundang-undangan</p>
                                                                 <p class="mb-0">Keterangan :</p>
 
-                                                                @if($draft->kasubagUndang->status == 'menunggu' || $draft->kasubagUndang->status == 'ditolak oleh kabag')
+                                                                @if($draft->kasubagUndang->status == 'menunggu')
                                                                 <div class="row">
                                                                     <div class="col-1 pe-0">
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->kasubagUndang->status}}</p>
+                                                                        <p class="" style="text-align: justify;">{{$draft->kasubagUndang->status}}</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                @elseif($draft->kasubagUndang->status == 'ditolak oleh kabag')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->kasubagUndang->status}} oleh {{$draft->kasubagUndang->validated}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->kasubagUndang->keterangan_penolakan}}
                                                                     </div>
                                                                 </div>
 
