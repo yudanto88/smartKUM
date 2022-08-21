@@ -86,14 +86,16 @@
                                                                         <p class="mb-0" style="text-align: justify;">diajukan oleh {{$draft->user->name}}</p>
                                                                     </div>
                                                                 </div>
+                                                                @if($draft->keterangan != NULL)
                                                                 <div class="row">
                                                                     <div class="col-1 pe-0">
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p style="text-align: justify;">{{ $draft->keterangan }}</p>
+                                                                        <p class="mb-2" style="text-align: justify;">{{ $draft->keterangan }}</p>
                                                                     </div>
                                                                 </div>
+                                                                @endif
                                                                 @endif
 
                                                                 @if($draft->status == 'diterima')
@@ -102,7 +104,7 @@
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p style="text-align: justify;">{{$draft->keterangan}}</p>
+                                                                        <p class="mb-2" style="text-align: justify;">{{$draft->keterangan}}</p>
                                                                     </div>
                                                                 </div>
                                                                 @endif
@@ -116,16 +118,17 @@
                                                                         <p class="mb-0" style="text-align: justify;">{{$draft->status}} oleh {{$draft->draft_admins->validated}}</p>
                                                                     </div>
                                                                 </div>
+                                                                @if($draft->draft_admins->draft->keterangan_penolakan != NULL)
                                                                 <div class="row">
                                                                     <div class="col-1 pe-0">
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p style="text-align: justify;">{{$draft->keterangan_penolakan}}</p>
+                                                                        <p class="mb-2" style="text-align: justify;">{{$draft->draft_admins->draft->keterangan_penolakan}}</p>
                                                                     </div>
                                                                 </div>
                                                                 @endif
-
+                                                                @endif
                                                             </div>
                                                         </div>
 
@@ -179,14 +182,16 @@
                                                                         {{$draft->draft_admins->status}} oleh {{$draft->draft_admins->validated}}
                                                                     </div>
                                                                 </div>
+                                                                @if($draft->draft_admins->keterangan != NULL)
                                                                 <div class="row">
                                                                     <div class="col-1 pe-0">
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p style="text-align: justify;">{{ $draft->draft_admins->keterangan }} </p>
+                                                                        <p class="mb-2" style="text-align: justify;">{{ $draft->draft_admins->keterangan }} </p>
                                                                     </div>
                                                                 </div>
+                                                                @endif
                                                                 @endif
 
                                                                 @if($draft->draft_admins->status == 'ditolak')
@@ -195,9 +200,19 @@
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p style="text-align: justify;">{{ $draft->keterangan_penolakan }}</p>
+                                                                        {{$draft->draft_admins->status}} oleh {{$draft->draft_admins->validated}}
                                                                     </div>
                                                                 </div>
+                                                                @if($draft->draft_admins->draft->keterangan_penolakan != NULL)
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p class="mb-2" style="text-align: justify;">{{ $draft->draft_admins->draft->keterangan_penolakan }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                @endif
                                                                 @endif
 
                                                             </div>
