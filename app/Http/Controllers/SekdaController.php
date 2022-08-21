@@ -12,14 +12,16 @@ use App\Models\Walikota;
 
 class SekdaController extends Controller
 {
-    public function editprodukhukum(Request $request, Sekda $draft){
-        return view('auth.sekda.readprodukhukum',[
+    public function editprodukhukum(Request $request, Sekda $draft)
+    {
+        return view('auth.sekda.readprodukhukum', [
             'draft' => $draft::find($request->id),
         ]);
     }
 
-    public function process(Request $request){
-        switch($request->input('action')){
+    public function process(Request $request)
+    {
+        switch ($request->input('action')) {
             case 'tolak':
                 $searchDraft = Sekda::find($request->id);
 
@@ -41,9 +43,9 @@ class SekdaController extends Controller
                     'keterangan_penolakan' => $request->keterangan,
                     'updated_at' => now()
                 ]);
-        
+
                 $request->session()->flash('success', 'Data berhasil ditolak');
-        
+
                 return redirect('/dashboard');
                 break;
             case 'proses':
@@ -57,12 +59,12 @@ class SekdaController extends Controller
 
                 $searchDraftWalikota = Walikota::where('sekda_id', $searchDraft->id)->first();
 
-                if(isset($searchDraft->persetujuan)){
+                if (isset($searchDraft->persetujuan)) {
                     Storage::delete($searchDraft->persetujuan);
                 }
 
-                if(isset($request->persetujuan)){
-                    $persetujuan = $request->file('persetujuan')->store('file-persetujuan')->getClientOriginalName();
+                if (isset($request->persetujuan)) {
+                    $persetujuan = $request->file('persetujuan')->store('file-persetujuan');
 
                     DB::table('sekdas')->where('id', $request->id)->update([
                         'persetujuan' => $persetujuan,
@@ -76,12 +78,12 @@ class SekdaController extends Controller
                     'updated_at' => now()
                 ]);
 
-                if(isset($searchDraftWalikota)){
+                if (isset($searchDraftWalikota)) {
                     DB::table('walikotas')->where('id', $searchDraftWalikota->id)->update([
                         'status' => 'menunggu',
                         'updated_at' => now()
                     ]);
-                }else {
+                } else {
                     DB::table('walikotas')->insert([
                         'status' => 'menunggu',
                         // 'draft_id' => $searchDraft->draft->draft_id,
@@ -90,9 +92,9 @@ class SekdaController extends Controller
                         'updated_at' => now()
                     ]);
                 }
-                
+
                 $request->session()->flash('success', 'Data berhasil diproses');
-        
+
                 return redirect('/dashboard');
                 break;
         }

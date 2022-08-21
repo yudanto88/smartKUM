@@ -579,7 +579,7 @@
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
-                                                                        <p style="text-align: justify;">{{$draft->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->keterangan_penolakan}}</p>
+                                                                        <p style="text-align: justify;">{{$draft->staffUndang->kasubagUndang->kabag->keterangan_penolakan}}</p>
                                                                     </div>
                                                                 </div>
                                                                 @endif
@@ -656,7 +656,15 @@
                                                                         <p style="text-align: justify;">{{$draft->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->keterangan}}</p>
                                                                     </div>
                                                                 </div>
-
+                                                                @elseif($draft->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->status == 'ditolak')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->staffUndang->kasubagUndang->kabag->keterangan}}</p>
+                                                                    </div>
+                                                                </div>
                                                                 @endif
                                                                 @endif
 

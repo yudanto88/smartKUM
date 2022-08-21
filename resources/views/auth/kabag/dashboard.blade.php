@@ -244,136 +244,585 @@
                                                         </div>
                                                         @endif
 
-                                                        <div class="row mt-3">
-                                                            <div class="col-1 fs-6">
-                                                                3.
+                                                        @if(isset($draft->kasubagUndang->staff_undang_id))
+                                                        <!-- KASUBAG PERUNDANG-UNDANGAN -->
+                                                        <div class="row border-top">
+                                                            <div class="col-1 px-0">
+                                                                @if($draft->kasubagUndang->status == 'diterima')
+                                                                <i class="fa-solid fa-circle" style="color: #198754;"></i>
+
+                                                                @elseif($draft->kasubagUndang->status == 'menunggu')
+                                                                <i class="fa-solid fa-circle" style="color: #ffc107;"></i>
+
+                                                                @elseif($draft->kasubagUndang->status == 'ditolak oleh kabag' || $draft->status == 'ditolak')
+                                                                <i class="fa-solid fa-circle" style="color: #dc3545;"></i>
+                                                                @endif
                                                             </div>
-                                                            <div class="col-11 fs-6 text-start">
-                                                                Staff perundang undangan
-                                                                <div class="fs-7">
-                                                                    @if($draft->kasubagUndang->staffUndang->status == 'menunggu')
-                                                                    {{$draft->kasubagUndang->staffUndang->status}} pada {{date('d-m-Y', strtotime($draft->kasubagUndang->staffUndang->updated_at))}} pukul {{date('H:i', strtotime($draft->kasubagUndang->staffUndang->updated_at))}}
-                                                                    @else
-                                                                    {{$draft->kasubagUndang->staffUndang->status}} pada {{date('d-m-Y', strtotime($draft->kasubagUndang->staffUndang->updated_at))}} pukul {{date('H:i', strtotime($draft->kasubagUndang->staffUndang->updated_at))}} oleh {{$draft->kasubagUndang->staffUndang->validated}}
-                                                                    @endif
+                                                            <div class="col-2 text-start px-0">
+                                                                @if($draft->kasubagUndang->status == 'menunggu' || $draft->kasubagUndang->status == 'ditolak oleh kabag')
+                                                                {{date('d-m-Y', strtotime($draft->kasubagUndang->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kasubagUndang->updated_at))}}
+                                                                @else
+                                                                {{date('d-m-Y', strtotime($draft->kasubagUndang->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kasubagUndang->updated_at))}}
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-1 border-start px-0">
+                                                            </div>
+                                                            <div class="col text-start ps-0">
+                                                                <p class="text-uppercase fw-bold mb-0">kasubag perundang-undangan</p>
+                                                                <p class="mb-0">Keterangan :</p>
+
+                                                                @if($draft->kasubagUndang->status == 'menunggu' || $draft->kasubagUndang->status == 'ditolak oleh kabag')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->kasubagUndang->status}}</p>
+                                                                    </div>
                                                                 </div>
+
+                                                                @elseif($draft->kasubagUndang->status == 'ditolak')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->kasubagUndang->status}} oleh {{$draft->kasubagUndang->validated}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->kasubagUndang->keterangan_penolakan}}
+                                                                    </div>
+                                                                </div>
+
+                                                                @else
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->kasubagUndang->status}} oleh {{$draft->kasubagUndang->validated}}
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+
+                                                                @if($draft->status == 'diterima')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->kasubagUndang->keterangan}}</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                @elseif($draft->status == 'ditolak oleh kabag')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->kabag->keterangan_penolakan}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+
                                                             </div>
                                                         </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-1 fs-6">
-                                                                4.
+                                                        @endif
+
+                                                        @if(isset($draft->kasubag_undang_id))
+                                                        <!-- KABAG -->
+                                                        <div class="row border-top">
+                                                            <div class="col-1 px-0">
+                                                                @if(isset($draft->status))
+                                                                @if($draft->status == 'diterima')
+                                                                <i class="fa-solid fa-circle" style="color: #198754;"></i>
+
+                                                                @elseif($draft->status == 'menunggu')
+                                                                <i class="fa-solid fa-circle" style="color: #ffc107;"></i>
+
+                                                                @elseif($draft->status == 'ditolak' || $draft->status == 'ditolak oleh sekda' || $draft->status == 'ditolak oleh walikota')
+                                                                <i class="fa-solid fa-circle" style="color: #dc3545;"></i>
+                                                                @endif
+                                                                @endif
                                                             </div>
-                                                            <div class="col-11 fs-6 text-start">
-                                                                Kasubag perundang undangan
-                                                                <div class="fs-7">
-                                                                    @if($draft->kasubagUndang->status == 'menunggu' || $draft->kasubagUndang->status == 'ditolak oleh kabag')
-                                                                    {{$draft->kasubagUndang->status}} pada {{date('d-m-Y', strtotime($draft->kasubagUndang->updated_at))}} pukul {{date('H:i', strtotime($draft->kasubagUndang->updated_at))}}
-                                                                    @else
-                                                                    {{$draft->kasubagUndang->status}} pada {{date('d-m-Y', strtotime($draft->kasubagUndang->updated_at))}} pukul {{date('H:i', strtotime($draft->kasubagUndang->updated_at))}} oleh {{$draft->kasubagUndang->validated}}
-                                                                    @endif
+                                                            <div class="col-2 text-start px-0">
+                                                                @if(isset($draft->status))
+                                                                @if($draft->status == 'menunggu' || $draft->status == 'ditolak oleh sekda' || $draft->status == 'ditolak oleh walikota')
+                                                                {{date('d-m-Y', strtotime($draft->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->updated_at))}}
+                                                                @else
+                                                                {{date('d-m-Y', strtotime($draft->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->updated_at))}}
+                                                                @endif
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-1 border-start px-0">
+                                                            </div>
+                                                            <div class="col text-start ps-0">
+                                                                <p class="text-uppercase fw-bold mb-0">kabag</p>
+                                                                <p class="mb-0">Keterangan :</p>
+
+                                                                @if(isset($draft->status))
+                                                                @if($draft->status == 'menunggu' || $draft->status == 'ditolak oleh sekda' || $draft->status == 'ditolak oleh walikota')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->status}}</p>
+                                                                    </div>
                                                                 </div>
+
+                                                                @else
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->status}} oleh {{$draft->validated}}
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                @endif
+
+                                                                @if(isset($draft->status))
+                                                                @if($draft->status == 'diterima')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->keterangan}}</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                @elseif($draft->status == 'ditolak oleh sekda' || $draft->status == 'ditolak oleh walikota')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->keterangan_penolakan}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                @endif
+
                                                             </div>
                                                         </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-1 fs-6">
-                                                                5.
+                                                        @endif
+
+                                                        @if(isset($draft->kepalaDinas->kabag_id))
+                                                        <!-- KEPALA DINAS -->
+                                                        <div class="row border-top">
+                                                            <div class="col-1 px-0">
+                                                                @if(isset($draft->kepalaDinas->status))
+                                                                @if($draft->kepalaDinas->status == 'diterima')
+                                                                <i class="fa-solid fa-circle" style="color: #198754;"></i>
+
+                                                                @elseif($draft->kepalaDinas->status == 'menunggu')
+                                                                <i class="fa-solid fa-circle" style="color: #ffc107;"></i>
+
+                                                                @elseif($draft->kepalaDinas->status == 'ditolak oleh sekda')
+                                                                <i class="fa-solid fa-circle" style="color: #dc3545;"></i>
+
+                                                                @elseif($draft->kepalaDinas->status == 'ditolak oleh walikota')
+                                                                <i class="fa-solid fa-circle" style="color: #dc3545;"></i>
+                                                                @endif
+                                                                @endif
                                                             </div>
-                                                            <div class="col-11 fs-6 text-start">
-                                                                Kabag
-                                                                <div class="fs-7">
-                                                                    @if($draft->status == 'menunggu' || $draft->status == 'ditolak oleh sekda' || $draft->status == 'ditolak oleh walikota')
-                                                                    {{$draft->status}} pada {{date('d-m-Y', strtotime($draft->updated_at))}} pukul {{date('H:i', strtotime($draft->updated_at))}}
-                                                                    @else
-                                                                    {{$draft->status}} pada {{date('d-m-Y', strtotime($draft->updated_at))}} pukul {{date('H:i', strtotime($draft->updated_at))}} oleh {{$draft->validated}}
-                                                                    @endif
+                                                            <div class="col-2 text-start px-0">
+                                                                @if(isset($draft->kepalaDinas->status))
+                                                                @if($draft->kepalaDinas->status == 'menunggu' || $draft->kepalaDinas->status == 'ditolak oleh sekda')
+                                                                {{date('d-m-Y', strtotime($draft->kepalaDinas->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kepalaDinas->updated_at))}}
+                                                                @else
+                                                                {{date('d-m-Y', strtotime($draft->kepalaDinas->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kepalaDinas->updated_at))}}
+
+                                                                @endif
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-1 border-start px-0">
+                                                            </div>
+                                                            <div class="col text-start ps-0">
+                                                                <p class="text-uppercase fw-bold mb-0">kepala dinas</p>
+                                                                <p class="mb-0">Keterangan :</p>
+
+                                                                @if(isset($draft->kepalaDinas->status))
+                                                                @if($draft->kepalaDinas->status == 'menunggu' || $draft->kepalaDinas->status == 'ditolak oleh sekda')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->kepalaDinas->status}}</p>
+                                                                    </div>
                                                                 </div>
+
+                                                                @elseif($draft->kepalaDinas->status == 'diterima')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->kepalaDinas->status}} oleh {{$draft->kepalaDinas->validated}}
+                                                                    </div>
+                                                                </div>
+
+                                                                @else
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->kepalaDinas->status}}
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                @endif
+
+                                                                @if(isset($draft->kepalaDinas->status))
+                                                                @if($draft->kepalaDinas->status == 'diterima')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->kepalaDinas->keterangan}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                @endif
+
                                                             </div>
                                                         </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-1 fs-6">
-                                                                6.
+                                                        @endif
+
+                                                        @if(isset($draft->kepalaDinas->sekda->kepala_dinas_id))
+                                                        <!-- SEKDA -->
+                                                        <div class="row border-top">
+                                                            <div class="col-1 px-0">
+                                                                @if(isset($draft->kepalaDinas->sekda->status))
+                                                                @if($draft->kepalaDinas->sekda->status == 'diterima')
+                                                                <i class="fa-solid fa-circle" style="color: #198754;"></i>
+
+                                                                @elseif($draft->kepalaDinas->sekda->status == 'menunggu')
+                                                                <i class="fa-solid fa-circle" style="color: #ffc107;"></i>
+
+                                                                @elseif($draft->kepalaDinas->sekda->status == 'ditolak' || $draft->kepalaDinas->sekda->status == 'ditolak oleh walikota')
+                                                                <i class="fa-solid fa-circle" style="color: #dc3545;"></i>
+                                                                @endif
+                                                                @endif
                                                             </div>
-                                                            <div class="col-11 fs-6 text-start">
-                                                                Kepala Dinas
-                                                                <div class="fs-7">
-                                                                    @if(isset($draft->kepalaDinas->status))
-                                                                    @if($draft->kepalaDinas->status == 'menunggu' || $draft->kepalaDinas->status == 'ditolak oleh sekda')
-                                                                    {{$draft->kepalaDinas->status}} pada {{date('d-m-Y', strtotime($draft->kepalaDinas->updated_at))}} pukul {{date('H:i', strtotime($draft->kepalaDinas->updated_at))}}
-                                                                    @else
-                                                                    {{$draft->kepalaDinas->status}} pada {{date('d-m-Y', strtotime($draft->kepalaDinas->updated_at))}} pukul {{date('H:i', strtotime($draft->kepalaDinas->updated_at))}} oleh {{$draft->kepalaDinas->validated}}
-                                                                    @endif
-                                                                    @endif
+                                                            <div class="col-2 text-start px-0">
+                                                                @if(isset($draft->kepalaDinas->sekda->status))
+                                                                @if($draft->kepalaDinas->sekda->status == 'menunggu' || $draft->kepalaDinas->sekda->status == 'ditolak oleh walikota')
+                                                                {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kepalaDinas->sekda-> updated_at))}}
+                                                                @else
+                                                                {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kepalaDinas->sekda->updated_at))}}
+                                                                @endif
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-1 border-start px-0">
+                                                            </div>
+                                                            <div class="col text-start ps-0">
+                                                                <p class="text-uppercase fw-bold mb-0">sekda</p>
+                                                                <p class="mb-0">Keterangan :</p>
+
+                                                                @if(isset($draft->kepalaDinas->sekda->status))
+                                                                @if($draft->kepalaDinas->sekda->status == 'menunggu' || $draft->kepalaDinas->sekda->status == 'ditolak oleh walikota' || $draft->kepalaDinas->sekda->status == 'ditolak')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->kepalaDinas->sekda->status}} oleh {{$draft->kepalaDinas->sekda->validated}}</p>
+                                                                    </div>
                                                                 </div>
+
+                                                                @else
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->kepalaDinas->sekda->status}} oleh {{$draft->kepalaDinas->sekda->validated}}
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                @endif
+
+                                                                @if(isset($draft->kepalaDinas->sekda->status))
+                                                                @if($draft->kepalaDinas->sekda->status == 'diterima')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->kepalaDinas->sekda->keterangan}}</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                @elseif($draft->kepalaDinas->sekda->status == 'ditolak')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->keterangan_penolakan}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                @endif
+
                                                             </div>
                                                         </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-1 fs-6">
-                                                                7.
+                                                        @endif
+
+                                                        @if(isset($draft->kepalaDinas->sekda->walikota->sekda_id))
+                                                        <!-- WALIKOTA -->
+                                                        <div class="row border-top">
+                                                            <div class="col-1 px-0">
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->status))
+                                                                @if($draft->kepalaDinas->sekda->walikota->status == 'diterima')
+                                                                <i class="fa-solid fa-circle" style="color: #198754;"></i>
+
+                                                                @elseif($draft->kepalaDinas->sekda->walikota->status == 'menunggu')
+                                                                <i class="fa-solid fa-circle" style="color: #ffc107;"></i>
+
+                                                                @elseif($draft->kepalaDinas->sekda->walikota->status == 'ditolak')
+                                                                <i class="fa-solid fa-circle" style="color: #dc3545;"></i>
+                                                                @endif
+                                                                @endif
                                                             </div>
-                                                            <div class="col-11 fs-6 text-start">
-                                                                Sekda
-                                                                <div class="fs-7">
-                                                                    @if(isset($draft->kepalaDinas->sekda->status))
-                                                                    @if($draft->kepalaDinas->sekda->status == 'menunggu' || $draft->kepalaDinas->sekda->status == 'ditolak oleh walikota')
-                                                                    {{$draft->kepalaDinas->sekda->status}} pada {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->updated_at))}} pukul {{date('H:i', strtotime($draft->kepalaDinas->sekda->updated_at))}}
-                                                                    @else
-                                                                    {{$draft->kepalaDinas->sekda->status}} pada {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->updated_at))}} pukul {{date('H:i', strtotime($draft->kepalaDinas->sekda->updated_at))}} oleh {{$draft->kepalaDinas->sekda->validated}}
-                                                                    @endif
-                                                                    @endif
+                                                            <div class="col-2 text-start px-0">
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->status))
+                                                                @if($draft->kepalaDinas->sekda->walikota->status == 'menunggu')
+                                                                {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->updated_at))}}
+                                                                @else
+                                                                {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->updated_at))}}
+
+                                                                @endif
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-1 border-start px-0">
+                                                            </div>
+                                                            <div class="col text-start ps-0">
+                                                                <p class="text-uppercase fw-bold mb-0">walikota</p>
+                                                                <p class="mb-0">Keterangan :</p>
+
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->status))
+                                                                @if($draft->kepalaDinas->sekda->walikota->status == 'menunggu')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->kepalaDinas->sekda->walikota->status}}</p>
+                                                                    </div>
                                                                 </div>
+
+                                                                @else
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->kepalaDinas->sekda->walikota->status}} oleh {{$draft->kepalaDinas->sekda->walikota->validated}}
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                @endif
+
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->status))
+                                                                @if($draft->kepalaDinas->sekda->walikota->status == 'diterima')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->kepalaDinas->sekda->walikota->keterangan}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                @if($draft->kepalaDinas->sekda->walikota->status == 'ditolak')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->keterangan}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                @endif
+
                                                             </div>
                                                         </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-1 fs-6">
-                                                                8.
+                                                        @endif
+
+                                                        @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->walikota_id))
+                                                        <!-- STAFF DOKUMENTASI -->
+                                                        <div class="row border-top">
+                                                            <div class="col-1 px-0">
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->walikota_id))
+                                                                @if($draft->kepalaDinas->sekda->walikota->staffDokumentasi->status == 'diterima')
+                                                                <i class="fa-solid fa-circle" style="color: #198754;"></i>
+
+                                                                @elseif($draft->kepalaDinas->sekda->walikota->staffDokumentasi->status == 'menunggu')
+                                                                <i class="fa-solid fa-circle" style="color: #ffc107;"></i>
+
+                                                                @elseif($draft->kepalaDinas->sekda->walikota->staffDokumentasi->status == 'ditolak')
+                                                                <i class="fa-solid fa-circle" style="color: #dc3545;"></i>
+                                                                @endif
+                                                                @endif
                                                             </div>
-                                                            <div class="col-11 fs-6 text-start">
-                                                                Walikota
-                                                                <div class="fs-7">
-                                                                    @if(isset($draft->kepalaDinas->sekda->walikota->status))
-                                                                    @if($draft->kepalaDinas->sekda->walikota->status == 'menunggu')
-                                                                    {{$draft->kepalaDinas->sekda->walikota->status}} pada {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->updated_at))}} pukul {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->updated_at))}}
-                                                                    @else
-                                                                    {{$draft->kepalaDinas->sekda->walikota->status}} pada {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->updated_at))}} pukul {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->updated_at))}} oleh {{$draft->kepalaDinas->sekda->walikota->validated}}
-                                                                    @endif
-                                                                    @endif
+                                                            <div class="col-2 text-start px-0">
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->walikota_id))
+                                                                @if($draft->kepalaDinas->sekda->walikota->staffDokumentasi->status == 'menunggu')
+                                                                {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at))}}
+                                                                @else
+                                                                {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at))}}
+                                                                @endif
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-1 border-start px-0">
+                                                            </div>
+                                                            <div class="col text-start ps-0">
+                                                                <p class="text-uppercase fw-bold mb-0">staff dokumentasi</p>
+                                                                <p class="mb-0">Keterangan :</p>
+
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->walikota_id))
+                                                                @if($draft->kepalaDinas->sekda->walikota->staffDokumentasi->status == 'menunggu')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->status}}</p>
+                                                                    </div>
                                                                 </div>
+
+                                                                @else
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->status}} oleh {{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->validated}}
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                @endif
+
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->walikota_id))
+                                                                @if($draft->kepalaDinas->sekda->walikota->staffDokumentasi->status == 'diterima')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->keterangan}}</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                @endif
+                                                                @endif
+
                                                             </div>
                                                         </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-1 fs-6">
-                                                                9.
+                                                        @endif
+
+                                                        @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->staff_dokumentasi_id))
+                                                        <!-- KASUBAG DOKUMENTASI -->
+                                                        <div class="row border-top">
+                                                            <div class="col-1 px-0">
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status))
+                                                                @if($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status == 'diterima')
+                                                                <i class="fa-solid fa-circle" style="color: #198754;"></i>
+
+                                                                @elseif($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status == 'menunggu')
+                                                                <i class="fa-solid fa-circle" style="color: #ffc107;"></i>
+
+                                                                @elseif($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status == 'ditolak')
+                                                                <i class="fa-solid fa-circle" style="color: #dc3545;"></i>
+                                                                @endif
+                                                                @endif
                                                             </div>
-                                                            <div class="col-11 fs-6 text-start">
-                                                                Staff Dokumentasi
-                                                                <div class="fs-7">
-                                                                    @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->walikota_id))
-                                                                    @if($draft->kepalaDinas->sekda->walikota->staffDokumentasi->status == 'menunggu')
-                                                                    {{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->status}} pada {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at))}} pukul {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at))}}
-                                                                    @else
-                                                                    {{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->status}} pada {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at))}} pukul {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->updated_at))}} oleh {{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->validated}}
-                                                                    @endif
-                                                                    @endif
+                                                            <div class="col-2 text-start px-0">
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status))
+                                                                @if($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status == 'menunggu')
+                                                                {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at))}}
+                                                                @else
+                                                                {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at))}}
+                                                                {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at))}}
+
+                                                                @endif
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-1 border-start px-0">
+                                                            </div>
+                                                            <div class="col text-start ps-0">
+                                                                <p class="text-uppercase fw-bold mb-0">kasubag dokumentasi</p>
+                                                                <p class="mb-0">Keterangan :</p>
+
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status))
+                                                                @if($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status == 'menunggu')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p class="mb-0" style="text-align: justify;">{{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status}}</p>
+                                                                    </div>
                                                                 </div>
+
+                                                                @else
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        {{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status}} oleh {{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->validated}}
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                @endif
+
+                                                                @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status))
+                                                                @if($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status == 'diterima')
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
+                                                                        <p style="text-align: justify;">{{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->keterangan}}</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                @endif
+                                                                @endif
+
                                                             </div>
                                                         </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-1 fs-6">
-                                                                10.
-                                                            </div>
-                                                            <div class="col-11 fs-6 text-start">
-                                                                Kasubag Dokumentasi
-                                                                <div class="fs-7">
-                                                                    @if(isset($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status))
-                                                                    @if($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status == 'menunggu')
-                                                                    {{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status}} pada {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at))}} pukul {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at))}}
-                                                                    @else
-                                                                    {{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->status}} pada {{date('d-m-Y', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at))}} pukul {{date('H:i', strtotime($draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->updated_at))}} oleh {{$draft->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->validated}}
-                                                                    @endif
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        @endif
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
