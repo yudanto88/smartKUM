@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'superadmin',
+            'name' => 'Dwi',
             'email' => 'superadmin@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('superadmin'),
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'skpd',
+            'name' => 'Muhammad',
             'email' => 'skpd@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'admin_fo',
+            'name' => 'Nur',
             'email' => 'admin@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'staff_perundang_undangan',
+            'name' => 'Dewi',
             'email' => 'staff_u@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'kasubag_perundang_undangan',
+            'name' => 'Tri',
             'email' => 'kasubag_u@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'kabag',
+            'name' => 'Ahamad',
             'email' => 'kabag@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
@@ -89,7 +89,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'kepala_dinas',
+            'name' => 'Kurniawan',
             'email' => 'kepala_dinas@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
@@ -101,7 +101,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'sekda',
+            'name' => 'Putri',
             'email' => 'sekda@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
@@ -113,7 +113,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'walikota',
+            'name' => 'Ilham',
             'email' => 'walikota@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
@@ -125,7 +125,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'staff_dokumentasi',
+            'name' => 'Nurul',
             'email' => 'staff_d@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
@@ -137,7 +137,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'kasubag_dokumentasi',
+            'name' => 'Eko',
             'email' => 'kasubag_d@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),

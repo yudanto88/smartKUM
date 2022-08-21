@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped table-sm">
+                    <table class="table table-striped table-sm" id="tableUser">
                     <thead>
                         <tr class="text-center">
                         <th scope="col">No</th>
@@ -261,3 +261,11 @@
 		</script>
         @endsection
 @endif
+
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tableUser').DataTable();
+    } );
+</script>
+@endsection

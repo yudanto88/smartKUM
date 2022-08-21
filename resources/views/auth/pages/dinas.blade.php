@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped table-sm">
+                    <table class="table table-striped table-sm" id="tableDinas">
                     <thead>
                         <tr>
                         <th scope="col">No</th>
@@ -150,5 +150,13 @@
 		</script>
 	@endsection
 @endif
+
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tableDinas').DataTable();
+    } );
+</script>
+@endsection
 
 @endsection

@@ -15,7 +15,7 @@
                     <h1 class="h2">Produk Hukum</h1>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped table-sm">
+                    <table class="table table-striped table-sm" id="tableKasubagDokumentasi">
                         <thead>
                             <tr class="text-center">
                                 <th scope="col">No</th>
@@ -272,4 +272,13 @@
         </div>
     </div>
 </div>
+
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tableKasubagDokumentasi').DataTable();
+    } );
+</script>
+@endsection
+
 @endsection

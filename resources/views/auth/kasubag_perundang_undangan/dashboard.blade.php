@@ -15,7 +15,7 @@
                     <h1 class="h2">Daftar Pengajuan Produk Hukum</h1>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped table-sm">
+                    <table class="table table-striped table-sm" id="tableKasubagUndang">
                         <thead>
                             <tr class="text-center">
                                 <th scope="col">No</th>
@@ -803,4 +803,13 @@
         </div>
     </div>
 </div>
+
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tableKasubagUndang').DataTable();
+    } );
+</script>
+@endsection
+
 @endsection

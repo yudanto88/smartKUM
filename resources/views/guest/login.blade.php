@@ -57,6 +57,9 @@
           <div class="text-center">
             <p>or</p>
             <button class="btn btn-warning rounded-pill text-white fw-bold px-4" type="submit">sign in</button>
+            <div class="mt-3">
+              Cek status <a href="/status">disini</a>
+            </div>
           </div>
         </form>
       </div>
