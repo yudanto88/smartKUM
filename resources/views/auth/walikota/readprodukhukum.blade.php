@@ -181,7 +181,7 @@
         @endif
 
         @if($draft->status == 'menunggu')
-        <form action="/dashboard/walikota/process/{{$draft->id}}" method="post">
+        <form action="/dashboard/walikota/process/{{$draft->id}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-5 col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -220,6 +220,32 @@
         @endif
 
         @if($draft->status == 'ditolak' || $draft->status == 'diterima')
+        
+        @if(isset($draft->ttd_walikota))
+        <div class="row">
+            <div class="col-6">
+                <div class="fs-6 mt-3">
+                    TTD Walikota
+                </div>
+                <div class="row mt-2">
+                    <div class="col-11 col-sm-8 col-md-7 col-lg-8 col-xl-8 rounded-3 border-1 border border-dark px-2 py-2 ms-3" style="background-color: #e9ecef">
+                        <div class="row">
+                            <div class="col-1">
+                                <i class="fa-solid fa-file"></i>
+                            </div>
+                            <div class="col-10">
+                                <input type="text" value="{{ $draft->ttd_walikota }}" style="border: none; background-color: #e9ecef; width: 105%;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <a href="{{ asset('storage/' . $draft->ttd_walikota )}}" class="ms-2" style="vertical-align: -webkit-baseline-middle">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
         <div class="d-grid gap-2 mt-4 mb-4">
             <a href="/dashboard" class="btn btn-secondary">Kembali</a>
         </div>

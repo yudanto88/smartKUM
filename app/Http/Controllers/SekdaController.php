@@ -59,7 +59,7 @@ class SekdaController extends Controller
 
                 $searchDraftWalikota = Walikota::where('sekda_id', $searchDraft->id)->first();
 
-                if (isset($searchDraft->persetujuan)) {
+                if (isset($searchDraft->persetujuan) && isset($request->persetujuan)) {
                     Storage::delete($searchDraft->persetujuan);
                 }
 

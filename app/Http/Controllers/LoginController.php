@@ -42,8 +42,23 @@ class LoginController extends Controller
     }
 
     public function status(){
-        return view('guest.status', [
-            'draft' => Draft::all(),
-        ]);
+        return view('guest.status');
+    }
+
+    public function searchstatus(Request $request){
+        $draft = Draft::where('no_regristrasi', $request->status)->first();
+
+        if(isset($draft)){
+            return view('guest.status',[
+                'draft' => $draft,
+                $request->session()->flash('success', 'No Registrasi ditemukan'),
+            ]);
+
+            // return redirect('/status')->with('draft', $draft);
+        }else{
+            $request->session()->flash('error', 'No Registrasi tidak ditemukan');
+
+            return redirect('/status');
+        }
     }
 }

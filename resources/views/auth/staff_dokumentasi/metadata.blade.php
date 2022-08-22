@@ -9,43 +9,43 @@
         <form action="/dashboard/staffd/process/{{$draft->id}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="fs-6">
-                No & Tahun
+                Nomor
             </div>
 
             @if(isset($draft->produkHukum->no_tahun))
             <input type="text" class="form-control input @error('no_tahun') is-invalid @enderror mt-2" 
             name="no_tahun" id="no_tahun" value="{{ old('no_tahun', $draft->produkHukum->no_tahun) }}">
             @else
-            <input type="text" class="form-control input @error('no_tahun') is-invalid @enderror mt-2" 
+            <input type="number" class="form-control input @error('no_tahun') is-invalid @enderror mt-2" 
             name="no_tahun" id="no_tahun" value="{{ old('no_tahun') }}">
             @endif
 
-            @error('no_tahun')
+            @error('nomor')
                 <div class="text-danger">
                     <small>{{ $message }}</small> 
                 </div>
             @enderror
 
             <div class="fs-6 mt-3">
-                Tentang
+                Tahun
             </div>
 
             @if(isset($draft->produkHukum->tentang))
             <input type="text" class="form-control input mt-2" name="tentang" id="tentang" 
             value="{{  old('tentang', $draft->produkHukum->tentang) }}">
             @else
-            <input type="text" class="form-control input mt-2" name="tentang" id="tentang" 
+            <input type="number" class="form-control input mt-2" name="tentang" id="tentang" 
             value="{{  old('tentang', $draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->judul) }}">
             @endif
 
-            @error('tentang')
+            @error('tahun')
                 <div class="text-danger">
                     <small>{{ $message }}</small> 
                 </div>
             @enderror
 
             <div class="fs-6 mt-3">
-                Subjek
+                Judul
             </div>
 
             @if(isset($draft->produkHukum->subjek))
@@ -56,7 +56,25 @@
             value="{{ old('subjek', $draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->jenis) }}">
             @endif
 
-            @error('subjek')
+            @error('judul')
+                <div class="text-danger">
+                    <small>{{ $message }}</small> 
+                </div>
+            @enderror
+
+            <div class="fs-6 mt-3">
+                SKPD Pemrakarsa
+            </div>
+
+            @if(isset($draft->produkHukum->subjek))
+            <input type="text" class="form-control input mt-2" name="subjek" id ="subjek" 
+            value="{{ old('subjek', $draft->produkHukum->subjek) }}">
+            @else
+            <input type="text" class="form-control input mt-2" name="subjek" id ="subjek" 
+            value="{{ old('subjek', $draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->jenis) }}">
+            @endif
+
+            @error('pemrakarsa')
                 <div class="text-danger">
                     <small>{{ $message }}</small> 
                 </div>

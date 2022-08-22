@@ -51,11 +51,7 @@
             @enderror
           </div>
 
-          <div class="mt-4 d-grid gap-2 mb-3">
-            <button class="btn btn-success rounded-pill fw-bold" type="button">sign in with google <i class="fa-brands fa-google"></i></button>
-          </div>
-          <div class="text-center">
-            <p>or</p>
+          <div class="text-center mt-5 d-grid gap-2">
             <button class="btn btn-warning rounded-pill text-white fw-bold px-4" type="submit">sign in</button>
             <div class="mt-3">
             </div>

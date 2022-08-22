@@ -15,11 +15,19 @@ return new class extends Migration
     {
         Schema::create('produk_hukums', function (Blueprint $table) {
             $table->id();
-            $table->string('no_tahun');
-            $table->string('tentang');
-            $table->string('subjek');
+            $table->Integer('nomor');
+            $table->Integer('tahun');
+            $table->string('judul');
+            $table->string('pemrakarsa');
+            $table->string('status_dokumen');
             $table->string('status');
+            $table->string('jenis');
+            $table->string('subjek');
+            $table->string('sumber');
+            $table->string('no_regristrasi');
+            $table->string('bidang_hukum');
             $table->date('tanggal_pengundangan');
+            $table->boolean('publikasi')->default(0);
             $table->string('ttd_walikota_salinan')->nullable();
             $table->string('validated')->nullable();
             $table->foreignId('staff_dokumentasi_id');

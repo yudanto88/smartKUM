@@ -37,6 +37,7 @@ Route::post('/login',[LoginController::class,'authenticate']);
 Route::post('/logout',[LoginController::class,'logout']);
 
 Route::get('/status',[LoginController::class,'status']);
+Route::post('/status',[LoginController::class,'searchstatus']);
 
 Route::get('/dashboard',[DashboardController::class,'index'])->middleware('auth');
 

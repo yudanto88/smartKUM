@@ -62,6 +62,18 @@ class WalikotaController extends Controller
 
                 $searchDraft = Walikota::find($request->id);
 
+                if (isset($searchDraft->ttd_walikota) && isset($request->ttd_walikota)) {
+                    Storage::delete($searchDraft->ttd_walikota);
+                }
+
+                if (isset($request->ttd_walikota)) {
+                    $ttdWalikota = $request->file('ttd_walikota')->store('file-ttdWalikota');
+
+                    DB::table('walikotas')->where('id', $request->id)->update([
+                        'ttd_walikota' => $ttdWalikota,
+                    ]);
+                }
+
                 DB::table('walikotas')->where('id', $request->id)->update([
                     'status' => 'diterima',
                     'keterangan' => $request->keterangan,

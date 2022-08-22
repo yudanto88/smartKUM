@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('staff_dokumentasis', function (Blueprint $table) {
             $table->id();
             $table->string('status');
-            $table->string('ttd_walikota')->nullable();
             $table->text('keterangan')->nullable();
             $table->text('keterangan_penolakan')->nullable();
             $table->string('validated')->nullable();

@@ -22,7 +22,6 @@ return new class extends Migration
             $table->bigInteger('nip')->unique()->nullable();
             $table->foreignId('dinas_id');
             $table->foreignId('role_id');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
