@@ -27,7 +27,7 @@
                         <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="text-center">
+                    <tbody>
                         @foreach($staff_dokumentasi->where('alur',0) as $draft)
                         @if(isset($draft->produkHukum))
                         <tr>

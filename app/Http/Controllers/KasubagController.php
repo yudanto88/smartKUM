@@ -108,7 +108,7 @@ class KasubagController extends Controller
             case 'proses':
                 $searchDraft = ProdukHukum::find($request->id);
 
-                if(isset($searchDraft->staffDokumentasi->walikota_id)){
+                if($searchDraft->staffDokumentasi->alur == 1){
                     $searchDraftStaffDokumentasi = StaffDokumentasi::where('id', $searchDraft->staff_dokumentasi_id)->first();
 
                     $searchDraftWalikota = Walikota::where('id', $searchDraftStaffDokumentasi->walikota_id)->first();
@@ -128,6 +128,7 @@ class KasubagController extends Controller
                     DB::table('produk_hukums')->where('id', $request->id)->update([
                         'status' => 'diterima',
                         'validated' => Auth::user()->name,
+                        'publikasi' => 1,
                         'updated_at' => now()
                     ]);
     
@@ -139,6 +140,7 @@ class KasubagController extends Controller
                     DB::table('produk_hukums')->where('id', $request->id)->update([
                         'status' => 'diterima',
                         'validated' => Auth::user()->name,
+                        'publikasi' => 1,
                         'updated_at' => now()
                     ]);
                 }
@@ -153,6 +155,12 @@ class KasubagController extends Controller
     public function readprodukhukum2(Request $request, ProdukHukum $draft){
         return view('auth.kasubag_dokumentasi.readprodukhukum',[
             'draft' => $draft::find($request->id),
+        ]);
+    }
+
+    public function publikasi(Request $request, ProdukHukum $draft){
+        return view('auth.kasubag_dokumentasi.publikasi',[
+            'draft' => $draft::all(),
         ]);
     }
 }

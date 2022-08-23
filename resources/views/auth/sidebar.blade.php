@@ -42,6 +42,15 @@
             </li>
             @endcan
 
+            @can('kasubag_dokumentasi')
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/kasubagd/publikasi') ? 'active' : '' }}" aria-current="page" href="/dashboard/kasubagd/publikasi">
+                    <span class="align-text-bottom"><i class="fa-solid fa-table-columns"></i></span>
+                    Publikasi
+                </a>
+            </li>
+            @endcan
+
             @can('superadmin')
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">

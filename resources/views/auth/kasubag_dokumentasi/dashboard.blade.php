@@ -18,31 +18,37 @@
                     <table class="table table-striped table-sm" id="tableKasubagDokumentasi">
                         <thead>
                             <tr class="text-center">
-                                <th scope="col">No</th>
-                                <th scope="col">No dan Tahun</th>
-                                <th scope="col">tentang</th>
-                                <th scope="col">Subjek</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Tanggal Pengundangan</th>
-                                <th scope="col">Action</th>
+                            <th scope="col">Nomor</th>
+                            <th scope="col">Tahun</th>
+                            <th scope="col">Judul</th>
+                            <th scope="col">Keterangan Dokumen</th>
+                            <th scope="col">Jenis</th>
+                            <th scope="col">Tanggal Pengundangan</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="text-center">
-                            @foreach($produk_hukums as $draft)
+                        <tbody>
+                            @foreach($produk_hukums->where('alur',0) as $draft)
                             <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$draft->no_tahun}}</td>
-                                <td>{{$draft->tentang}}</td>
-                                <td>{{$draft->subjek}}</td>
-                                <td>{{$draft->status}}</td>
+                                <td>{{$draft->nomor}}</td>
+                                <td>{{$draft->tahun}}</td>
+                                <td>{{$draft->judul}}</td>
+                                @if($draft->status_dokumen == 'mengganti')
+                                <td>{{$draft->status_dokumen}} dokumen {{$draft->mengganti}}</td>
+                                @else
+                                <td>{{$draft->status_dokumen}}</td>
+                                @endif
+                                <td>{{$draft->jenis}}</td>
                                 <td>{{date('d-m-Y', strtotime($draft->tanggal_pengundangan))}}</td>
+                                <td>{{$draft->status}}</td>
                                 <td>
                                     <div class="mx-auto">
                                         <button type="button" class="badge bg-warning border-0" data-bs-toggle="modal" data-bs-target="#trayek{{$draft->id}}">
                                             trayek
                                         </button>
 
-                                        @if(isset($draft->staffDokumentasi->walikota_id))
+                                        @if($draft->staffDokumentasi->alur== 1)
                                         <!-- Modal Trayek -->
                                         <div class="modal fade" id="trayek{{$draft->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
