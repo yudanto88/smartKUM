@@ -28,7 +28,7 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        @foreach($staff_dokumentasi->whereNotNull('walikota_id') as $draft)
+                        @foreach($staff_dokumentasi->where('alur',1) as $draft)
                         <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->no_regristrasi}}</td>

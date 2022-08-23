@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('produk_hukums', function (Blueprint $table) {
             $table->id();
-            $table->Integer('nomor');
-            $table->Integer('tahun');
+            $table->integer('nomor');
+            $table->integer('tahun');
             $table->string('judul');
             $table->string('pemrakarsa');
             $table->string('status_dokumen');
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('sumber');
             $table->string('no_regristrasi');
             $table->string('bidang_hukum');
+            $table->string('mengganti')->nullable();
             $table->date('tanggal_pengundangan');
             $table->boolean('publikasi')->default(0);
             $table->string('ttd_walikota_salinan')->nullable();

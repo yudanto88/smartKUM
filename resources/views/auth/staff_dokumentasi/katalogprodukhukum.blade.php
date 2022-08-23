@@ -18,24 +18,28 @@
                     <table class="table table-striped table-sm" id="tableKatalog">
                     <thead>
                         <tr class="text-center">
-                        <th scope="col">No</th>
-                        <th scope="col">No dan Tahun</th>
-                        <th scope="col">tentang</th>
-                        <th scope="col">Subjek</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Nomor</th>
+                        <th scope="col">Tahun</th>
+                        <th scope="col">Judul</th>
+                        <th scope="col">Keterangan Dokumen</th>
+                        <th scope="col">Jenis</th>
                         <th scope="col">Tanggal Pengundangan</th>
                         <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        @foreach($staff_dokumentasi->whereNull('walikota_id') as $draft)
+                        @foreach($staff_dokumentasi->where('alur',0) as $draft)
                         @if(isset($draft->produkHukum))
                         <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$draft->produkHukum->no_tahun}}</td>
-                        <td>{{$draft->produkHukum->tentang}}</td>
-                        <td>{{$draft->produkHukum->subjek}}</td>
-                        <td>{{$draft->produkHukum->status}}</td>
+                        <td>{{$draft->produkHukum->nomor}}</td>
+                        <td>{{$draft->produkHukum->tahun}}</td>
+                        <td>{{$draft->produkHukum->judul}}</td>
+                        @if($draft->produkHukum->status_dokumen == 'mengganti')
+                        <td>{{$draft->produkHukum->status_dokumen}} dokumen {{$draft->produkHukum->mengganti}}</td>
+                        @else
+                        <td>{{$draft->produkHukum->status_dokumen}}</td>
+                        @endif
+                        <td>{{$draft->produkHukum->jenis}}</td>
                         <td>{{date('d-m-Y', strtotime($draft->produkHukum->tanggal_pengundangan))}}</td>
                         <td>
                             <div class="mx-auto">

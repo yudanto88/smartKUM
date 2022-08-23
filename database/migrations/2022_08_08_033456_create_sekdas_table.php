@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('persetujuan')->nullable();
             $table->text('keterangan')->nullable();
             $table->string('validated')->nullable();
-            $table->foreignId('kepala_dinas_id');
+            $table->foreignId('kepala_dinas_id')->nullable();;
             $table->timestamps();
         });
     }

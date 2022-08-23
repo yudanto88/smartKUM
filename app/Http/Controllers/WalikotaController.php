@@ -85,6 +85,7 @@ class WalikotaController extends Controller
                     'status' => 'menunggu',
                     // 'draft_id' => $searchDraft->draft->draft_id,
                     'walikota_id' => $request->id,
+                    'alur' => 1,
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);

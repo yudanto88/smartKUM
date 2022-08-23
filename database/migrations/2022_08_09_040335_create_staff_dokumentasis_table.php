@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('keterangan_penolakan')->nullable();
             $table->string('validated')->nullable();
             $table->foreignId('walikota_id')->nullable();
+            $table->boolean('alur')->default(0);
             $table->timestamps();
         });
     }

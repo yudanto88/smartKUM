@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('ttd_walikota')->nullable();
             $table->text('keterangan')->nullable();
             $table->string('validated')->nullable();
-            $table->foreignId('sekda_id');
+            $table->foreignId('sekda_id')->nullable();;
             $table->timestamps();
         });
     }
