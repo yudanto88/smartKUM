@@ -104,9 +104,19 @@
                                                                         <i class="fa-solid fa-angle-right"></i>
                                                                     </div>
                                                                     <div class="col ps-0">
+                                                                        <p class="mb-1" style="text-align: justify;">{{$draft->status}} oleh {{$draft->draft_admins->staffUndang->kasubagUndang->kabag->kepalaDinas->sekda->walikota->staffDokumentasi->produkHukum->validated}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                @if($draft->keterangan != NULL)
+                                                                <div class="row">
+                                                                    <div class="col-1 pe-0">
+                                                                        <i class="fa-solid fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col ps-0">
                                                                         <p class="mb-1" style="text-align: justify;">{{$draft->keterangan}}</p>
                                                                     </div>
                                                                 </div>
+                                                                @endif
                                                                 @endif
 
                                                                 @if($draft->status == 'ditolak')

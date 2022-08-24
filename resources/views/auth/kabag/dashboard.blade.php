@@ -27,7 +27,7 @@
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="text-center">
+                        <tbody class="">
                             @foreach($kabag as $draft)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
