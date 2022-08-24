@@ -136,6 +136,11 @@ class KasubagController extends Controller
                         'status' => 'diterima',
                         'updated_at' => now()
                     ]);
+
+                    DB::table('produk_hukums')>where('judul', $request->mengganti)->update([
+                        'status_dokumen' => 'dicabut',
+                        'updated_at' => now()
+                    ]);
                 }else{
                     DB::table('produk_hukums')->where('id', $request->id)->update([
                         'status' => 'diterima',

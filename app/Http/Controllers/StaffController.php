@@ -339,12 +339,6 @@ class StaffController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
-        DB::table('produk_hukums')->where('judul', $mengganti)->update([
-            'status_dokumen' => 'dicabut',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
         
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         
