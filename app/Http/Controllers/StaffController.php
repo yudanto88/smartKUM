@@ -237,6 +237,12 @@ class StaffController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
+
+            DB::table('produk_hukums')->where('judul', $mengganti)->update([
+                'status_dokumen' => 'dicabut',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
         }
 
         $request->session()->flash('success', 'Data berhasil diproses');
@@ -336,6 +342,12 @@ class StaffController extends Controller
             'tanggal_pengundangan' => $request->tanggal_pengundangan,
             'ttd_walikota_salinan' => $ttdWalikotaSalinan,
             'staff_dokumentasi_id' => DB::getPdo()->lastInsertId(),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('produk_hukums')->where('judul', $mengganti)->update([
+            'status_dokumen' => 'dicabut',
             'created_at' => now(),
             'updated_at' => now()
         ]);
