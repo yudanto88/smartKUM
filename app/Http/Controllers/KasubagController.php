@@ -143,6 +143,11 @@ class KasubagController extends Controller
                         'publikasi' => 1,
                         'updated_at' => now()
                     ]);
+
+                    DB::table('produk_hukums')>where('judul', $request->mengganti)->update([
+                        'status_dokumen' => 'dicabut',
+                        'updated_at' => now()
+                    ]);
                 }
                 
                 $request->session()->flash('success', 'Data berhasil diproses');

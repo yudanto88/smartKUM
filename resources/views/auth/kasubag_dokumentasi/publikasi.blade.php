@@ -18,6 +18,7 @@
                     <table class="table table-striped table-sm" id="tableKasubagDokumentasi">
                         <thead>
                             <tr class="text-center">
+                            <th scope="col">No</th>
                             <th scope="col">Nomor</th>
                             <th scope="col">Tahun</th>
                             <th scope="col">Judul</th>
@@ -31,6 +32,7 @@
                         <tbody>
                             @foreach($draft->where('publikasi',1) as $draft)
                             <tr>
+                                <td>{{$loop->iteration}}</td>
                                 <td>{{$draft->nomor}}</td>
                                 <td>{{$draft->tahun}}</td>
                                 <td>{{$draft->judul}}</td>

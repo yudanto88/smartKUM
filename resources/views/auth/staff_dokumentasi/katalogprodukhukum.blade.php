@@ -18,6 +18,7 @@
                     <table class="table table-striped table-sm" id="tableKatalog">
                     <thead>
                         <tr class="text-center">
+                        <th scope="col">No</th>
                         <th scope="col">Nomor</th>
                         <th scope="col">Tahun</th>
                         <th scope="col">Judul</th>
@@ -31,6 +32,7 @@
                         @foreach($staff_dokumentasi->where('alur',0) as $draft)
                         @if(isset($draft->produkHukum))
                         <tr>
+                        <td>{{$loop->iteration}}</td>
                         <td>{{$draft->produkHukum->nomor}}</td>
                         <td>{{$draft->produkHukum->tahun}}</td>
                         <td>{{$draft->produkHukum->judul}}</td>
