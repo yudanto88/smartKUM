@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function() {
 // Superadmin
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/dashboard/jenis',[SuperAdminController::class,'jenis']);
+    Route::get('/dashboard/user',[SuperAdminController::class,'user']);
     Route::get('/dashboard/dinas',[SuperAdminController::class,'dinas']);
     Route::post('/dashboard/addUser',[SuperAdminController::class,'addUser']);
     Route::put('/dashboard/editUser/{id}',[SuperAdminController::class,'editUser']);

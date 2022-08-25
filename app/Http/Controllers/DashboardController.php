@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Jenis;
 use App\Models\Dinas;
 use App\Models\Draft;
 use App\Models\Admin;
@@ -29,10 +30,11 @@ class DashboardController extends Controller
         if (Auth::user()->role->role == '-'){
             return view('auth.newuser.dashboard');
         } else if(Auth::user()->role->role == 'superadmin') {
-            return view('auth.pages.user', [
+            return view('auth.pages.dashboard', [
                 'users' => User::all(),
-                'role' => Role::all(),
-                'dinas' => Dinas::all()
+                'dinas' => Dinas::all(),
+                'draft' => Draft::all(),
+                'jenis' => Jenis::all(),
             ]);
         } else if(Auth::user()->role->role == 'skpd'){
             return view('auth.skpd.dashboard', [

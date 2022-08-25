@@ -1,7 +1,7 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
-            @canany(['newuser','skpd','admin_fo','staff_perundang_undangan',
+            @canany(['newuser','superadmin','skpd','admin_fo','staff_perundang_undangan',
             'kasubag_perundang_undangan','kabag','kepala_dinas','sekda','walikota',
             'kasubag_dokumentasi'])
             <li class="nav-item">
@@ -53,7 +53,7 @@
 
             @can('superadmin')
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
+                <a class="nav-link {{ Request::is('dashboard/user') ? 'active' : '' }}" aria-current="page" href="/dashboard/user">
                     <span class="align-text-bottom"><i class="fa-solid fa-user-group"></i></span>
                     User
                 </a>
