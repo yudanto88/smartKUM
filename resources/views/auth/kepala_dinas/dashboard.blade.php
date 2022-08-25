@@ -758,6 +758,7 @@
                                                 @endif
 
                                                 @elseif($draft->sekda->status == 'ditolak')
+                                                @if($draft->keterangan_penolakan != NULL)
                                                 <div class="row">
                                                     <div class="col-1 pe-0">
                                                         <i class="fa-solid fa-angle-right"></i>
@@ -766,18 +767,10 @@
                                                         <p class="mb-1" style="text-align: justify;">{{$draft->keterangan_penolakan}}</p>
                                                     </div>
                                                 </div>
-
-                                                @elseif($draft->sekda->status == 'ditolak')
-                                                <div class="row">
-                                                    <div class="col-1 pe-0">
-                                                        <i class="fa-solid fa-angle-right"></i>
-                                                    </div>
-                                                    <div class="col ps-0">
-                                                        <p class="mb-1" style="text-align: justify;">{{$draft->keterangan_penolakan}}</p>
-                                                    </div>
-                                                </div>
-
+                                                @endif
+                                                
                                                 @elseif($draft->sekda->status == 'ditolak oleh walikota')
+                                                @if($draft->keterangan_penolakan != NULL)
                                                 <div class="row">
                                                     <div class="col-1 pe-0">
                                                         <i class="fa-solid fa-angle-right"></i>
@@ -786,6 +779,7 @@
                                                         <p class="mb-1" style="text-align: justify;">{{$draft->keterangan_penolakan}}</p>
                                                     </div>
                                                 </div>
+                                                @endif
                                                 @endif
                                                 @endif
 
