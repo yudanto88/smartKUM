@@ -6,12 +6,13 @@
 
 @section('content')
 <div class="container">
-  <div class="row mt-5">
+  <div class="row mt-5 mb-5">
     <div class="col-10 col-sm-10 col-md-10 col-lg-12 mx-auto position-relative bg-light rounded p-3">
     <div class="row">
       <div class="col">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 class="h2"> Publikasi Produk Hukum</h1>
+            <img src="/img/bg/logo_jdih.png" alt="logo_jdih" class="p-2">
+              <h1 class="h2 me-5"> Daftar Katalog Produk Hukum Kota Batu</h1>
           </div>
           <div class="table-responsive">
               <table class="table table-striped table-sm" id="tableKasubagDokumentasi">
@@ -24,12 +25,11 @@
                       <th scope="col">Keterangan Dokumen</th>
                       <th scope="col">Jenis</th>
                       <th scope="col">Tanggal Pengundangan</th>
-                      <th scope="col">Status</th>
                       <th scope="col">Action</th>
                       </tr>
                   </thead>
                   <tbody>
-                      @foreach($draft->where('publikasi',1) as $draft)
+                      @foreach($draft->where('publikasi',1)->sortDesc() as $draft)
                       <tr>
                           <td>{{$loop->iteration}}</td>
                           <td>{{$draft->nomor}}</td>
@@ -42,7 +42,6 @@
                           @endif
                           <td>{{$draft->jenis}}</td>
                           <td>{{date('d-m-Y', strtotime($draft->tanggal_pengundangan))}}</td>
-                          <td>{{$draft->status}}</td>
                           <td>
                               <div class="mx-auto">
                                 <a href="/dashboard/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>
