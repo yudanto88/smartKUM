@@ -12,7 +12,7 @@
       <div class="col">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <img src="/img/bg/logo_jdih.png" alt="logo_jdih" class="p-2">
-              <h1 class="h2 me-5"> Daftar Katalog Produk Hukum Kota Batu</h1>
+              <h1 class="h2 pe-2"> Daftar Katalog Produk Hukum Kota Batu</h1>
           </div>
           <div class="table-responsive">
               <table class="table table-striped table-sm" id="tableKasubagDokumentasi">

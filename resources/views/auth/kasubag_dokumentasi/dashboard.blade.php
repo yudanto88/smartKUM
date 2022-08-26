@@ -30,7 +30,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($produk_hukums->where('alur',0) as $draft)
+                            @foreach($produk_hukums->where('alur',0)->sortDesc() as $draft)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$draft->nomor}}</td>

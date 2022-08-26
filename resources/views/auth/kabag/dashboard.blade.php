@@ -28,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody class="">
-                            @foreach($kabag as $draft)
+                            @foreach($kabag->sortDesc() as $draft)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$draft->kasubagUndang->staffUndang->admin->draft->no_regristrasi}}</td>

@@ -28,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody class="">
-                            @foreach($admins as $draft)
+                            @foreach($admins->sortDesc() as $draft)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$draft->draft->no_regristrasi}}</td>

@@ -29,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($staff_dokumentasi->where('alur',0) as $draft)
+                        @foreach($staff_dokumentasi->where('alur',0)->sortDesc() as $draft)
                         @if(isset($draft->produkHukum))
                         <tr>
                         <td>{{$loop->iteration}}</td>

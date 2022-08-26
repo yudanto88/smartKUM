@@ -28,7 +28,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($staff_dokumentasi->where('alur',1) as $draft)
+                        @foreach($staff_dokumentasi->where('alur',1)->sortDesc() as $draft)
                         <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$draft->walikota->sekda->kepalaDinas->kabag->kasubagUndang->staffUndang->admin->draft->no_regristrasi}}</td>

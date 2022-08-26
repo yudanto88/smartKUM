@@ -30,7 +30,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($draft->where('publikasi',1) as $draft)
+                            @foreach($draft->where('publikasi',1)->sortDesc() as $draft)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$draft->nomor}}</td>
