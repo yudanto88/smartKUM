@@ -45,14 +45,7 @@
                                 <td>{{$draft->status}}</td>
                                 <td>
                                     <div class="mx-auto">
-
-                                        @if($draft->status == 'menunggu')
-                                        <a href="/dashboard/kasubagd/editprodukhukum/{{$draft->id}}" class="badge bg-info border-0 text-decoration-none">edit</a>
-                                        @endif
-
-                                        @if($draft->status == 'diterima' || $draft->status == 'ditolak')
-                                        <a href="/dashboard/kasubagd/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>
-                                        @endif
+                                      <a href="/dashboard/readprodukhukum/{{$draft->id}}" class="badge bg-primary border-0 text-decoration-none">lihat</a>
                                     </div>
                                 </td>
                             </tr>

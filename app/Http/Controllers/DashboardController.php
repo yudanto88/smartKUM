@@ -145,4 +145,10 @@ class DashboardController extends Controller
             'draft' => ProdukHukum::all(),
         ]);
     }
+
+    public function readprodukhukum(Request $request, ProdukHukum $draft){
+        return view('guest.readprodukhukum',[
+            'draft' => $draft::find($request->id),
+        ]);
+    }
 }

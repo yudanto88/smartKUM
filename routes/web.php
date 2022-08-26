@@ -33,6 +33,7 @@ Route::get('/', function () {
 })->middleware('guest');
 
 Route::get('/beranda',[DashboardController::class,'dashboard'])->middleware('guest');
+Route::get('/dashboard/readprodukhukum/{id}',[DashboardController::class,'readprodukhukum'])->middleware('guest');
 
 Route::get('/register',[RegisterController::class,'index'])->middleware('guest');
 Route::post('/register',[RegisterController::class,'store']);
