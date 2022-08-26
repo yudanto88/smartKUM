@@ -139,4 +139,10 @@ class DashboardController extends Controller
     
         return redirect('/dashboard/profile');
     }
+
+    public function dashboard() {
+        return view('guest.dashboard', [
+            'draft' => ProdukHukum::all(),
+        ]);
+    }
 }

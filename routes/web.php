@@ -13,6 +13,7 @@ use App\Http\Controllers\KabagController;
 use App\Http\Controllers\KepalaDinasController;
 use App\Http\Controllers\SekdaController;
 use App\Http\Controllers\WalikotaController;
+use App\Models\ProdukHukum;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,12 @@ use App\Http\Controllers\WalikotaController;
 */
 
 Route::get('/', function () {
-    return view('guest.login');
+    return view('guest.dashboard',[
+        'draft' => ProdukHukum::all(),
+    ]);
 })->middleware('guest');
+
+Route::get('/beranda',[DashboardController::class,'dashboard'])->middleware('guest');
 
 Route::get('/register',[RegisterController::class,'index'])->middleware('guest');
 Route::post('/register',[RegisterController::class,'store']);

@@ -9,6 +9,9 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item active me-4">
+					<a class="nav-link text-white " href="/beranda"><i class="fa-solid fa-table-columns pe-2"></i>Dashboard</a>
+				</li>
+				<li class="nav-item active me-4">
 					<a class="nav-link text-white " href="/login"><i class="fa-solid fa-right-to-bracket pe-2"></i>Login</a>
 				</li>
 				<li class="nav-item active me-3">
