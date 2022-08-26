@@ -1,7 +1,14 @@
-@extends('auth.main')
+@extends('guest.main')
+
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/login.css') }}">
+@endsection
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-10 col-sm-10 col-md-10 col-lg-12 mx-auto position-relative bg-light rounded p-3">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Metadata</h1>
 </div>
 <div class="row">
@@ -175,4 +182,7 @@
         </div>
     </div>
 </div>
+  </div>
+</div>
+
 @endsection
