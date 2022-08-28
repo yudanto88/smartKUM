@@ -48,20 +48,31 @@
         </div>
         <input type="text" class="form-control input mt-2" value="{{ $draft->jenis }}" readonly>
 
+        @if(isset($draft->subjek))
         <div class="fs-6 mt-3">
             Subjek
         </div>
         <input type="text" class="form-control input mt-2" value="{{ $draft->subjek }}" readonly>
+        @endif
+
+        @if(isset($draft->sumber))
+        <div class="fs-6 mt-3">
+            Sumber
+        </div>
+        <input type="text" class="form-control input mt-2" value="{{ $draft->sumber }}" readonly>
+        @endif
 
         <div class="fs-6 mt-3">
             No Regristrasi
         </div>
         <input type="text" class="form-control input mt-2" value="{{ $draft->no_regristrasi }}" readonly>
 
+        @if(isset($draft->bidang_hukum))
         <div class="fs-6 mt-3">
             Bidang Hukum
         </div>
         <input type="text" class="form-control input mt-2" value="{{ $draft->bidang_hukum }}" readonly>
+        @endif
 
          <div class="row">
             <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
@@ -77,6 +88,7 @@
         </div>
         <textarea type="text" class="form-control input mt-2" style="height:100px" readonly>{{ $draft->staffDokumentasi->keterangan }}</Textarea>
 
+        @if(isset($draft->staffDokumentasi->walikota->sekda->persetujuan))
         <div class="row">
             <div class="col-6">
                 <div class="fs-6 mt-3">
@@ -99,7 +111,9 @@
                 </div>
             </div>
         </div>
+        @endif
 
+        @if(isset($draft->staffDokumentasi->walikota->ttd_walikota))
         <div class="row">
             <div class="col-6">
                 <div class="fs-6 mt-3">
@@ -122,6 +136,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         <div class="row">
             <div class="col-6">

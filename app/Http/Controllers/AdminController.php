@@ -40,9 +40,10 @@ class AdminController extends Controller
                 break;
             case 'proses':
                 $request-> validate([
-                    'no_regristrasi' => 'required',
+                    'no_regristrasi' => 'required|unique:drafts,no_regristrasi',
                 ], [
                     'no_regristrasi.required' => 'No Registrasi tidak boleh kosong',
+                    'no_regristrasi.unique' => 'No Registrasi sudah terdaftar',
                 ]);
 
                 $searchDraft = Admin::find($request->id);

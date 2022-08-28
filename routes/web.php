@@ -129,6 +129,7 @@ Route::middleware(['auth', 'role:staff_dokumentasi'])->group(function (){
     Route::get('/dashboard/staffd/readprodukhukum/{id}',[StaffController::class,'readprodukhukum2']);
     Route::get('/dashboard/staffd/metadata/{id}',[StaffController::class,'next']);
     Route::post('/dashboard/staffd/process/{id}',[StaffController::class,'process']);
+    Route::post('/dashboard/staffd/editmetadata/{id}',[StaffController::class,'editmetadata']);
     Route::get('/dashboard/staffd/addprodukhukum',[StaffController::class,'addprodukhukum']);
     Route::post('/dashboard/staffd/addprodukhukum',[StaffController::class,'storeprodukhukum']);
 });

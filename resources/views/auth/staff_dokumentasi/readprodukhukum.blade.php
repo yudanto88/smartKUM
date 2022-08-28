@@ -48,20 +48,31 @@
         </div>
         <input type="text" class="form-control input mt-2" value="{{ $draft->produkHukum->jenis }}" readonly>
 
+        @if(isset($draft->produkHukum->subjek))
         <div class="fs-6 mt-3">
             Subjek
         </div>
         <input type="text" class="form-control input mt-2" value="{{ $draft->produkHukum->subjek }}" readonly>
+        @endif
+
+        @if(isset($draft->produkHukum->sumber))
+        <div class="fs-6 mt-3">
+            Sumber
+        </div>
+        <input type="text" class="form-control input mt-2" value="{{ $draft->produkHukum->sumber }}" readonly>
+        @endif
 
         <div class="fs-6 mt-3">
             No Regristrasi
         </div>
         <input type="text" class="form-control input mt-2" value="{{ $draft->produkHukum->no_regristrasi }}" readonly>
 
+        @if(isset($draft->produkHukum->bidang_hukum))
         <div class="fs-6 mt-3">
             Bidang Hukum
         </div>
         <input type="text" class="form-control input mt-2" value="{{ $draft->produkHukum->bidang_hukum }}" readonly>
+        @endif
 
          <div class="row">
             <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
@@ -69,9 +80,10 @@
                     Tanggal Pengundangan
                 </div>
                 <input type="date" class="form-control input mt-2" value="{{ $draft->produkHukum->tanggal_pengundangan }}" readonly>
-                </div> 
-            </div>
+            </div> 
+        </div>
 
+        @if(isset($draft->walikota->sekda->persetujuan))
         <div class="row">
             <div class="col-6">
                 <div class="fs-6 mt-3">
@@ -94,7 +106,9 @@
                 </div>
             </div>
         </div>
+        @endif
 
+        @if(isset($draft->walikota->ttd_walikota))
         <div class="row">
             <div class="col-6">
                 <div class="fs-6 mt-3">
@@ -117,6 +131,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         <div class="row">
             <div class="col-6">
@@ -141,9 +156,16 @@
             </div>
         </div>
 
+        @if($draft->alur == 1)
         <div class="d-grid gap-2 mt-4 mb-4">
             <a href="/dashboard" class="btn btn-secondary">Kembali</a>
         </div>
+        @elseif($draft->alur == 0)
+        <div class="d-grid gap-2 mt-4 mb-4">
+            <a href="/dashboard/katalogprodukhukum" class="btn btn-secondary">Kembali</a>
+        </div>
+        @endif
+        
     </div>
 </div>
 @endsection

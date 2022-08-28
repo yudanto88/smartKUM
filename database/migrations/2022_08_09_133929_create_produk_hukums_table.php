@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('status_dokumen');
             $table->string('status');
             $table->string('jenis');
-            $table->string('subjek');
-            $table->string('sumber');
+            $table->string('subjek')->nullable();
+            $table->string('sumber')->nullable();
             $table->string('no_regristrasi');
-            $table->string('bidang_hukum');
+            $table->string('bidang_hukum')->nullable();
             $table->string('mengganti')->nullable();
             $table->date('tanggal_pengundangan');
             $table->boolean('publikasi')->default(0);

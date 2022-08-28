@@ -25,6 +25,7 @@
                         <th scope="col">Keterangan Dokumen</th>
                         <th scope="col">Jenis</th>
                         <th scope="col">Tanggal Pengundangan</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -43,6 +44,7 @@
                         @endif
                         <td>{{$draft->produkHukum->jenis}}</td>
                         <td>{{date('d-m-Y', strtotime($draft->produkHukum->tanggal_pengundangan))}}</td>
+                        <td>{{$draft->status}}</td>
                         <td>
                             <div class="mx-auto">
                                 <button type="button" class="badge bg-warning border-0" data-bs-toggle="modal" data-bs-target="#trayek{{$draft->id}}">
